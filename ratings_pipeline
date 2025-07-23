@@ -12,43 +12,38 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 prompt = """
 """
 
-# Function to process the content with OpenAI
-def process_with_openai(text):
-    try:
-        response = openai.Completion.create(
-            model="text-davinci-003",  
-            prompt=text,
-            max_tokens=1000  
-        )
 
-        # Extract and return the response text
-        return response.choices[0].text.strip()
+def extract_frames_quarter_second(video_path, output_folder):
+    # Open the video file
+    cap = cv2.VideoCapture(video_path)
 
-    except Exception as e:
-        print(f"Error occurred: {e}")
-        return None
-
-
-
-def extract_frames(video_path, output_folder):
-    cap = cv2.VideoCapture(video_path)  # Load the video
-    frame_count = 0
-
-    # Create the output folder if it doesn't exist
+    # Get the frame rate (FPS) of the video
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    duration = total_frames / fps  # Calculate the total duration of the video in seconds
+    
+    # Make the output folder if it doesn't exist
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
-    while True:
-        ret, frame = cap.read()  # Read a frame from the video
-        if not ret:
-            break
+    frame_count = 0
+    extracted_frames = 0
 
-        # Save the frame as an image
-        frame_filename = os.path.join(output_folder, f"frame_{frame_count:04d}.jpg")
-        cv2.imwrite(frame_filename, frame)
+    # Iterate over every 1/4 second of the video
+    for quarter_second in range(int(duration * 4)):  # Multiply duration by 4 to get 1/4 second intervals
+        target_frame = quarter_second * (fps / 4)  # Target frame for the current 1/4 second
+        cap.set(cv2.CAP_PROP_POS_FRAMES, target_frame)  # Move to that frame
+
+        # Read the frame
+        ret, frame = cap.read()
+        if ret:
+            frame_filename = os.path.join(output_folder, f"{os.path.basename(video_path)}_frame_{quarter_second}.jpg")
+            cv2.imwrite(frame_filename, frame)  # Save the frame
+            extracted_frames += 1
 
         frame_count += 1
 
+    # Release the video capture object
     cap.release()
 
 # Function to process image frame with OpenAI (e.g., using CLIP for image/text analysis)
@@ -56,7 +51,7 @@ def process_frame_with_openai(image_path):
     try:
         with open(image_path, "rb") as image_file:
             response = openai.Image.create(
-                prompt="Describe the content of this image.",  # You can change the prompt as needed
+                prompt=f'You are a driver in an autonomous car. You’re {age} years old. Watch the following video that shows what happens in the surroundings and the driving situation and rate your reaction to what you see based on the following questions. Use the scales provided in the brackets for each question. When there are two adjectives to compare the left value corresponds to the left adjective and the right value to the right one. Don’t respond with an analysis or any other comments (give just the ratings). Provide the response in a csv file.',  
                 n=1,
                 size="1024x1024",
                 file=image_file
@@ -72,7 +67,7 @@ def process_frame_with_openai(image_path):
 # Process the video: Extract frames and send them to OpenAI
 def process_video_with_openai(video_path, output_folder):
     # Step 1: Extract frames from the video
-    extract_frames(video_path, output_folder)
+    extract_frames_quarter_second(video_path, output_folder)
 
     # Step 2: Process each frame with OpenAI
     for frame_filename in os.listdir(output_folder):
@@ -89,13 +84,17 @@ def process_video_with_openai(video_path, output_folder):
 
 
 folder_path = 'videos_path'
-output_folder = 'ratings'
+ratings_folder = 'ratings'
 
 video_files = [f for f in os.listdir(folder_path) if f.endswith(('.mp4', '.mkv', '.avi'))]
 
 video_files = [os.path.join(folder_path, video) for video in video_files]
 
+age_list = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+']
+
 for file in video_files:
+    for age in age_list:
+        age = age
     print(f"Processing video: {file}")
     process_video_with_openai(file, output_folder)
     print(f"Finished processing video: {file}")
