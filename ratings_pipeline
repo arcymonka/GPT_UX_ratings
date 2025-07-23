@@ -1,8 +1,7 @@
 import os
 from dotenv import load_dotenv
 import openai
-from docx import Document
-
+import cv2
 # Load environment variables from .env file
 load_dotenv()
 
@@ -29,3 +28,36 @@ def process_with_openai(text):
         print(f"Error occurred: {e}")
         return None
 
+
+folder_path = 'videos_path'
+output_folder = 'ratings'
+
+files = 
+
+
+# Process each .docx file
+for file in files:
+    doc = Document(file)
+
+    # Extract the text from the .docx file (you can extract paragraphs or specific parts of the document as needed)
+    document_text = '\n'.join([para.text for para in doc.paragraphs])
+
+    # Process the extracted text using OpenAI API
+    processed_text = process_with_openai(document_text + "\n" + prompt)
+
+    if processed_text:
+        # Create a new Document to save the OpenAI response
+        new_doc = Document()
+
+        # Add the processed text as a new paragraph in the new document
+        new_doc.add_paragraph(processed_text)
+
+        # Define the new filename (for example, appending "_processed" to the original filename)
+        new_file_path = os.path.join(folder_path, f"{os.path.splitext(os.path.basename(file))[0]}_processed.docx")
+
+        # Save the new document with the processed text
+        new_doc.save(new_file_path)
+
+        print(f"Processed and saved new file: {new_file_path}")
+    else:
+        print(f"Failed to process {file}")
