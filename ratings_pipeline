@@ -29,35 +29,73 @@ def process_with_openai(text):
         return None
 
 
+
+def extract_frames(video_path, output_folder):
+    cap = cv2.VideoCapture(video_path)  # Load the video
+    frame_count = 0
+
+    # Create the output folder if it doesn't exist
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    while True:
+        ret, frame = cap.read()  # Read a frame from the video
+        if not ret:
+            break
+
+        # Save the frame as an image
+        frame_filename = os.path.join(output_folder, f"frame_{frame_count:04d}.jpg")
+        cv2.imwrite(frame_filename, frame)
+
+        frame_count += 1
+
+    cap.release()
+
+# Function to process image frame with OpenAI (e.g., using CLIP for image/text analysis)
+def process_frame_with_openai(image_path):
+    try:
+        with open(image_path, "rb") as image_file:
+            response = openai.Image.create(
+                prompt="Describe the content of this image.",  # You can change the prompt as needed
+                n=1,
+                size="1024x1024",
+                file=image_file
+            )
+
+            # Extract and return the description from OpenAI's response
+            return response['data'][0]['text']
+
+    except Exception as e:
+        print(f"Error processing {image_path}: {e}")
+        return None
+
+# Process the video: Extract frames and send them to OpenAI
+def process_video_with_openai(video_path, output_folder):
+    # Step 1: Extract frames from the video
+    extract_frames(video_path, output_folder)
+
+    # Step 2: Process each frame with OpenAI
+    for frame_filename in os.listdir(output_folder):
+        frame_path = os.path.join(output_folder, frame_filename)
+        
+        # Process the frame with OpenAI (e.g., CLIP for image/text analysis)
+        description = process_frame_with_openai(frame_path)
+
+        if description:
+            print(f"Description for {frame_filename}: {description}")
+        else:
+            print(f"Failed to process {frame_filename}")
+
+
+
 folder_path = 'videos_path'
 output_folder = 'ratings'
 
-files = 
+video_files = [f for f in os.listdir(folder_path) if f.endswith(('.mp4', '.mkv', '.avi'))]
 
+video_files = [os.path.join(folder_path, video) for video in video_files]
 
-# Process each .docx file
-for file in files:
-    doc = Document(file)
-
-    # Extract the text from the .docx file (you can extract paragraphs or specific parts of the document as needed)
-    document_text = '\n'.join([para.text for para in doc.paragraphs])
-
-    # Process the extracted text using OpenAI API
-    processed_text = process_with_openai(document_text + "\n" + prompt)
-
-    if processed_text:
-        # Create a new Document to save the OpenAI response
-        new_doc = Document()
-
-        # Add the processed text as a new paragraph in the new document
-        new_doc.add_paragraph(processed_text)
-
-        # Define the new filename (for example, appending "_processed" to the original filename)
-        new_file_path = os.path.join(folder_path, f"{os.path.splitext(os.path.basename(file))[0]}_processed.docx")
-
-        # Save the new document with the processed text
-        new_doc.save(new_file_path)
-
-        print(f"Processed and saved new file: {new_file_path}")
-    else:
-        print(f"Failed to process {file}")
+for file in video_files:
+    print(f"Processing video: {file}")
+    process_video_with_openai(file, output_folder)
+    print(f"Finished processing video: {file}")
