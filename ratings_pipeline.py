@@ -83,18 +83,20 @@ def process_video_with_openai(video_path, output_folder):
 
 
 
-folder_path = 'videos_path'
-ratings_folder = 'ratings'
+# ratings_folder = 'ratings'
 
-video_files = [f for f in os.listdir(folder_path) if f.endswith(('.mp4', '.mkv', '.avi'))]
+# video_files = [f for f in os.listdir(folder_path) if f.endswith(('.mp4', '.mkv', '.avi'))]
 
-video_files = [os.path.join(folder_path, video) for video in video_files]
+# video_files = [os.path.join(folder_path, video) for video in video_files]
 
-age_list = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+']
+# age_list = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+']
 
-for file in video_files:
-    for age in age_list:
-        age = age
-    print(f"Processing video: {file}")
-    process_video_with_openai(file, output_folder)
-    print(f"Finished processing video: {file}")
+# for file in video_files:
+#     for age in age_list:
+#         age = age
+#     print(f"Processing video: {file}")
+#     process_video_with_openai(file, ratings_folder)
+#     print(f"Finished processing video: {file}")
+
+
+
