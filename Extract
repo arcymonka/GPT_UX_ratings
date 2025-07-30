@@ -35,11 +35,11 @@ from ratings_pipeline import extract_frames_quarter_second
 #     # Release the video capture object
 #     cap.release()
 
-folder_path = '/Users/helena/Desktop/vid'  # Set the correct path to your video files
+video_path = os.getenv("VIDEO_PATH")  
 output_folder = '/Users/helena/Desktop/vid/output_extract'
 
-video_files = [f for f in os.listdir(folder_path) if f.endswith(('.mp4', '.mkv', '.avi'))]
-video_files = [os.path.join(folder_path, video) for video in video_files]
+video_files = [f for f in os.listdir(video_path) if f.endswith(('.mp4', '.mkv', '.avi'))]
+video_files = [os.path.join(video_path, video) for video in video_files]
 
 for file in video_files:
     extract_frames_quarter_second(file, output_folder)
