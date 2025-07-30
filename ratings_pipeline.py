@@ -1,28 +1,29 @@
 import os
-from dotenv import load_dotenv
-import openai
+import base64
 import cv2
-# Load environment variables from .env file
-load_dotenv()
-print('test')
+import openai
+from dotenv import load_dotenv
 
-# Get the API key from environment variables
+# Load environment variables
+load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-video_path = os.getenv("VIDEO_PATH")  
+# Prompt template
+def build_prompt(age):
+    return f"""
+    You are a passenger in an autonomous car. You’re {age} years old. 
+    Watch the following images (from a video that shows what happens in the surroundings and the driving situation) 
+    and rate your reaction to what you see based on the following questions. 
+    Use the scales provided in the brackets for each question. 
+    When there are two adjectives to compare, the left value corresponds to the left adjective 
+    and the right value to the right one. Don’t respond with an analysis or any other comments 
+    (give just the ratings). Provide the response in a CSV file format.
+    """
 
-# Define the prompt to process the text
-prompt = f"""
-You are a passenger in an autonomous car. You’re  years old. 
-Watch the following video that shows what happens in the surroundings and the driving situation and rate your reaction to what you see 
-based on the following questions. Use the scales provided in the brackets for each question. When there are two adjectives to compare the 
-left value corresponds to the left adjective and the right value to the right one. Don’t respond with an analysis or any other comments 
-(give just the ratings). Provide the response in a csv file.
-"""
 
+# === Frame Extraction ===
 def extract_frames_quarter_second(video_path, output_folder):
     cap = cv2.VideoCapture(video_path)
-
     if not cap.isOpened():
         raise ValueError(f"Cannot open video: {video_path}")
 
@@ -30,14 +31,9 @@ def extract_frames_quarter_second(video_path, output_folder):
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     duration = total_frames / fps
 
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
-
     name = os.path.splitext(os.path.basename(video_path))[0]
     name_folder = os.path.join(output_folder, name)
-
-    if not os.path.exists(name_folder):
-        os.makedirs(name_folder)
+    os.makedirs(name_folder, exist_ok=True)
 
     for quarter_second in range(int(duration * 4)):
         target_frame = quarter_second * (fps / 4)
@@ -49,60 +45,89 @@ def extract_frames_quarter_second(video_path, output_folder):
 
     cap.release()
 
+# === Frame Encoding ===
+def encode_image(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode("utf-8")
 
-# Function to process image frame with OpenAI (e.g., using CLIP for image/text analysis)
-def process_frame_with_openai(image_path):
+# === GPT-4 Vision Batch Processing ===
+def process_frames_with_openai(frames, age):
+    # Limit to 20 images (API limitation)
+    frames = frames[:20]
+
+    images_payload = [
+        {
+            "type": "image_url",
+            "image_url": {
+                "url": f"data:image/jpeg;base64,{encode_image(frame)}"
+            }
+        }
+        for frame in frames
+    ]
+
     try:
-        with open(image_path, "rb") as image_file:
-            response = openai.Image.create(
-                prompt=prompt,
-                model="pick the model",
-                n=1,
-                size="1024x1024",
-                file=image_file
-            )
-
-            # Extract and return the description from OpenAI's response
-            return response['data'][0]['text']
+        response = openai.ChatCompletion.create(
+            model="gpt-4-vision-preview",
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": build_prompt(age)},
+                        *images_payload
+                    ]
+                }
+            ],
+            max_tokens=1000
+        )
+        return response["choices"][0]["message"]["content"]
 
     except Exception as e:
-        print(f"Error processing {image_path}: {e}")
+        print(f"Error processing frames: {e}")
         return None
 
-# Process the video: Extract frames and send them to OpenAI
-def process_video_with_openai(video_path, output_folder):
-    # Step 1: Extract frames from the video
-    extract_frames_quarter_second(video_path, output_folder)
+# === Main Video Folder Processor ===
+def process_all_videos(video_dir, output_folder):
+    age_list = [18, 25, 30, 35, 40, 45, 50, 55, 60, 65]
+    video_files = [
+        os.path.join(video_dir, f)
+        for f in os.listdir(video_dir)
+        if f.endswith((".mp4", ".mkv", ".avi"))
+    ]
 
-    # Step 2: Process each frame with OpenAI
-    for frame_filename in os.listdir(output_folder):
-        frame_path = os.path.join(output_folder, frame_filename)
+    for video_file in video_files:
+        print(f"🟡 Extracting frames from {video_file}")
+        extract_frames_quarter_second(video_file, output_folder)
 
-        
-        # Process the frame with OpenAI (e.g., CLIP for image/text analysis)
-        description = process_frame_with_openai(frame_path)
+    for video_file in video_files:
+        video_name = os.path.splitext(os.path.basename(video_file))[0]
+        frame_folder = os.path.join(output_folder, video_name)
 
-        if description:
-            print(f"Description for {frame_filename}: {description}")
-        else:
-            print(f"Failed to process {frame_filename}")
+        # Collect all frame paths
+        frame_paths = [
+            os.path.join(frame_folder, f)
+            for f in sorted(os.listdir(frame_folder))
+            if f.endswith(".jpg")
+        ]
 
+        if not frame_paths:
+            print(f"⚠️ No frames found in {frame_folder}")
+            continue
 
+        print(f"🟢 Sending frames for {video_name} to OpenAI...")
+        for age in age_list:
+            description = process_frames_with_openai(frame_paths, age)
 
-# ratings_folder = 'ratings'
+            if description:
+                print(f"✅ CSV Ratings for {video_name}:\n{description}\n")
+                csv_filename = f"{video_name}_age_{age}_ratings.csv"
+                csv_path = os.path.join(output_folder, csv_filename)
+                with open(csv_path, "w") as f:
+                    f.write(description)
+            else:
+                print(f"❌ Failed to process {video_name}\n")
 
-# video_files = [f for f in os.listdir(folder_path) if f.endswith(('.mp4', '.mkv', '.avi'))]
-
-# video_files = [os.path.join(folder_path, video) for video in video_files]
-
-# age_list = ['18-24', '25-34', '35-44', '45-54', '55-64']
-
-# for file in video_files:
-#     for age in age_list:
-#         age = age
-#     print(f"Processing video: {file}")
-#     process_video_with_openai(file, ratings_folder)
-#     print(f"Finished processing video: {file}")
-
-
-
+# === Run Script ===
+if __name__ == "__main__":
+    video_dir = os.getenv("VIDEO_PATH")  # This must be a folder path
+    output_folder = "/Users/helena/Desktop/vid/output_extract"
+    process_all_videos(video_dir, output_folder)
