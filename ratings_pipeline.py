@@ -4,6 +4,7 @@ import openai
 import cv2
 # Load environment variables from .env file
 load_dotenv()
+print('test')
 
 # Get the API key from environment variables
 openai.api_key = os.getenv("OPENAI_API_KEY")
