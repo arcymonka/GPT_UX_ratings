@@ -8,6 +8,8 @@ load_dotenv()
 # Get the API key from environment variables
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+video_path = os.getenv("VIDEO_PATH")  
+
 # Define the prompt to process the text
 prompt = """
 """
