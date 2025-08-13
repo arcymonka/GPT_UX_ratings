@@ -1,0 +1,138 @@
+import os
+import base64
+import cv2
+import openai
+from dotenv import load_dotenv
+
+# === Load environment variables ===
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# === Prompt template ===
+def build_prompt(summary_so_far):
+    return f"""Generate a summary for the following frames extracted from a video at the rate of one frame every quarter second. 
+You are seeing the view through a windshield of an automated vehicle. Describe the scene in detail, focusing on the surroundings, 
+objects, and any notable events. Remember that the frames are extracted from a video showing a continuous driving situation. 
+Build upon the summary of the previous frames and provide a coherent narrative. This is it so far: {summary_so_far}. 
+Respond only with the summary of the frames you're seeing right now.
+"""
+
+# === Frame Extraction ===
+def extract_frames_quarter_second(video_path, output_folder):
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise ValueError(f"Cannot open video: {video_path}")
+
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    duration = total_frames / fps
+
+    name = os.path.splitext(os.path.basename(video_path))[0]
+    name_folder = os.path.join(output_folder, name)
+    os.makedirs(name_folder, exist_ok=True)
+
+    for quarter_second in range(int(duration * 4)):
+        target_frame = quarter_second * (fps / 4)
+        cap.set(cv2.CAP_PROP_POS_FRAMES, round(target_frame))
+        ret, frame = cap.read()
+        if ret:
+            frame_filename = os.path.join(name_folder, f"{name}_frame_{quarter_second}.jpg")
+            cv2.imwrite(frame_filename, frame)
+
+    cap.release()
+
+# === Frame Encoding ===
+def encode_image(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode("utf-8")
+
+# === GPT-4 Vision Batch Processing ===
+def process_frames_with_openai(frames, summary_so_far):
+    images_payload = [
+        {
+            "type": "image_url",
+            "image_url": {
+                "url": f"data:image/jpeg;base64,{encode_image(frame)}"
+            }
+        }
+        for frame in frames
+    ]
+
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-4-vision-preview",
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": build_prompt(summary_so_far)},
+                        *images_payload
+                    ]
+                }
+            ],
+            max_tokens=1000
+        )
+        return response["choices"][0]["message"]["content"]
+    except Exception as e:
+        print(f"Error processing frames: {e}")
+        return None
+
+# === Main Video Folder Processor ===
+def process_all_videos(video_dir, output_folder):
+    new_folder_path = os.getenv("SUMMARY_OUTPUT_PATH")
+    os.makedirs(new_folder_path, exist_ok=True)
+
+
+    video_files = [
+        os.path.join(video_dir, f)
+        for f in os.listdir(video_dir)
+        if f.endswith((".mp4", ".mkv", ".avi"))
+    ]
+
+    for video_file in video_files:
+        print(f"🟡 Extracting frames from {video_file}")
+        extract_frames_quarter_second(video_file, output_folder)
+
+    for video_file in video_files:
+        summary = ""
+        video_name = os.path.splitext(os.path.basename(video_file))[0]
+        frame_folder = os.path.join(output_folder, video_name)
+
+        frame_paths = [
+            os.path.join(frame_folder, f)
+            for f in sorted(os.listdir(frame_folder))
+            if f.endswith(".jpg")
+        ]
+
+        if not frame_paths:
+            print(f"⚠️ No frames found in {frame_folder}")
+            continue
+
+        print(f"🟢 Sending frames for {video_name} to OpenAI...")
+
+        number_of_frames = len(frame_paths)
+
+        for i in range(0, number_of_frames, 10):
+            chunk = frame_paths[i:i+10]  # Process frames in small batches
+            description = process_frames_with_openai(chunk, summary)
+            if description:
+                summary += "\n" + description
+                print(f"✅ Processed chunk {i}-{i+10} of {video_name}")
+            else:
+                print(f"❌ Failed to process chunk {i}-{i+10} of {video_name}")
+
+        # Save summary
+        new_file_path = os.path.join(new_folder_path, f"processed_{video_name}.txt")
+        with open(new_file_path, "w") as f:
+            f.write(summary)
+        print(f"📄 Saved summary to {new_file_path}")
+
+# === Run Script ===
+if __name__ == "__main__":
+    video_dir = os.getenv("VIDEO_PATH")  # Folder with videos
+    output_folder = os.getenv("OUTPUT_PATH")  # Default if not in .env
+
+    if not video_dir:
+        print("❌ VIDEO_PATH is not set in your .env file.")
+    else:
+        process_all_videos(video_dir, output_folder)
