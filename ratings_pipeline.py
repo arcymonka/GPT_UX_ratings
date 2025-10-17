@@ -1,10 +1,10 @@
 import os
-import openai
 from dotenv import load_dotenv
 
 # === Load environment variables ===
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+from openai import OpenAI
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # === Prompt Template ===
 def build_prompt(summary, age, gender):
@@ -51,26 +51,56 @@ The questions are:
 • How familiar are you with the situation? (1 to 7)
 """
 
+import re
+
+def sanitize_csv_row(raw_text: str, expected_cols: int = 30) -> str | None:
+    """
+    Extract strictly numeric values from model output and enforce a fixed column count.
+    - Converts Unicode minus (−) to ASCII '-'
+    - Accepts integers or decimals with optional leading sign
+    - Truncates if there are too many; pads with empty fields if too few
+    Returns a comma-separated string or None if nothing usable.
+    """
+    if not raw_text:
+        return None
+
+    # Normalize unicode minus and strip spaces/newlines
+    text = raw_text.replace("−", "-").strip()
+
+    # Pull out numbers like -3, +2, 4.5, -0.25
+    nums = re.findall(r"[+\-]?\d+(?:\.\d+)?", text)
+
+    if not nums:
+        return None
+
+    # Enforce column count
+    if len(nums) > expected_cols:
+        nums = nums[:expected_cols]
+    elif len(nums) < expected_cols:
+        nums = nums + [""] * (expected_cols - len(nums))
+
+    # Return CSV line without spaces
+    return ",".join(nums)
+
+
 # === OpenAI Call ===
 def process_summary_with_openai(summary_text, age, gender):
     prompt = build_prompt(summary_text, age, gender)
-
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4-0613",
-            messages=[
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=300
+        resp = client.chat.completions.create(
+            model="gpt-5-nano-2025-08-07",  # inexpensive, good for text
+            messages=[{"role": "user", "content": prompt}],
         )
-        return response["choices"][0]["message"]["content"].strip()
+        raw = resp.choices[0].message.content.strip()
+
     except Exception as e:
         print(f"Error processing summary: {e}")
         return None
 
+
 # === Main Summary Folder Processor ===
 def process_all_summaries(input_folder, output_folder):
-    age_list = [18, 25, 30, 35, 40, 45, 50, 55, 60, 65]
+    age_list = [25, 30, 35, 40, 45]
     gender_list = ["male", "female"]
 
     summary_files = [
@@ -100,7 +130,7 @@ def process_all_summaries(input_folder, output_folder):
 
 # === Run Script ===
 if __name__ == "__main__":
-    input_folder = os.getenv("SUMMARY_INPUT_PATH")
+    input_folder = os.getenv("SUMMARY_PATH")
     output_folder = os.getenv("RATINGS_OUTPUT_PATH")
     os.makedirs(output_folder, exist_ok=True)
 

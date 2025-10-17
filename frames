@@ -1,45 +1,51 @@
 import os
 import base64
 import cv2
-import openai
 from dotenv import load_dotenv
 
 # === Load environment variables ===
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+from openai import OpenAI
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # === Prompt template ===
 def build_prompt(summary_so_far):
-    return f"""Generate a summary for the following frames extracted from a video at the rate of one frame every quarter second. 
-You are seeing the view through a windshield of an automated vehicle. Describe the scene in detail, focusing on the surroundings, 
-objects, and any notable events. Remember that the frames are extracted from a video showing a continuous driving situation. 
-Build upon the summary of the previous frames and provide a coherent narrative. This is it so far: {summary_so_far}. 
-Respond only with the summary of the frames you're seeing right now.
-"""
-
+    return f"""Generate a summary for the following frames extracted from a driving video at the rate of one frame every quarter second. You are seeing the view through a windshield of an automated vehicle. Build on the previous summary without repeating what was already established unless it is necessary for continuity. Focus on new or changing details — moving objects, traffic signals, pedestrians, and notable events. Ignore any subtitles or encoded time or speed information.
+Keep the style factual and objective, avoid poetic or overly descriptive language.
+Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. If nothing significant changes, summarize that briefly in one short sentence. Respond only with the update. Here is the summary so far: {summary_so_far}"""
 # === Frame Extraction ===
 def extract_frames_quarter_second(video_path, output_folder):
+    import math
+
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
         raise ValueError(f"Cannot open video: {video_path}")
 
-    fps = cap.get(cv2.CAP_PROP_FPS)
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    duration = total_frames / fps
+    fps = cap.get(cv2.CAP_PROP_FPS) or 0
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
+    if fps <= 0 or total_frames <= 0:
+        cap.release()
+        raise ValueError(f"Invalid video metadata (fps={fps}, frames={total_frames}) for {video_path}")
+
+    duration_sec = total_frames / fps
+    step_ms = 250  # 4 fps -> every 250 ms
+    steps = int(math.floor(duration_sec * 1000 / step_ms))
 
     name = os.path.splitext(os.path.basename(video_path))[0]
     name_folder = os.path.join(output_folder, name)
     os.makedirs(name_folder, exist_ok=True)
 
-    for quarter_second in range(int(duration * 4)):
-        target_frame = quarter_second * (fps / 4)
-        cap.set(cv2.CAP_PROP_POS_FRAMES, round(target_frame))
+    for i in range(steps):
+        t_ms = i * step_ms
+        cap.set(cv2.CAP_PROP_POS_MSEC, float(t_ms))
         ret, frame = cap.read()
-        if ret:
-            frame_filename = os.path.join(name_folder, f"{name}_frame_{quarter_second}.jpg")
-            cv2.imwrite(frame_filename, frame)
+        if not ret:
+            continue
+        frame_filename = os.path.join(name_folder, f"{name}_t{t_ms:08d}.jpg")
+        cv2.imwrite(frame_filename, frame)
 
     cap.release()
+
 
 # === Frame Encoding ===
 def encode_image(path):
@@ -59,27 +65,26 @@ def process_frames_with_openai(frames, summary_so_far):
     ]
 
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4-vision-preview",
+        resp = client.chat.completions.create(
+            model="gpt-5-2025-08-07",  # vision-capable; use your allowed vision model here
             messages=[
                 {
                     "role": "user",
                     "content": [
                         {"type": "text", "text": build_prompt(summary_so_far)},
-                        *images_payload
-                    ]
+                        *images_payload,  # your data:image/jpeg;base64,... entries
+                    ],
                 }
-            ],
-            max_tokens=1000
+            ]
         )
-        return response["choices"][0]["message"]["content"]
+        return resp.choices[0].message.content
     except Exception as e:
         print(f"Error processing frames: {e}")
         return None
 
 # === Main Video Folder Processor ===
 def process_all_videos(video_dir, output_folder):
-    new_folder_path = os.getenv("SUMMARY_OUTPUT_PATH")
+    new_folder_path = os.getenv("SUMMARY_PATH")
     os.makedirs(new_folder_path, exist_ok=True)
 
 
