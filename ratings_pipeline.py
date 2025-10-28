@@ -88,19 +88,20 @@ def process_summary_with_openai(summary_text, age, gender):
     prompt = build_prompt(summary_text, age, gender)
     try:
         resp = client.chat.completions.create(
-            model="gpt-5-nano-2025-08-07",  # inexpensive, good for text
+            model="gpt-5-nano",  # pick a real model from the docs
             messages=[{"role": "user", "content": prompt}],
         )
         raw = resp.choices[0].message.content.strip()
-
+        return sanitize_csv_row(raw, expected_cols=30)
     except Exception as e:
         print(f"Error processing summary: {e}")
         return None
 
 
+
 # === Main Summary Folder Processor ===
 def process_all_summaries(input_folder, output_folder):
-    age_list = [25, 30, 35, 40, 45]
+    age_list = [25]
     gender_list = ["male", "female"]
 
     summary_files = [
