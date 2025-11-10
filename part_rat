@@ -68,8 +68,12 @@ def build_prompt(summary, age, gender):
     return f"""
 You are a passenger in an autonomous car. You’re {age} years old and your gender is {gender}. 
 Based on the following summary of a driving situation, rate your reaction using the scales provided. 
-**ONLY** use the numerical ratings – do not add any text or explanations. Return the result as a CSV row (no header, just the numbers, separated by commas).
+Return a SINGLE CSV row with 60 columns, alternating:
+score_1,"reason_1",score_2,"reason_2",...,score_30,"reason_30".
 
+- Use only integers where scales are integers.
+- Each reason must be a short sentence in double quotes, justifying why this participant would give this rating.
+- No header, no extra text, no code fences.
 Summary:
 \"\"\"
 {summary}
@@ -109,25 +113,60 @@ The questions are:
 """
 
 # === CSV sanitizer ===
-def sanitize_csv_row(raw_text: str, expected_cols: int = 30) -> Optional[str]:
+import csv
+from io import StringIO
+
+def parse_scores_with_reasons(raw_text: str, expected_pairs: int = 30) -> Optional[str]:
     """
-    Extract strictly numeric values from model output and enforce a fixed column count.
-    - Converts Unicode minus (−) to ASCII '-'
-    - Accepts integers or decimals with optional leading sign
-    - Truncates if there are too many; pads with empty fields if too few
-    Returns a comma-separated string or None if nothing usable.
+    Parse a single CSV row that alternates: score,"reason".
+    Returns a normalized CSV string (60 columns) or None.
     """
     if not raw_text:
         return None
-    text = raw_text.replace("−", "-").strip()
-    nums = re.findall(r"[+\-]?\d+(?:\.\d+)?", text)
-    if not nums:
+
+    # Strip code fences / markdown if present
+    text = raw_text.strip()
+    if text.startswith("```"):
+        text = re.sub(r"^```.*?\n|\n```$", "", text, flags=re.DOTALL)
+
+    # Use csv.reader to respect quoted fields and commas inside reasons
+    try:
+        row = next(csv.reader(StringIO(text)))
+    except Exception:
         return None
-    if len(nums) > expected_cols:
-        nums = nums[:expected_cols]
-    elif len(nums) < expected_cols:
-        nums = nums + [""] * (expected_cols - len(nums))
-    return ",".join(nums)
+
+    # Normalize Unicode minus
+    row = [cell.replace("−", "-").strip() for cell in row]
+
+    # If the model returned multiple rows, keep only the first parsed row above.
+
+    # If user accidentally returned only scores (30), pad with empty quoted reasons.
+    if len(row) == expected_pairs:
+        # Insert empty reasons after each score
+        normalized = []
+        for val in row:
+            normalized.extend([val, ""])
+        row = normalized
+
+    # Truncate/pad to exactly 2*expected_pairs (60 columns)
+    target_cols = expected_pairs * 2
+    if len(row) > target_cols:
+        row = row[:target_cols]
+    elif len(row) < target_cols:
+        row += [""] * (target_cols - len(row))
+
+    # Basic validation: scores should be numeric in even indices
+    for i in range(0, target_cols, 2):
+        if not re.fullmatch(r"[+\-]?\d+(?:\.\d+)?", row[i]):
+            # Try to extract a number if the cell contains extra text
+            m = re.search(r"[+\-]?\d+(?:\.\d+)?", row[i])
+            row[i] = m.group(0) if m else ""
+
+    # Re-serialize with csv.writer to ensure correct quoting
+    out = StringIO()
+    csv.writer(out).writerow(row)
+    return out.getvalue().strip()
+
 
 # === OpenAI Call ===
 def process_summary_with_openai(summary_text: str, age: int, gender: str) -> Optional[str]:
@@ -138,7 +177,8 @@ def process_summary_with_openai(summary_text: str, age: int, gender: str) -> Opt
             messages=[{"role": "user", "content": prompt}],
         )
         raw = resp.choices[0].message.content.strip()
-        return sanitize_csv_row(raw, expected_cols=30)
+        return parse_scores_with_reasons(raw, expected_pairs=30)
+
     except Exception as e:
         print(f"Error processing summary: {e}")
         return None

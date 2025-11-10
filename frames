@@ -28,7 +28,7 @@ def extract_frames_quarter_second(video_path, output_folder):
         raise ValueError(f"Invalid video metadata (fps={fps}, frames={total_frames}) for {video_path}")
 
     duration_sec = total_frames / fps
-    step_ms = 250  # 4 fps -> every 250 ms
+    step_ms = 125  # 8 fps -> every 250 ms
     steps = int(math.floor(duration_sec * 1000 / step_ms))
 
     name = os.path.splitext(os.path.basename(video_path))[0]
