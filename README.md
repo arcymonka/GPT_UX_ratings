@@ -35,7 +35,7 @@ It automates the following:
 ├── .env                    # Environment variables
 ├── requirements.txt         # Python dependencies (recommended)
 └── output_extract/          # Folder where extracted frames and CSVs are saved
-
+```
 
 ## 3. Setup Instructions
 
