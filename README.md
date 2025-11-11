@@ -28,11 +28,13 @@ It automates the following:
 
 
 ## 2. Project Structure
+
+```plaintext
 .
-├── ratings_pipeline.py # Main processing script
-├── .env # Environment variables
-├── requirements.txt # Python dependencies (recommended)
-└── output_extract/ # Folder where extracted frames and CSVs are saved
+├── ratings_pipeline.py     # Main processing script
+├── .env                    # Environment variables
+├── requirements.txt         # Python dependencies (recommended)
+└── output_extract/          # Folder where extracted frames and CSVs are saved
 
 
 ## 3. Setup Instructions
@@ -46,12 +48,15 @@ cd GPT_UX_ratings
 pip install -r requirements.txt
 ```
 ### 2. Create a Virtual Environment (optional but recommended)
+```bash
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
 ## 4. Usage
 Run the main script: 
-```python ratings_pipeline.py
+```bash 
+python ratings_pipeline.py
 ```
 
 By default, the script will:
