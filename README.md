@@ -78,7 +78,6 @@ Ensure all referenced directories exist and contain valid data files (e.g., `.tx
 Run the scripts in the following order: 
 ```bash 
 python frames.py
-python ratings_pipeline.py
 python part_rat.py
 ```
 
