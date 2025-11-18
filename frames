@@ -10,9 +10,10 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # === Prompt template ===
 def build_prompt(summary_so_far):
-    return f"""Generate a summary for the following frames extracted from a driving video at the rate of one frame every quarter second. You are seeing the view through a windshield of an automated vehicle. Build on the previous summary without repeating what was already established unless it is necessary for continuity. Focus on new or changing details — moving objects, traffic signals, pedestrians, and notable events. Ignore any subtitles or encoded time or speed information.
+    return f"""Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second. You are seeing the view through a windshield of an automated vehicle. Build on the provided summary of previous frames without repeating what was already established unless it is necessary for continuity. Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events. Ignore any subtitles or encoded time or speed information but consider that every frame you see is 1/8 of a second apart.
 Keep the style factual and objective, avoid poetic or overly descriptive language.
-Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. If nothing significant changes, summarize that briefly in one short sentence. Respond only with the update. Here is the summary so far: {summary_so_far}"""
+Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. If what you see adds information to or contradicts something previously stated in the summary, point it out. Respond only with the update. Here is the summary so far: {summary_so_far}
+"""
 # === Frame Extraction ===
 def extract_frames_quarter_second(video_path, output_folder):
     import math
@@ -66,7 +67,7 @@ def process_frames_with_openai(frames, summary_so_far):
 
     try:
         resp = client.chat.completions.create(
-            model="gpt-5-2025-08-07",  # vision-capable; use your allowed vision model here
+            model="gpt-5.1",  # vision-capable; use your allowed vision model here
             messages=[
                 {
                     "role": "user",
@@ -128,7 +129,7 @@ def process_all_videos(video_dir, output_folder):
 
         # Save summary
         new_file_path = os.path.join(new_folder_path, f"processed_{video_name}.txt")
-        with open(new_file_path, "w") as f:
+        with open(new_file_path, "w", encoding="utf-8") as f:
             f.write(summary)
         print(f"📄 Saved summary to {new_file_path}")
 

@@ -45,13 +45,10 @@ def generate_participants(n: int = 10) -> List[Participant]:
 
     # Approximate US adult (18+) distribution buckets (sum ~100).
     age_buckets = [
-        ((18, 24), 12.0),
-        ((25, 34), 18.0),
-        ((35, 44), 17.0),
-        ((45, 54), 16.0),
-        ((55, 64), 16.0),
-        ((65, 74), 12.0),
-        ((75, 90), 9.0),   # cap at 90 for sampling
+        ((18, 33), 25.0),
+        ((34, 49), 25.0),
+        ((50, 65), 25.0),
+        ((66, 80), 25.0)
     ]
 
     genders = ["male"] * (n // 2) + ["female"] * (n // 2)
@@ -62,6 +59,31 @@ def generate_participants(n: int = 10) -> List[Participant]:
         age = _weighted_choice(age_buckets)
         participants.append(Participant(pid=i + 1, gender=genders[i], age=age))
     return participants
+
+def generate_participants_equal_per_gender_bucket(n: int = 24) -> List[Participant]:
+    if n % 8 != 0:
+        raise ValueError("For equal per gender per bucket, NUM_PARTICIPANTS must be divisible by 8.")
+
+    age_buckets = [ (18,33), (34,49), (50,65), (66,80) ]
+    per_bucket_total = n // 4
+    per_bucket_per_gender = per_bucket_total // 2
+
+    genders = (["male"] * (n // 2)) + (["female"] * (n // 2))
+    random.shuffle(genders)  # only used to randomize PID order later
+
+    # Build (age, gender) pairs with equal counts per bucket per gender
+    pairs: List[Tuple[int, str]] = []
+    for lo, hi in age_buckets:
+        for _ in range(per_bucket_per_gender):
+            pairs.append((random.randint(lo, hi), "male"))
+            pairs.append((random.randint(lo, hi), "female"))
+
+    random.shuffle(pairs)
+    participants: List[Participant] = []
+    for i, (age, gender) in enumerate(pairs):
+        participants.append(Participant(pid=i + 1, gender=gender, age=age))
+    return participants
+
 
 # === Prompt Template ===
 def build_prompt(summary, age, gender):
@@ -194,7 +216,7 @@ def process_all_summaries(input_folder: str, output_folder: str, num_participant
             print("⚠️ RANDOM_SEED is not an int; ignoring.")
 
     # Generate participants (even number enforced)
-    participants = generate_participants(num_participants)
+    participants = generate_participants_equal_per_gender_bucket(num_participants)
 
     summary_files = [
         f for f in os.listdir(input_folder)
@@ -227,6 +249,6 @@ if __name__ == "__main__":
     os.makedirs(output_folder, exist_ok=True)
 
     # Even number (for 50/50 gender split). Defaults to 10.
-    num_participants = int(os.getenv("NUM_PARTICIPANTS", "10"))
+    num_participants = int(os.getenv("NUM_PARTICIPANTS", "24"))
 
     process_all_summaries(input_folder, output_folder, num_participants)
