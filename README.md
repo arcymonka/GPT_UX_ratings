@@ -67,10 +67,11 @@ OUTPUT_PATH="path/to/frames"
 SUMMARY_PATH="path/to/summaries"
 RATINGS_OUTPUT_PATH="path/to/output/ratings"
 RANDOM_SEED=42
+```
 
 
 Ensure all referenced directories exist and contain valid data files (e.g., `.txt` summaries in `SUMMARY_PATH`).
-```
+
 
 ## 5. Usage
 
