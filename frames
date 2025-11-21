@@ -2,20 +2,21 @@ import os
 import base64
 import cv2
 from dotenv import load_dotenv
+from PIL import Image, ImageDraw, ImageFont
+from openai import OpenAI
 
 # === Load environment variables ===
 load_dotenv()
-from openai import OpenAI
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # === Prompt template ===
 def build_prompt(summary_so_far):
-    return f"""Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second. You are seeing the view through a windshield of an automated vehicle. Build on the provided summary of previous frames without repeating what was already established unless it is necessary for continuity. Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events. Ignore any subtitles or encoded time or speed information but consider that every frame you see is 1/8 of a second apart.
+    return f"""Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second. They are labeled in order with a number in the top left corner. You are seeing the view through a windshield of an automated vehicle. Build on the provided summary of previous frames without repeating what was already established unless it is necessary for continuity. Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events. Ignore any subtitles or encoded time or speed information but consider that every frame you see is 1/8 of a second apart.
 Keep the style factual and objective, avoid poetic or overly descriptive language.
 Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. If what you see adds information to or contradicts something previously stated in the summary, point it out. Respond only with the update. Here is the summary so far: {summary_so_far}
 """
 # === Frame Extraction ===
-def extract_frames_quarter_second(video_path, output_folder):
+def extract_frames_per_second(video_path, output_folder):
     import math
 
     cap = cv2.VideoCapture(video_path)
@@ -47,11 +48,58 @@ def extract_frames_quarter_second(video_path, output_folder):
 
     cap.release()
 
-
 # === Frame Encoding ===
 def encode_image(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode("utf-8")
+    
+def label_existing_frames(folder_path, start_index=1):
+    """
+    Draw numeric labels in the top-left of existing image files in folder_path.
+    Overwrites images in-place. Files are processed in sorted filename order.
+    """
+    FONT_SIZE = 30
+    EXTS = (".png", ".jpg", ".jpeg", ".bmp", ".webp")
+
+    try:
+        font = ImageFont.truetype("arial.ttf", FONT_SIZE)
+    except OSError:
+        font = ImageFont.load_default()
+
+    files = sorted([f for f in os.listdir(folder_path) if f.lower().endswith(EXTS)])
+    if not files:
+        return 0
+
+    for idx, filename in enumerate(files, start=start_index):
+        in_path = os.path.join(folder_path, filename)
+        try:
+            img = Image.open(in_path)
+        except Exception:
+            continue
+        if img.mode not in ("RGB", "L"):
+            img = img.convert("RGB")
+
+        draw = ImageDraw.Draw(img)
+        text = str(idx)
+        x, y = 10, 10
+        # white text with black stroke for readability
+        try:
+            draw.text((x, y), text, font=font, fill="white", stroke_fill="black", stroke_width=2)
+        except TypeError:
+            # Pillow without stroke support
+            draw.text((x, y), text, font=font, fill="white")
+            # fallback thin outline
+            draw.text((x-1, y), text, font=font, fill="black")
+            draw.text((x+1, y), text, font=font, fill="black")
+            draw.text((x, y-1), text, font=font, fill="black")
+            draw.text((x, y+1), text, font=font, fill="black")
+
+        try:
+            img.save(in_path)
+        except Exception:
+            continue
+
+    return len(files)
 
 # === GPT-4 Vision Batch Processing ===
 def process_frames_with_openai(frames, summary_so_far):
@@ -95,9 +143,10 @@ def process_all_videos(video_dir, output_folder):
         if f.endswith((".mp4", ".mkv", ".avi"))
     ]
 
+
     for video_file in video_files:
         print(f"🟡 Extracting frames from {video_file}")
-        extract_frames_quarter_second(video_file, output_folder)
+        extract_frames_per_second(video_file, output_folder)
 
     for video_file in video_files:
         summary = ""
@@ -114,7 +163,21 @@ def process_all_videos(video_dir, output_folder):
             print(f"⚠️ No frames found in {frame_folder}")
             continue
 
-        print(f"🟢 Sending frames for {video_name} to OpenAI...")
+        # Ensure frames are labeled (only needs to run once per video)
+        try:
+            labeled_count = label_existing_frames(frame_folder)
+            if labeled_count:
+                # refresh frame_paths after labeling
+                frame_paths = [
+                    os.path.join(frame_folder, f)
+                    for f in sorted(os.listdir(frame_folder))
+                    if f.endswith(".jpg")
+                ]
+                print(f"🟡 Labeled {labeled_count} frames in {frame_folder}")
+        except Exception as e:
+            print(f"⚠️ Could not label existing frames: {e}")
+
+        print(f"🟢 Sending frames for {video_name} from {frame_folder} to OpenAI...")
 
         number_of_frames = len(frame_paths)
 
