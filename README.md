@@ -60,16 +60,16 @@ The initial prompt was designed with only the **basic information** thought nece
 
 This was an earlier version: 
 
-Generate a summary for the following frames extracted from a driving video at the rate of one frame every quarter second. You are seeing the view through a windshield of an automated vehicle. Build on the previous summary without repeating what was already established unless it is necessary for continuity. Focus on new or changing details — moving objects, traffic signals, pedestrians, and notable events.
-Keep the style factual and objective, avoiding poetic or overly descriptive language.
-Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. If nothing significant changes, summarize that briefly in one short sentence. Respond only with the update. Here is the summary so far: {summary_so_far}
+   Generate a summary for the following frames extracted from a driving video at the rate of one frame every quarter second. You are seeing the view through a windshield of an automated vehicle. Build on the previous summary without repeating what was already established unless it is necessary for            continuity. Focus on new or changing details — moving objects, traffic signals, pedestrians, and notable events.
+   Keep the style factual and objective, avoiding poetic or overly descriptive language.
+   Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. If nothing significant changes, summarize that briefly in one short sentence. Respond only with the update. Here is the summary so far: {summary_so_far}
 
 
 It was then iteratively updated: 
 
-Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second. **They are labeled in order with a number in the top left corner.** You are seeing the view through a windshield of an automated vehicle. Build on the provided summary of previous frames without repeating what was already established unless it is necessary for continuity. Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events. **Ignore any subtitles or encoded time or speed information but consider that every frame you see is 1/8 of a second apart.**
-Keep the style factual and objective, avoid poetic or overly descriptive language.
-Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. **If what you see adds information to or contradicts something previously stated in the summary, point it out.** Respond only with the update. Here is the summary so far: {summary_so_far}
+   Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second. **They are labeled in order with a number in the top left corner.** You are seeing the view through a windshield of an automated vehicle. Build on the provided summary of previous             frames without repeating what was already established unless it is necessary for continuity. Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events. **Ignore any subtitles or encoded time or speed information but consider that every frame you       see is 1/8 of a second apart.**
+   Keep the style factual and objective, avoid poetic or overly descriptive language.
+   Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. **If what you see adds information to or contradicts something previously stated in the summary, point it out.** Respond only with the update. Here is the summary so far: {summary_so_far}
 
 These changes were made to solve the following issues: 
 - some summaries raised suspicions that the frames within a batch were not procressed in the correct order
