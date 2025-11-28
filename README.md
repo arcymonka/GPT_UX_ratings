@@ -5,16 +5,20 @@
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
-2. [Features](#2--features)
-3. [Project Structure](#3-project-structure)
-4. [Setup Instructions](#4-setup-instructions)
-   1. [Clone the Repository](#1-clone-the-repository)
-   2. [Configuration](#2-configuration)
-5. [Usage](#5-usage)
-6. [Questionnaire Sources](#6-questionnaire-sources)
-7. [Troubleshooting](#7-troubleshooting)
-8. [License](#8-license)
-9. [References](#9-references)
+2. [Report] (#2-report)
+   1.[Motivation] (#1-motivation)
+   2. [Process] (#2-process)
+3. [Pipeline (#3-pipeline)]
+   1. [Features](#1-features)
+   2. [Project Structure](#2-project-structure)
+   3. [Setup Instructions](#3-setup-instructions)
+      1. [Clone the Repository](#1-clone-the-repository)
+      2. [Configuration](#2-configuration)
+4. [Usage](#4-usage)
+5. [Questionnaire Sources](#5-questionnaire-sources)
+6. [Troubleshooting](#6-troubleshooting)
+7. [License](#7-license)
+8. [References](#8-references)
 
 
 
@@ -24,8 +28,51 @@
 
 This method helps generate synthetic datasets for traffic safety, automation research, and behavioral studies involving passenger perceptions.
 
-## 2.  Features
+## 2.  Report
 
+### 1. Motivation 
+Automated vehicles will increasingly need to understand how their drivers experience different traffic situations in order to support them appropriately. Today, assessing **mental workload, trust, or perceived safety** still relies on intrusive sensors, controlled lab environments, or frequent self reports. These methods produce valuable data, but they do not scale to everyday driving and cannot provide continuous feedback without interrupting the user.
+
+This project explores a different approach: instead of measuring the driver directly, it focuses on what can be **inferred from the scene itself.** The pipeline takes driving videos, uses OpenAI models to generate structured descriptions of what is happening, and then uses these descriptions to simulate how people might respond on established questionnaires that capture workload, trust, and situational awareness. An important aspect of this work is to examine whether large language models have enough scene understanding and contextual reasoning to approximate such subjective ratings at all.
+
+The idea behind the pipeline is to explore whether a scene based, non intrusive method could contribute to estimating driver state in the future and to test how far current LLM capabilities can already take us.
+
+### 2. Procress 
+
+- **Video collection:**  
+  Driving-scene videos were sourced from YouTube, focusing on a wide range of real-world events, including near-accidents, collisions, varying weather conditions, and diverse road environments.
+
+- **Field-of-view cropping:**  
+  Each video was cropped to display only the **forward windshield view**, removing irrelevant elements outside the driver’s visual field.
+
+- **Duration trimming:**  
+  Videos were clipped to a standardized length between **7 and 30 seconds** to ensure consistency across the dataset.
+
+- **Quality filtering:**  
+  The initial set of 89 videos was reduced after discarding clips that did not meet the required quality or content criteria.
+
+- **Pipeline construction:**  
+  A full processing pipeline was developed to extract frames, generate scene summaries, and evaluate those summaries using the GPT-based rating system.
+
+ ### Prompt Development
+
+The initial prompt was designed with only the **basic information** thought necessary to generate scene summaries. However, through **trial and error**, we iteratively refined the prompt to improve the **accuracy, clarity, and relevance** of the summaries. This process ensured that the GPT-based model produced outputs better aligned with the events depicted in the driving videos.
+This was the first one: 
+```
+Generate a summary for the following frames extracted from a driving video at the rate of one frame every quarter second. You are seeing the view through a windshield of an automated vehicle. Build on the previous summary without repeating what was already established unless it is necessary for continuity. Focus on new or changing details — moving objects, traffic signals, pedestrians, and notable events.
+Keep the style factual and objective, avoiding poetic or overly descriptive language.
+Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. If nothing significant changes, summarize that briefly in one short sentence. Respond only with the update. Here is the summary so far: {summary_so_far}
+```
+It was then iteratively updated: 
+
+```
+Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second. <span style="color:red;">They are labeled in order with a number in the top left corner.</span> You are seeing the view through a windshield of an automated vehicle. Build on the provided summary of previous frames without repeating what was already established unless it is necessary for continuity. Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events. <span style="color:blue;">Ignore any subtitles or encoded time or speed information </span> but <span style="color:purple;">consider that every frame you see is 1/8 of a second apart.</span>
+Keep the style factual and objective, avoid poetic or overly descriptive language.
+Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. <span style="color:green;">If what you see adds information to or contradicts something previously stated in the summary, point it out.</span> Respond only with the update. Here is the summary so far: {summary_so_far}
+```
+
+## 3. Pipeline 
+### 1. Features 
 This project uses **OpenAI’s GPT-5** model to analyze frames extracted from driving videos and simulate human emotional reactions (as CSV ratings) for different age groups and gender.
 
 It automates the following:
@@ -36,7 +83,7 @@ It automates the following:
 5. Saves all responses as **CSV files**.
 
   
-## 3. Project Structure
+### 2. Project Structure
 
 ```plaintext
 .
@@ -46,9 +93,9 @@ It automates the following:
 └── output_extract/          # Folder where extracted frames and CSVs are saved
 ```
 
-## 4. Setup Instructions
+### 4. Setup Instructions
 
-### 1. Clone the Repository
+#### 1. Clone the Repository
 Clone the repository and install dependencies:
 
 ```bash
@@ -56,7 +103,7 @@ git clone https://github.com/arcymonka/GPT_UX_ratings.git
 cd GPT_UX_ratings
 pip install -r requirements.txt
 ```
-### 2. Configuration
+#### 2. Configuration
 
 Create a `.env` file in the root directory (or use the provided one) to configure environment variables:
 
@@ -73,7 +120,7 @@ RANDOM_SEED=42
 Ensure all referenced directories exist and contain valid data files (e.g., `.txt` summaries in `SUMMARY_PATH`).
 
 
-## 5. Usage
+## 4. Usage
 
 Run the scripts in the following order: 
 ```bash 
@@ -92,7 +139,7 @@ By default, the scripts will:
 - Save each response to a CSV in `RATINGS_OUTPUT_PATH`
 
 
-## 6. Questionnaire Sources
+## 5. Questionnaire Sources
 
 The 30-item rating scale is built upon validated measures from several academic sources:
 
@@ -102,7 +149,7 @@ The 30-item rating scale is built upon validated measures from several academic 
 - **Acceptance** – Van der Laan et al. (1997)
 - **SART (Situation Awareness Rating Technique)** – Taylor (2017)
 
-## 7. Troubleshooting
+## 6. Troubleshooting
 
 | Issue                             | Possible Cause                                | Solution                                   |
 |----------------------------------|-----------------------------------------------|--------------------------------------------|
@@ -111,11 +158,11 @@ The 30-item rating scale is built upon validated measures from several academic 
 | API error or rate limit exceeded | Too many requests or invalid model version    | Try again later or adjust request volume or add money to API account |
 | Output folder not created        | Missing permissions or invalid path           | Ensure script can create/write to paths    |
 
-## 8.. License
+## 7. License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## 9. References 
+## 8. References 
 
 Anthis, J. R., Liu, R., Richardson, S. M., Kozlowski, A. C., Koch, B., Brynjolfsson, E., Evans, J., & Bernstein, M. S. (2025). LLM social simulations are a promising research method (arXiv preprint arXiv:2504.02234 v2). arXiv. https://doi.org/10.48550/arXiv.2504.02234
 
