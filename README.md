@@ -57,19 +57,25 @@ The idea behind the pipeline is to explore whether a scene based, non intrusive 
  ### Prompt Development
 
 The initial prompt was designed with only the **basic information** thought necessary to generate scene summaries. However, through **trial and error**, we iteratively refined the prompt to improve the **accuracy, clarity, and relevance** of the summaries. This process ensured that the GPT-based model produced outputs better aligned with the events depicted in the driving videos.
-This was the first one: 
-```
+
+This was an earlier version: 
+
 Generate a summary for the following frames extracted from a driving video at the rate of one frame every quarter second. You are seeing the view through a windshield of an automated vehicle. Build on the previous summary without repeating what was already established unless it is necessary for continuity. Focus on new or changing details — moving objects, traffic signals, pedestrians, and notable events.
 Keep the style factual and objective, avoiding poetic or overly descriptive language.
 Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. If nothing significant changes, summarize that briefly in one short sentence. Respond only with the update. Here is the summary so far: {summary_so_far}
-```
+
+
 It was then iteratively updated: 
 
-```
-Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second. <span style="color:red;">They are labeled in order with a number in the top left corner.</span> You are seeing the view through a windshield of an automated vehicle. Build on the provided summary of previous frames without repeating what was already established unless it is necessary for continuity. Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events. <span style="color:blue;">Ignore any subtitles or encoded time or speed information </span> but <span style="color:purple;">consider that every frame you see is 1/8 of a second apart.</span>
+Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second. **They are labeled in order with a number in the top left corner.** You are seeing the view through a windshield of an automated vehicle. Build on the provided summary of previous frames without repeating what was already established unless it is necessary for continuity. Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events. **Ignore any subtitles or encoded time or speed information but consider that every frame you see is 1/8 of a second apart.**
 Keep the style factual and objective, avoid poetic or overly descriptive language.
-Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. <span style="color:green;">If what you see adds information to or contradicts something previously stated in the summary, point it out.</span> Respond only with the update. Here is the summary so far: {summary_so_far}
-```
+Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. **If what you see adds information to or contradicts something previously stated in the summary, point it out.** Respond only with the update. Here is the summary so far: {summary_so_far}
+
+These changes were made to solve the following issues: 
+- some summaries raised suspicions that the frames within a batch were not procressed in the correct order
+- some video clips included the cars speed or subtitles of passengers speech which were mentioned in the summaries
+- we hoped that by putting emphasis on the framerate the summaries would more accurately reflect the speed of things happening in the scene
+- we wanted the summaries to be more coherent and for the model to able to integrate new information with the previously seen frames  
 
 ## 3. Pipeline 
 ### 1. Features 
