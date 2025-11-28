@@ -1,0 +1,207 @@
+import os
+import base64
+import cv2
+from dotenv import load_dotenv
+from PIL import Image, ImageDraw, ImageFont
+from openai import OpenAI
+
+# === Load environment variables ===
+load_dotenv()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+# === Prompt template ===
+def build_prompt(summary_so_far):
+    return f"""Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second. They are labeled in order with a number in the top left corner. You are seeing the view through a windshield of an automated vehicle. Build on the provided summary of previous frames without repeating what was already established unless it is necessary for continuity. Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events. Ignore any subtitles or encoded time or speed information but consider that every frame you see is 1/8 of a second apart.
+Keep the style factual and objective, avoid poetic or overly descriptive language.
+Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. If what you see adds information to or contradicts something previously stated in the summary, point it out. Respond only with the update. Here is the summary so far: {summary_so_far}
+"""
+# === Frame Extraction ===
+def extract_frames_per_second(video_path, output_folder):
+    import math
+
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise ValueError(f"Cannot open video: {video_path}")
+
+    fps = cap.get(cv2.CAP_PROP_FPS) or 0
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT) or 0)
+    if fps <= 0 or total_frames <= 0:
+        cap.release()
+        raise ValueError(f"Invalid video metadata (fps={fps}, frames={total_frames}) for {video_path}")
+
+    duration_sec = total_frames / fps
+    step_ms = 125  # 8 fps -> every 250 ms
+    steps = int(math.floor(duration_sec * 1000 / step_ms))
+
+    name = os.path.splitext(os.path.basename(video_path))[0]
+    name_folder = os.path.join(output_folder, name)
+    os.makedirs(name_folder, exist_ok=True)
+
+    for i in range(steps):
+        t_ms = i * step_ms
+        cap.set(cv2.CAP_PROP_POS_MSEC, float(t_ms))
+        ret, frame = cap.read()
+        if not ret:
+            continue
+        frame_filename = os.path.join(name_folder, f"{name}_t{t_ms:08d}.jpg")
+        cv2.imwrite(frame_filename, frame)
+
+    cap.release()
+
+# === Frame Encoding ===
+def encode_image(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode("utf-8")
+    
+def label_existing_frames(folder_path, start_index=1):
+    """
+    Draw numeric labels in the top-left of existing image files in folder_path.
+    Overwrites images in-place. Files are processed in sorted filename order.
+    """
+    FONT_SIZE = 30
+    EXTS = (".png", ".jpg", ".jpeg", ".bmp", ".webp")
+
+    try:
+        font = ImageFont.truetype("arial.ttf", FONT_SIZE)
+    except OSError:
+        font = ImageFont.load_default()
+
+    files = sorted([f for f in os.listdir(folder_path) if f.lower().endswith(EXTS)])
+    if not files:
+        return 0
+
+    for idx, filename in enumerate(files, start=start_index):
+        in_path = os.path.join(folder_path, filename)
+        try:
+            img = Image.open(in_path)
+        except Exception:
+            continue
+        if img.mode not in ("RGB", "L"):
+            img = img.convert("RGB")
+
+        draw = ImageDraw.Draw(img)
+        text = str(idx)
+        x, y = 10, 10
+        # white text with black stroke for readability
+        try:
+            draw.text((x, y), text, font=font, fill="white", stroke_fill="black", stroke_width=2)
+        except TypeError:
+            # Pillow without stroke support
+            draw.text((x, y), text, font=font, fill="white")
+            # fallback thin outline
+            draw.text((x-1, y), text, font=font, fill="black")
+            draw.text((x+1, y), text, font=font, fill="black")
+            draw.text((x, y-1), text, font=font, fill="black")
+            draw.text((x, y+1), text, font=font, fill="black")
+
+        try:
+            img.save(in_path)
+        except Exception:
+            continue
+
+    return len(files)
+
+# === GPT-4 Vision Batch Processing ===
+def process_frames_with_openai(frames, summary_so_far):
+    images_payload = [
+        {
+            "type": "image_url",
+            "image_url": {
+                "url": f"data:image/jpeg;base64,{encode_image(frame)}"
+            }
+        }
+        for frame in frames
+    ]
+
+    try:
+        resp = client.chat.completions.create(
+            model="gpt-5.1",  # vision-capable; use your allowed vision model here
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": build_prompt(summary_so_far)},
+                        *images_payload,  # your data:image/jpeg;base64,... entries
+                    ],
+                }
+            ]
+        )
+        return resp.choices[0].message.content
+    except Exception as e:
+        print(f"Error processing frames: {e}")
+        return None
+
+# === Main Video Folder Processor ===
+def process_all_videos(video_dir, output_folder):
+    new_folder_path = os.getenv("SUMMARY_PATH")
+    os.makedirs(new_folder_path, exist_ok=True)
+
+
+    video_files = [
+        os.path.join(video_dir, f)
+        for f in os.listdir(video_dir)
+        if f.endswith((".mp4", ".mkv", ".avi"))
+    ]
+
+
+    for video_file in video_files:
+        print(f"🟡 Extracting frames from {video_file}")
+        extract_frames_per_second(video_file, output_folder)
+
+    for video_file in video_files:
+        summary = ""
+        video_name = os.path.splitext(os.path.basename(video_file))[0]
+        frame_folder = os.path.join(output_folder, video_name)
+
+        frame_paths = [
+            os.path.join(frame_folder, f)
+            for f in sorted(os.listdir(frame_folder))
+            if f.endswith(".jpg")
+        ]
+
+        if not frame_paths:
+            print(f"⚠️ No frames found in {frame_folder}")
+            continue
+
+        # Ensure frames are labeled (only needs to run once per video)
+        try:
+            labeled_count = label_existing_frames(frame_folder)
+            if labeled_count:
+                # refresh frame_paths after labeling
+                frame_paths = [
+                    os.path.join(frame_folder, f)
+                    for f in sorted(os.listdir(frame_folder))
+                    if f.endswith(".jpg")
+                ]
+                print(f"🟡 Labeled {labeled_count} frames in {frame_folder}")
+        except Exception as e:
+            print(f"⚠️ Could not label existing frames: {e}")
+
+        print(f"🟢 Sending frames for {video_name} from {frame_folder} to OpenAI...")
+
+        number_of_frames = len(frame_paths)
+
+        for i in range(0, number_of_frames, 10):
+            chunk = frame_paths[i:i+10]  # Process frames in small batches
+            description = process_frames_with_openai(chunk, summary)
+            if description:
+                summary += "\n" + description
+                print(f"✅ Processed chunk {i}-{i+10} of {video_name}")
+            else:
+                print(f"❌ Failed to process chunk {i}-{i+10} of {video_name}")
+
+        # Save summary
+        new_file_path = os.path.join(new_folder_path, f"processed_{video_name}.txt")
+        with open(new_file_path, "w", encoding="utf-8") as f:
+            f.write(summary)
+        print(f"📄 Saved summary to {new_file_path}")
+
+# === Run Script ===
+if __name__ == "__main__":
+    video_dir = os.getenv("VIDEO_PATH")  # Folder with videos
+    output_folder = os.getenv("OUTPUT_PATH")  # Default if not in .env
+
+    if not video_dir:
+        print("❌ VIDEO_PATH is not set in your .env file.")
+    else:
+        process_all_videos(video_dir, output_folder)

@@ -1,0 +1,254 @@
+import os
+import random
+import re
+from dataclasses import dataclass
+from typing import List, Tuple, Optional
+from dotenv import load_dotenv
+
+# === Load environment variables ===
+load_dotenv()
+from openai import OpenAI
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+# ==============================
+# Participant generation
+# ==============================
+@dataclass
+class Participant:
+    pid: int
+    gender: str
+    age: int
+
+def _weighted_choice(buckets: List[Tuple[Tuple[int, int], float]]) -> int:
+    """
+    buckets: [((min_age, max_age_inclusive), weight), ...] — weights need not sum to 1.
+    Returns a single integer age sampled uniformly within the chosen bucket.
+    """
+    total = sum(w for _, w in buckets)
+    r = random.random() * total
+    cum = 0.0
+    for (lo, hi), w in buckets:
+        cum += w
+        if r <= cum:
+            return random.randint(lo, hi)
+    # fallback in case of floating error
+    lo, hi = buckets[-1][0]
+    return random.randint(lo, hi)
+
+def generate_participants(n: int = 10) -> List[Participant]:
+    """
+    Generate n participants with equal gender split and ages >= 18 sampled from a rough
+    US 18+ age distribution (approximate weights). Buckets are inclusive.
+    """
+    if n % 2 != 0:
+        raise ValueError("NUM_PARTICIPANTS must be an even number for equal gender split.")
+
+    # Approximate US adult (18+) distribution buckets (sum ~100).
+    age_buckets = [
+        ((18, 33), 25.0),
+        ((34, 49), 25.0),
+        ((50, 65), 25.0),
+        ((66, 80), 25.0)
+    ]
+
+    genders = ["male"] * (n // 2) + ["female"] * (n // 2)
+    random.shuffle(genders)  # randomize order while keeping balance
+
+    participants: List[Participant] = []
+    for i in range(n):
+        age = _weighted_choice(age_buckets)
+        participants.append(Participant(pid=i + 1, gender=genders[i], age=age))
+    return participants
+
+def generate_participants_equal_per_gender_bucket(n: int = 24) -> List[Participant]:
+    if n % 8 != 0:
+        raise ValueError("For equal per gender per bucket, NUM_PARTICIPANTS must be divisible by 8.")
+
+    age_buckets = [ (18,33), (34,49), (50,65), (66,80) ]
+    per_bucket_total = n // 4
+    per_bucket_per_gender = per_bucket_total // 2
+
+    genders = (["male"] * (n // 2)) + (["female"] * (n // 2))
+    random.shuffle(genders)  # only used to randomize PID order later
+
+    # Build (age, gender) pairs with equal counts per bucket per gender
+    pairs: List[Tuple[int, str]] = []
+    for lo, hi in age_buckets:
+        for _ in range(per_bucket_per_gender):
+            pairs.append((random.randint(lo, hi), "male"))
+            pairs.append((random.randint(lo, hi), "female"))
+
+    random.shuffle(pairs)
+    participants: List[Participant] = []
+    for i, (age, gender) in enumerate(pairs):
+        participants.append(Participant(pid=i + 1, gender=gender, age=age))
+    return participants
+
+
+# === Prompt Template ===
+def build_prompt(summary, age, gender):
+    return f"""
+You are a passenger in an autonomous car. You’re {age} years old and your gender is {gender}. 
+Based on the following summary of a driving situation, rate your reaction using the scales provided. 
+Return a SINGLE CSV row with 60 columns, alternating:
+score_1,"reason_1",score_2,"reason_2",...,score_30,"reason_30".
+
+- Use only integers where scales are integers.
+- Each reason must be a short sentence in double quotes, justifying why this participant would give this rating.
+- No header, no extra text, no code fences.
+Summary:
+\"\"\"
+{summary}
+\"\"\"
+
+The questions are:
+• How mentally demanding was the task? (1 to 20)
+• anxious – relaxed (−3 to +3)
+• agitated – calm (−3 to +3)
+• unsafe – safe (−3 to +3)
+• timid – confident (−3 to +3)
+• I trust the highly automated vehicle. (1 to 5)
+• I can rely on the highly automated vehicle. (1 to 5)
+• The system state was always clear to me. (1 to 5)
+• The system reacts unpredictably. (1 to 5)
+• I was able to understand why things happened. (1 to 5)
+• It’s difficult to identify what the system will do next. (1 to 5)
+• useful – useless (1 to 7)
+• pleasant – unpleasant (1 to 7)
+• bad – good (1 to 7)
+• nice – annoying (1 to 7)
+• effective – superfluous (1 to 7)
+• irritating – likeable (1 to 7)
+• assisting – worthless (1 to 7)
+• undesirable – desirable (1 to 7)
+• raising alertness – sleep-inducing (1 to 7)
+• How changeable is the situation? (1 to 7)
+• How complicated is the situation? (1 to 7)
+• How many variables are changing? (1 to 7)
+• How aroused are you? (1 to 7)
+• How much are you concentrating? (1 to 7)
+• How much is your attention divided? (1 to 7)
+• How much mental capacity do you have to spare? (1 to 7)
+• How much information have you gained? (1 to 7)
+• How good is the information you have gained? (1 to 7)
+• How familiar are you with the situation? (1 to 7)
+"""
+
+# === CSV sanitizer ===
+import csv
+from io import StringIO
+
+def parse_scores_with_reasons(raw_text: str, expected_pairs: int = 30) -> Optional[str]:
+    """
+    Parse a single CSV row that alternates: score,"reason".
+    Returns a normalized CSV string (60 columns) or None.
+    """
+    if not raw_text:
+        return None
+
+    # Strip code fences / markdown if present
+    text = raw_text.strip()
+    if text.startswith("```"):
+        text = re.sub(r"^```.*?\n|\n```$", "", text, flags=re.DOTALL)
+
+    # Use csv.reader to respect quoted fields and commas inside reasons
+    try:
+        row = next(csv.reader(StringIO(text)))
+    except Exception:
+        return None
+
+    # Normalize Unicode minus
+    row = [cell.replace("−", "-").strip() for cell in row]
+
+    # If the model returned multiple rows, keep only the first parsed row above.
+
+    # If user accidentally returned only scores (30), pad with empty quoted reasons.
+    if len(row) == expected_pairs:
+        # Insert empty reasons after each score
+        normalized = []
+        for val in row:
+            normalized.extend([val, ""])
+        row = normalized
+
+    # Truncate/pad to exactly 2*expected_pairs (60 columns)
+    target_cols = expected_pairs * 2
+    if len(row) > target_cols:
+        row = row[:target_cols]
+    elif len(row) < target_cols:
+        row += [""] * (target_cols - len(row))
+
+    # Basic validation: scores should be numeric in even indices
+    for i in range(0, target_cols, 2):
+        if not re.fullmatch(r"[+\-]?\d+(?:\.\d+)?", row[i]):
+            # Try to extract a number if the cell contains extra text
+            m = re.search(r"[+\-]?\d+(?:\.\d+)?", row[i])
+            row[i] = m.group(0) if m else ""
+
+    # Re-serialize with csv.writer to ensure correct quoting
+    out = StringIO()
+    csv.writer(out).writerow(row)
+    return out.getvalue().strip()
+
+
+# === OpenAI Call ===
+def process_summary_with_openai(summary_text: str, age: int, gender: str) -> Optional[str]:
+    prompt = build_prompt(summary_text, age, gender)
+    try:
+        resp = client.chat.completions.create(
+            model="gpt-5-nano",  # replace with a real, available model
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = resp.choices[0].message.content.strip()
+        return parse_scores_with_reasons(raw, expected_pairs=30)
+
+    except Exception as e:
+        print(f"Error processing summary: {e}")
+        return None
+
+# === Main Summary Folder Processor ===
+def process_all_summaries(input_folder: str, output_folder: str, num_participants: int):
+    # Optional reproducibility
+    seed_env = os.getenv("RANDOM_SEED")
+    if seed_env:
+        try:
+            random.seed(int(seed_env))
+        except ValueError:
+            print("⚠️ RANDOM_SEED is not an int; ignoring.")
+
+    # Generate participants (even number enforced)
+    participants = generate_participants_equal_per_gender_bucket(num_participants)
+
+    summary_files = [
+        f for f in os.listdir(input_folder)
+        if f.endswith(".txt") or f.endswith(".md")
+    ]
+
+    for summary_file in summary_files:
+        summary_path = os.path.join(input_folder, summary_file)
+        with open(summary_path, "r", encoding="utf-8") as f:
+            summary_text = f.read()
+
+        summary_name = os.path.splitext(summary_file)[0]
+
+        for p in participants:
+            print(f"🟢 Processing {summary_file} for pid {p.pid} (age {p.age}, gender {p.gender})")
+            csv_response = process_summary_with_openai(summary_text, p.age, p.gender)
+            if csv_response:
+                csv_filename = f"{summary_name}_pid_{p.pid}_age_{p.age}_{p.gender}.csv"
+                csv_path = os.path.join(output_folder, csv_filename)
+                with open(csv_path, "w", encoding="utf-8") as out_f:
+                    out_f.write(csv_response + "\n")
+                print(f"✅ Saved: {csv_filename}")
+            else:
+                print(f"❌ Failed: {summary_file} for pid {p.pid} (age {p.age}, gender {p.gender})")
+
+# === Run Script ===
+if __name__ == "__main__":
+    input_folder = os.getenv("SUMMARY_PATH")
+    output_folder = os.getenv("RATINGS_OUTPUT_PATH")
+    os.makedirs(output_folder, exist_ok=True)
+
+    # Even number (for 50/50 gender split). Defaults to 10.
+    num_participants = int(os.getenv("NUM_PARTICIPANTS", "24"))
+
+    process_all_summaries(input_folder, output_folder, num_participants)

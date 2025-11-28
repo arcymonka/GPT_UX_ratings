@@ -1,133 +1,138 @@
 import os
-import base64
-import cv2
-import openai
 from dotenv import load_dotenv
 
-# Load environment variables
+# === Load environment variables ===
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+from openai import OpenAI
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Prompt template
-def build_prompt(age):
+# === Prompt Template ===
+def build_prompt(summary, age, gender):
     return f"""
-    You are a passenger in an autonomous car. You’re {age} years old. 
-    Watch the following images (from a video that shows what happens in the surroundings and the driving situation) 
-    and rate your reaction to what you see based on the following questions. 
-    Use the scales provided in the brackets for each question. 
-    When there are two adjectives to compare, the left value corresponds to the left adjective 
-    and the right value to the right one. Don’t respond with an analysis or any other comments 
-    (give just the ratings). Provide the response in a CSV file format.
+You are a passenger in an autonomous car. You’re {age} years old and your gender is {gender}. 
+Based on the following summary of a driving situation, rate your reaction using the scales provided. 
+**ONLY** use the numerical ratings – do not add any text or explanations. Return the result as a CSV row (no header, just the numbers, separated by commas).
+
+Summary:
+\"\"\"
+{summary}
+\"\"\"
+
+The questions are:
+• How mentally demanding was the task? (1 to 20)
+• anxious – relaxed (−3 to +3)
+• agitated – calm (−3 to +3)
+• unsafe – safe (−3 to +3)
+• timid – confident (−3 to +3)
+• I trust the highly automated vehicle. (1 to 5)
+• I can rely on the highly automated vehicle. (1 to 5)
+• The system state was always clear to me. (1 to 5)
+• The system reacts unpredictably. (1 to 5)
+• I was able to understand why things happened. (1 to 5)
+• It’s difficult to identify what the system will do next. (1 to 5)
+• useful – useless (1 to 7)
+• pleasant – unpleasant (1 to 7)
+• bad – good (1 to 7)
+• nice – annoying (1 to 7)
+• effective – superfluous (1 to 7)
+• irritating – likeable (1 to 7)
+• assisting – worthless (1 to 7)
+• undesirable – desirable (1 to 7)
+• raising alertness – sleep-inducing (1 to 7)
+• How changeable is the situation? (1 to 7)
+• How complicated is the situation? (1 to 7)
+• How many variables are changing? (1 to 7)
+• How aroused are you? (1 to 7)
+• How much are you concentrating? (1 to 7)
+• How much is your attention divided? (1 to 7)
+• How much mental capacity do you have to spare? (1 to 7)
+• How much information have you gained? (1 to 7)
+• How good is the information you have gained? (1 to 7)
+• How familiar are you with the situation? (1 to 7)
+"""
+
+import re
+
+def sanitize_csv_row(raw_text: str, expected_cols: int = 30) -> str | None:
     """
-
-
-# === Frame Extraction ===
-def extract_frames_quarter_second(video_path, output_folder):
-    cap = cv2.VideoCapture(video_path)
-    if not cap.isOpened():
-        raise ValueError(f"Cannot open video: {video_path}")
-
-    fps = cap.get(cv2.CAP_PROP_FPS)
-    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    duration = total_frames / fps
-
-    name = os.path.splitext(os.path.basename(video_path))[0]
-    name_folder = os.path.join(output_folder, name)
-    os.makedirs(name_folder, exist_ok=True)
-
-    for quarter_second in range(int(duration * 4)):
-        target_frame = quarter_second * (fps / 4)
-        cap.set(cv2.CAP_PROP_POS_FRAMES, round(target_frame))
-        ret, frame = cap.read()
-        if ret:
-            frame_filename = os.path.join(name_folder, f"{name}_frame_{quarter_second}.jpg")
-            cv2.imwrite(frame_filename, frame)
-
-    cap.release()
-
-# === Frame Encoding ===
-def encode_image(path):
-    with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode("utf-8")
-
-# === GPT-4 Vision Batch Processing ===
-def process_frames_with_openai(frames, age):
-    # Limit to 20 images (API limitation)
-    frames = frames[:20]
-
-    images_payload = [
-        {
-            "type": "image_url",
-            "image_url": {
-                "url": f"data:image/jpeg;base64,{encode_image(frame)}"
-            }
-        }
-        for frame in frames
-    ]
-
-    try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4-vision-preview",
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": build_prompt(age)},
-                        *images_payload
-                    ]
-                }
-            ],
-            max_tokens=1000
-        )
-        return response["choices"][0]["message"]["content"]
-
-    except Exception as e:
-        print(f"Error processing frames: {e}")
+    Extract strictly numeric values from model output and enforce a fixed column count.
+    - Converts Unicode minus (−) to ASCII '-'
+    - Accepts integers or decimals with optional leading sign
+    - Truncates if there are too many; pads with empty fields if too few
+    Returns a comma-separated string or None if nothing usable.
+    """
+    if not raw_text:
         return None
 
-# === Main Video Folder Processor ===
-def process_all_videos(video_dir, output_folder):
-    age_list = [18, 25, 30, 35, 40, 45, 50, 55, 60, 65]
-    video_files = [
-        os.path.join(video_dir, f)
-        for f in os.listdir(video_dir)
-        if f.endswith((".mp4", ".mkv", ".avi"))
+    # Normalize unicode minus and strip spaces/newlines
+    text = raw_text.replace("−", "-").strip()
+
+    # Pull out numbers like -3, +2, 4.5, -0.25
+    nums = re.findall(r"[+\-]?\d+(?:\.\d+)?", text)
+
+    if not nums:
+        return None
+
+    # Enforce column count
+    if len(nums) > expected_cols:
+        nums = nums[:expected_cols]
+    elif len(nums) < expected_cols:
+        nums = nums + [""] * (expected_cols - len(nums))
+
+    # Return CSV line without spaces
+    return ",".join(nums)
+
+
+# === OpenAI Call ===
+def process_summary_with_openai(summary_text, age, gender):
+    prompt = build_prompt(summary_text, age, gender)
+    try:
+        resp = client.chat.completions.create(
+            model="gpt-5-nano",  # pick a real model from the docs
+            messages=[{"role": "user", "content": prompt}],
+        )
+        raw = resp.choices[0].message.content.strip()
+        return sanitize_csv_row(raw, expected_cols=30)
+    except Exception as e:
+        print(f"Error processing summary: {e}")
+        return None
+
+
+
+# === Main Summary Folder Processor ===
+def process_all_summaries(input_folder, output_folder):
+    age_list = [25]
+    gender_list = ["male", "female"]
+
+    summary_files = [
+        f for f in os.listdir(input_folder)
+        if f.endswith(".txt") or f.endswith(".md")
     ]
 
-    for video_file in video_files:
-        print(f"🟡 Extracting frames from {video_file}")
-        extract_frames_quarter_second(video_file, output_folder)
+    for summary_file in summary_files:
+        summary_path = os.path.join(input_folder, summary_file)
+        with open(summary_path, "r") as f:
+            summary_text = f.read()
 
-    for video_file in video_files:
-        video_name = os.path.splitext(os.path.basename(video_file))[0]
-        frame_folder = os.path.join(output_folder, video_name)
+        summary_name = os.path.splitext(summary_file)[0]
 
-        # Collect all frame paths
-        frame_paths = [
-            os.path.join(frame_folder, f)
-            for f in sorted(os.listdir(frame_folder))
-            if f.endswith(".jpg")
-        ]
-
-        if not frame_paths:
-            print(f"⚠️ No frames found in {frame_folder}")
-            continue
-
-        print(f"🟢 Sending frames for {video_name} to OpenAI...")
         for age in age_list:
-            description = process_frames_with_openai(frame_paths, age)
-
-            if description:
-                print(f"✅ CSV Ratings for {video_name}:\n{description}\n")
-                csv_filename = f"{video_name}_age_{age}_ratings.csv"
-                csv_path = os.path.join(output_folder, csv_filename)
-                with open(csv_path, "w") as f:
-                    f.write(description)
-            else:
-                print(f"❌ Failed to process {video_name}\n")
+            for gender in gender_list:
+                print(f"🟢 Processing {summary_file} for age {age}, gender {gender}")
+                csv_response = process_summary_with_openai(summary_text, age, gender)
+                if csv_response:
+                    csv_filename = f"{summary_name}_age_{age}_{gender}.csv"
+                    csv_path = os.path.join(output_folder, csv_filename)
+                    with open(csv_path, "w") as out_f:
+                        out_f.write(csv_response + "\n")
+                    print(f"✅ Saved: {csv_filename}")
+                else:
+                    print(f"❌ Failed to process {summary_file} for age {age}, gender {gender}")
 
 # === Run Script ===
 if __name__ == "__main__":
-    video_dir = os.getenv("VIDEO_PATH")  # This must be a folder path
-    output_folder = "/Users/helena/Desktop/vid/output_extract"
-    process_all_videos(video_dir, output_folder)
+    input_folder = os.getenv("SUMMARY_PATH")
+    output_folder = os.getenv("RATINGS_OUTPUT_PATH")
+    os.makedirs(output_folder, exist_ok=True)
+
+    process_all_summaries(input_folder, output_folder)
