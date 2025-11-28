@@ -4,21 +4,23 @@
 
 
 ## Table of Contents
-1. [Introduction](#1-introduction)
-2. [Report] (#2-report)
-   1.[Motivation] (#1-motivation)
-   2. [Process] (#2-process)
-3. [Pipeline (#3-pipeline)]
-   1. [Features](#1-features)
-   2. [Project Structure](#2-project-structure)
-   3. [Setup Instructions](#3-setup-instructions)
-      1. [Clone the Repository](#1-clone-the-repository)
-      2. [Configuration](#2-configuration)
-4. [Usage](#4-usage)
-5. [Questionnaire Sources](#5-questionnaire-sources)
-6. [Troubleshooting](#6-troubleshooting)
-7. [License](#7-license)
-8. [References](#8-references)
+1. [Introduction](#introduction)
+2. [Report](#report)
+   1. [Motivation](#motivation)
+   2. [Process](#process)
+   3. [Conclusion & Outline](#conclusion-&-outline)
+3. [Pipeline](#pipeline)
+   1. [Features](#features)
+   2. [Project Structure](#project-structure)
+   3. [Setup Instructions](#setup-instructions)
+      1. [Clone the Repository](#clone-the-repository)
+      2. [Configuration](#configuration)
+4. [Usage](#usage)
+5. [Questionnaire Sources](#questionnaire-sources)
+6. [Troubleshooting](#troubleshooting)
+7. [License](#license)
+8. [References](#references)
+
 
 
 
@@ -37,7 +39,7 @@ This project explores a different approach: instead of measuring the driver dire
 
 The idea behind the pipeline is to explore whether a scene based, non intrusive method could contribute to estimating driver state in the future and to test how far current LLM capabilities can already take us.
 
-### 2. Procress 
+### 2. Process 
 
 - **Video collection:**  
   Driving-scene videos were sourced from YouTube, focusing on a wide range of real-world events, including near-accidents, collisions, varying weather conditions, and diverse road environments.
@@ -52,32 +54,53 @@ The idea behind the pipeline is to explore whether a scene based, non intrusive 
   The initial set of 89 videos was reduced after discarding clips that did not meet the required quality or content criteria.
 
 - **Pipeline construction:**  
-  A full processing pipeline was developed to extract frames, generate scene summaries, and evaluate those summaries using the GPT-based rating system.
+At first the idea was to send the full video clip to get ratings for simulated participants, but we looked into how video processing is done through chatgpt and since it only considers a certain number of frames, in order to have more control over the what frames were taken into account we decided to extracts frames as a separate process and then send them to the model but the model has an upper limit for images that can be sent in one prompt, that is not compatible with the amount of detail that is needed to analyze multi-second video. We started with 4 frames per second but increased this to 8 frames per second in order to try and enhance the qualities of the summaries. This is why we decided to first use the model to generate summaries for subsequent batches and combine them to keep a coherent story of whats going on in the driving scene and to send that to the model to obtain the ratings.
 
- ### Prompt Development
+
+**Prompt Development**
 
 The initial prompt was designed with only the **basic information** thought necessary to generate scene summaries. However, through **trial and error**, we iteratively refined the prompt to improve the **accuracy, clarity, and relevance** of the summaries. This process ensured that the GPT-based model produced outputs better aligned with the events depicted in the driving videos.
 
 This was an earlier version: 
 
-&nbsp;&nbsp;&nbsp;&nbsp;Generate a summary for the following frames extracted from a driving video at the rate of one frame every quarter second. 
-&nbsp;&nbsp;&nbsp;&nbsp;You are seeing the view through a windshield of an automated vehicle. 
-&nbsp;&nbsp;&nbsp;&nbsp;Build on the previous summary without repeating what was already established unless it is necessary for continuity. Focus on new or changing details — moving objects, traffic signals, pedestrians, and notable events.
-&nbsp;&nbsp;&nbsp;&nbsp;Keep the style factual and objective, avoiding poetic or overly descriptive language.
-&nbsp;&nbsp;&nbsp;&nbsp;Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. If nothing significant changes, summarize that briefly in one short sentence. Respond only with the update. Here is the summary so far: {summary_so_far}
+_Generate a summary for the following frames extracted from a driving video at the rate of one frame every quarter second. 
+You are seeing the view through a windshield of an automated vehicle. 
+Build on the previous summary without repeating what was already established unless it is necessary for continuity. Focus on new or changing details — moving objects, traffic signals, pedestrians, and notable events.
+Keep the style factual and objective, avoiding poetic or overly descriptive language.
+Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. If nothing significant changes, summarize that briefly in one short sentence. Respond only with the update. Here is the summary so far: {summary_so_far}_
 
 
 It was then iteratively updated: 
 
-&nbsp;&nbsp;&nbsp;&nbsp;Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second. **They are labeled in order with a number in the top left corner.** You are seeing the view through a windshield of an automated vehicle. Build on the provided summary of previous             frames without repeating what was already established unless it is necessary for continuity. Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events. **Ignore any subtitles or encoded time or speed information but consider that every frame you       see is 1/8 of a second apart.**
+_Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second. **They are labeled in order with a number in the top left corner.** You are seeing the view through a windshield of an automated vehicle. Build on the provided summary of previous             frames without repeating what was already established unless it is necessary for continuity. Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events. **Ignore any subtitles or encoded time or speed information but consider that every frame you       see is 1/8 of a second apart.**
 Keep the style factual and objective, avoid poetic or overly descriptive language.
-Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. **If what you see adds information to or contradicts something previously stated in the summary, point it out.** Respond only with the update. Here is the summary so far: {summary_so_far}
+Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining. **If what you see adds information to or contradicts something previously stated in the summary, point it out.** Respond only with the update. Here is the summary so far: {summary_so_far}_
 
 These changes were made to solve the following issues: 
 - some summaries raised suspicions that the frames within a batch were not procressed in the correct order
 - some video clips included the cars speed or subtitles of passengers speech which were mentioned in the summaries
 - we hoped that by putting emphasis on the framerate the summaries would more accurately reflect the speed of things happening in the scene
 - we wanted the summaries to be more coherent and for the model to able to integrate new information with the previously seen frames  
+
+**Full Project Timeline**
+- **Initial plan:** start with 10 participants (balanced gender, diverse ages) and scale up if the pipeline works.
+- **First tests:** summaries failed to detect key events (crash, fire).
+- **Check:** confirmed that frames were sent correctly; manual test in ChatGPT UI produced better results.
+- **Change:** model switched from GPT-5-nano → GPT-5 → GPT-5.1, improving summary quality.
+- **Issue:** crash still detected inconsistently despite identical prompts.
+- **Discussion**: adding temporal interpolation was considered but rejected to avoid hallucinations.
+- **First prompt update:** instruct the model to correct earlier statements when new frames contradict or refine them.
+- **Result:** crash description improved (“camera jolts… likely contact”), but still inconsistent across runs.
+- **Change:** frame extraction increased to 8 FPS; added requirement for explanations in rating generation.
+- **Observation:** even with more frames, one test still failed to mention the crash.
+- **Synthetic rating generation:** produced 24 participants (equal age groups).
+- **Result:** one participant returned invalid rating values; several justifications did not match events.
+- **Conclusion:** need a post-processing validation step to catch out-of-range values and regenerate faulty entries.
+- **Observation:** LLM often produced unrealistically low standard deviations; literature showed alternative methods perform worse or are unsupported (e.g., temp scaling).
+- **Insight:** multi-frame events like crashes require better temporal reasoning; further prompt refinement needed to push the model to reinterpret earlier frames.
+- **Later revision:** prompt explicitly instructed the model to point out contradictions when new frames add important information.
+-Summaries were collected in a shared sheet for quality review.
+-Additional credits added to continue video processing.
 
 ## 3. Pipeline 
 ### 1. Features 
