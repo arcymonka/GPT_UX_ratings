@@ -1,0 +1,9 @@
+Straight highway, overcast sky, right shoulder grassy fields, left guardrail. Several cars ahead in both lanes; a bike rack vehicle visible on the left. No incidents; road ahead curves gently.
+Overcast sky, straight highway; right shoulder grassy fields, left guardrail. Moderate traffic ahead in both lanes; a bike rack vehicle visible on the left. Road bends gently to the horizon.
+Overcast two-lane highway stretches straight; grassy fields on the right, guardrail on the left. A few vehicles ahead in both directions; distant oncoming car with headlights; no incidents evident.
+Overcast, straight two-lane highway with grassy shoulder on right and left guardrail; moderate traffic ahead in both directions; distant oncoming headlights; car visible on left; no incidents; horizon straight.
+Overcast, straight two-lane highway with grassy shoulders and a left guardrail. Moderate traffic ahead; a red utility truck in the left lane; distant oncoming vehicles; no incidents observed.
+Overcast, straight two-lane highway with grassy shoulders and a left guardrail. Moderate traffic ahead; several vehicles in the distance; no incidents visible; road gradually bends toward the horizon.
+Overcast, straight two-lane highway with grassy shoulders; left guardrail and a bike rack vehicle visible on the left. Moderate traffic ahead in both lanes; distant vehicles; no incidents; road bends.
+Overcast, straight two-lane highway with grassy shoulders and a left guardrail; moderate traffic ahead in both directions, bike rack vehicle and a red utility truck visible; no incidents.
+Overcast, flat two lane highway; grassy shoulders, left guardrail; distant traffic in both directions; a few vehicles ahead, no incidents; road remains straight with slight gentle grade toward horizon.

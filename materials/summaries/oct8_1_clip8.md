@@ -1,0 +1,3 @@
+A cyclist in a high‑visibility top appears on the left shoulder riding toward us, briefly veering toward the guardrail and staying off our path. An oncoming gray car approaches near the center as we near a right-side junction with several vehicles, but no immediate obstruction occurs.
+The gray sedan passes closely on our left and clears our lane. A white van begins a left turn around the center island, encroaching into our lane head‑on while a yellow car waits at the right‑side junction.
+The white van continues its left turn into our lane and collides with our vehicle, jolting the camera. The impact pushes us toward the right-side guardrail; no other road users enter our path immediately after.

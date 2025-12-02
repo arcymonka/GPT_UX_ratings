@@ -1,0 +1,6 @@
+Two cars ahead continue toward a side junction. A person in a high-visibility vest appears on the left shoulder by the guardrail near a raised crosswalk, and a yellow car is stopped on the right beside a blue booth.
+The person on the left is riding a bicycle along the shoulder and then loses balance, slipping off the pavement into the grass by the guardrail. A silver car approaches toward us from the junction while the yellow car remains stopped by the blue booth.
+The oncoming silver car squeezes past along the left shoulder and clears us. A white van ahead edges toward the junction while the scene near the blue booth remains unchanged.
+The white van turns in from the side road, swinging wide into our lane and approaching head‑on before slipping past our front end toward the right. The yellow car by the booth remains stationary and no new pedestrians appear.
+The white van cuts across directly in front of us and passes extremely close, prompting a hard brake and slight swerve; the camera jolts as it clears to our right. After it passes, the view steadies with no new vehicles or pedestrians entering our lane.
+The view swings toward the right shoulder, showing a side driveway and guardrail by houses. No vehicles or pedestrians appear, and nothing new enters the roadway.
