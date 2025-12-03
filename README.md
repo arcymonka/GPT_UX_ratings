@@ -102,6 +102,13 @@ These changes were made to solve the following issues:
 -Summaries were collected in a shared sheet for quality review.
 -Additional credits added to continue video processing.
 
+### 3. Conclusion & Outline
+The project demonstrates that large language models, particularly GPT-5.1, failed to generate meaningful synthetic UX ratings for driving scenarios when provided with structured summaries of video frames. Across all experiments, the model showed weak capabilities in recognizing scene elements. While it managed to maintain contextual continuity, it ignored some of the important details. It mapped events to subjective constructs such as perceived safety, trust, and workload. At the same time, the work reveals important limitations in the current generation of LLMs when used for temporally extended, safety-critical event interpretation.
+
+Despite careful prompt design, increased frame rates, and explicit instructions to correct earlier statements, the model still struggled to consistently detect multi-frame events such as crashes or abrupt vehicle maneuvers. These issues highlight challenges in temporal reasoning: when the critical information spans several frames, omissions in early summaries often propagate, leading to incomplete or inconsistent interpretations. Similarly, rating generation showed occasional mismatches between justifications and actual events, as well as out-of-range values and unrealistically low standard deviations. These findings underline the need for systematic post-processing, prompt constraints, and validation pipelines whenever LLMs are used to simulate human responses at scale.
+
+Nevertheless, the results indicate that scene-based UX estimation—performed entirely without physiological sensors or intrusive self-reports—is feasible. The pipeline reliably produces structured summaries and participant-like ratings for a wide range of traffic conditions, suggesting it could serve as a scalable tool for prototyping user-state estimators, generating synthetic datasets, or informing early-stage behavioral research in automated driving.
+
 ## 3. Pipeline 
 ### 1. Features 
 This project uses **OpenAI’s GPT-5** model to analyze frames extracted from driving videos and simulate human emotional reactions (as CSV ratings) for different age groups and gender.
