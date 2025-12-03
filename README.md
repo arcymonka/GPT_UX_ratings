@@ -111,9 +111,6 @@ The ratings themselves further highlighted these limitations. Several responses 
 
 Overall, the findings emphasize the need for systematic post-processing, quality validation, and more robust prompting structures when attempting to use LLMs as proxies for human UX ratings in dynamic, real-world environments. While the model shows promise in basic scene description, it currently lacks the temporal precision and psychological grounding required to generate trustworthy UX assessments for automated driving research.
 
-### Future work
-
-
 ## 3. Pipeline 
 ### 1. Features 
 This project uses **OpenAI’s GPT-5** model to analyze frames extracted from driving videos and simulate human emotional reactions (as CSV ratings) for different age groups and gender.
