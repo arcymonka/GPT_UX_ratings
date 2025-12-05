@@ -84,7 +84,7 @@ These changes were made to solve the following issues:
 
 **Full Project Timeline**
 
-![Project Timeline](materials/assets/timeline.svg)
+![Project Timeline](materials/timeline.svg)
 
 
 ### 3. Conclusion & Outlook
