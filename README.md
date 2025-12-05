@@ -41,6 +41,8 @@ The idea behind the pipeline is to explore whether a scene based, non intrusive 
 
 ### 2. Process 
 
+#### First steps and general idea
+
 - **Video collection:**  
   Driving-scene videos were sourced from YouTube, focusing on a wide range of real-world events, including near-accidents, collisions, varying weather conditions, and diverse road environments.
 
@@ -82,7 +84,7 @@ These changes were made to solve the following issues:
 - we hoped that by putting emphasis on the **framerate** the summaries would more accurately reflect the **speed of things happening in the scene**
 - we wanted the summaries to be **more coherent** and for the model to able to **integrate new information with the previously seen frames**  
 
-**Full Project Timeline**
+#### Project Timeline (after video collection)
 
 ![Project Timeline](materials/timeline.svg)
 
@@ -96,7 +98,7 @@ The ratings themselves further highlighted these limitations. Several responses 
 
 Overall, the findings emphasize the need for **systematic post-processing, quality validation,** and more **robust prompting structures** when attempting to use LLMs as proxies for human UX ratings in dynamic, real-world environments. While the model shows promise in basic scene description, it currently lacks the **temporal precision** and **psychological grounding** required to generate trustworthy UX assessments for automated driving research.
 
-In the future, this pipeline could be tested with other models better suited for vision and scene description. For example, a **Llava model** could be used and the **API key** will need to be changed in the .env file and the [**API function call**](part_rat#L193) in the ratings script will need to be updated. Such models may offer stronger temporal coherence, improved detection of events, and more reliable interpretation of subtle scene cues. It would be possible to determine whether these variations result in more reliable summaries and more significant UX scores by evaluating them inside the same pipeline.  
+In the future, this pipeline could be tested with other models better suited for vision and scene description. For example, a **Llava model** could be used and the **API key** will need to be changed in the .env file and the [**API function call**](summaries_ratings#L193) in the ratings script will need to be updated. Such models may offer stronger temporal coherence, improved detection of events, and more reliable interpretation of subtle scene cues. It would be possible to determine whether these variations result in more reliable summaries and more significant UX scores by evaluating them inside the same pipeline.  
 
 Once alternative vision models are integrated, if the summaries are deemed accurate, it becomes essential to validate the resulting rating by comparing the **synthetic ratings** to **real human responses**, to ensure that improvements in scene understanding translate into meaningful UX assessments. **Benchmarking** the model's assessments against real human data is the next step to determine where the model differs the most. These contrasts may show whether the LLM tends to misinterpret events. By systematically comparing synthetic ratings across demographic groups or driving experiences and assessing whether these patterns correspond with known findings, potential **biases** can be identified.
 
