@@ -1,0 +1,721 @@
+PID,Age,Gender,Filename,Question,Scale,Rating,Reason
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,How mentally demanding was the task?,1-20,14.0,Moderate to high mental effort to monitor hazards and the car's responses.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,anxious – relaxed,-3..3,2.0,"I felt somewhat anxious due to the sudden hazard, but stayed composed."
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,agitated – calm,-3..3,1.0,"Slight agitation from the abrupt braking, yet I remained calm."
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,unsafe – safe,-3..3,-2.0,There was a real risk of collision when the van cut into our lane.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,timid – confident,-3..3,1.0,"I felt cautiously confident in the car's handling, though still careful."
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,I trust the highly automated vehicle.,1-5,4.0,"I trust the automated system to manage hazards, given it performed braking."
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,I can rely on the highly automated vehicle.,1-5,4.0,I can rely on the system to avoid conflicts in traffic.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,The system state was always clear to me.,1-5,3.0,"The system state was fairly clear, even with the jolt and camera tilt."
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,The system reacts unpredictably.,1-5,2.0,The system's response felt predictable and not surprising.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,I was able to understand why things happened.,1-5,4.0,I could understand why the brake was applied and the van's move.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,It’s difficult to identify what the system will do next.,1-5,3.0,It's hard to tell what the system will do next in a lane with a van turning.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,useful – useless,1-7,6.0,The automation was very useful in avoiding a collision.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,pleasant – unpleasant,1-7,5.0,The experience was unpleasant due to the hazard and abrupt stops.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,bad – good,1-7,3.0,"The experience was not ideal, but the outcome was acceptable."
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,nice – annoying,1-7,4.0,"The event was annoying due to the shake and stress, though tolerable."
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,effective – superfluous,1-7,6.0,The system was effective in slowing and avoiding collision.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,irritating – likeable,1-7,5.0,"Despite the stress, I found the system somewhat likeable for keeping us safe."
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,assisting – worthless,1-7,6.0,The automated braking clearly assisted us and was worthwhile.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,undesirable – desirable,1-7,6.0,"The incident itself is undesirable, but the automation proved desirable for safety."
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,raising alertness – sleep-inducing,1-7,6.0,It raised my alertness rather than sleep-inducing.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,How changeable is the situation?,1-7,5.0,The situation was changeable and required quick adaptation.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,How complicated is the situation?,1-7,6.0,The scenario was quite complicated with multiple moving parts.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,How many variables are changing?,1-7,6.0,"Several variables were changing at once, increasing complexity."
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,How aroused are you?,1-7,5.0,I felt moderate arousal from the hazard.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,How much are you concentrating?,1-7,6.0,I concentrated on the road and vehicle actions throughout.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,How much is your attention divided?,1-7,3.0,"My attention was mainly focused, with only minor divisions between cues."
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,How much mental capacity do you have to spare?,1-7,4.0,I had some mental capacity to spare for other thoughts.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,How much information have you gained?,1-7,5.0,I gained information about system behavior in a hazardous moment.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,How good is the information you have gained?,1-7,5.0,The information I gained was good and relevant for assessing safety.
+10,72,female,processed_1_clip8_pid_10_age_72_female.csv,How familiar are you with the situation?,1-7,3.0,I am not very familiar with how this system handles such scenarios.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,How mentally demanding was the task?,1-20,13.0,There was a sudden hazard requiring close monitoring.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,anxious – relaxed,-3..3,-2.0,I felt anxious due to the sudden braking and risk of collision.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,agitated – calm,-3..3,-1.0,The braking jolt left me momentarily agitated.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,unsafe – safe,-3..3,-2.0,"There was a near miss with the van, making me feel unsafe."
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,timid – confident,-3..3,-1.0,I felt slightly timid about the car's next move.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,I trust the highly automated vehicle.,1-5,3.0,I trust the automated vehicle to handle emergencies.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,I can rely on the highly automated vehicle.,1-5,3.0,I could rely on the car to brake effectively when needed.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,The system state was always clear to me.,1-5,3.0,The system state seemed reasonably clear most of the time.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,The system reacts unpredictably.,1-5,2.0,The braking was abrupt but not unpredictable.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,I was able to understand why things happened.,1-5,4.0,I understood the cause of the near miss.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,It’s difficult to identify what the system will do next.,1-5,4.0,The next action was not completely predictable.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,useful – useless,1-7,6.0,The automation was very useful in preventing a crash.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,pleasant – unpleasant,1-7,3.0,The overall experience was somewhat unpleasant.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,bad – good,1-7,5.0,The outcome felt more good than bad given the avoidance of a crash.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,nice – annoying,1-7,4.0,The response felt relatively nice under the stress.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,effective – superfluous,1-7,6.0,The system was effective at preventing any contact.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,irritating – likeable,1-7,5.0,The assistive behavior was fairly likeable despite the jolting.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,assisting – worthless,1-7,6.0,The assistive features were clearly assisting.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,undesirable – desirable,1-7,6.0,The outcome was desirable rather than undesirable.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,raising alertness – sleep-inducing,1-7,5.0,The event raised alertness rather than sleepiness.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,How changeable is the situation?,1-7,5.0,The situation was moderately changeable.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,How complicated is the situation?,1-7,6.0,The situation was quite complicated with several moving parts.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,How many variables are changing?,1-7,5.0,"Many variables were changing, making it dynamic."
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,How aroused are you?,1-7,5.0,I felt quite aroused and alert by the near miss.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,How much are you concentrating?,1-7,6.0,I was concentrating intensely on the road.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,How much is your attention divided?,1-7,2.0,My attention was focused on driving with little distraction.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,How much mental capacity do you have to spare?,1-7,3.0,I had some spare mental capacity to process the events.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,How much information have you gained?,1-7,4.0,I gained substantial information from the unfolding events.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,How good is the information you have gained?,1-7,4.0,The information I gained was reasonably good.
+11,61,male,processed_1_clip8_pid_11_age_61_male.csv,How familiar are you with the situation?,1-7,3.0,I am somewhat familiar with this kind of system.
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,How mentally demanding was the task?,1-20,12.0,Moderate mental effort due to sudden hazard
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,anxious – relaxed,-3..3,2.0,Slightly anxious from near-miss
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,agitated – calm,-3..3,1.0,Mildly agitated by abrupt braking
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,unsafe – safe,-3..3,-2.0,Perceived unsafe due to lane intrusion
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,timid – confident,-3..3,1.0,Somewhat confident in safety automation
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,I trust the highly automated vehicle.,1-5,4.0,I trust the automated system to handle hazards
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,I can rely on the highly automated vehicle.,1-5,4.0,I can rely on the automated system to respond
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,The system state was always clear to me.,1-5,3.0,System status seemed mostly clear
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,The system reacts unpredictably.,1-5,2.0,System reactions were largely predictable
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,I was able to understand why things happened.,1-5,4.0,I understood why the braking occurred
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,It’s difficult to identify what the system will do next.,1-5,4.0,Hard to predict what will happen next
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,useful – useless,1-7,6.0,Automation was useful to manage the risk
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,pleasant – unpleasant,1-7,2.0,Experience was unpleasant due to near-collision
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,bad – good,1-7,3.0,The situation felt bad although the outcome was safe
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,nice – annoying,1-7,4.0,The event was annoying and tense
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,effective – superfluous,1-7,6.0,The system was effective at stopping
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,irritating – likeable,1-7,3.0,Somewhat irritating but acceptable
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,assisting – worthless,1-7,6.0,Assisting rather than worthless in this scenario
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,undesirable – desirable,1-7,6.0,Desirable for safety improvements
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,raising alertness – sleep-inducing,1-7,6.0,Raising alertness rather than sleep-inducing
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,How changeable is the situation?,1-7,5.0,Situation is changeable due to vehicle actions
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,How complicated is the situation?,1-7,5.0,Situation is fairly complicated
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,How many variables are changing?,1-7,5.0,Several changing variables are involved
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,How aroused are you?,1-7,5.0,Arousal level increased due to hazard
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,How much are you concentrating?,1-7,6.0,Concentration was high during the event
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,How much is your attention divided?,1-7,4.0,Attention was partly divided among multiple cues
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,How much mental capacity do you have to spare?,1-7,3.0,Some mental capacity left to spare
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,How much information have you gained?,1-7,5.0,Gained information about others' actions
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,How good is the information you have gained?,1-7,5.0,The information gained was good and actionable
+12,31,female,processed_1_clip8_pid_12_age_31_female.csv,How familiar are you with the situation?,1-7,2.0,Unfamiliar layout and context of this intersection
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,How mentally demanding was the task?,1-20,14.0,Multiple hazards required sustained attention and quick judgment.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,anxious – relaxed,-3..3,1.0,I felt slightly more relaxed than anxious during the maneuver.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,agitated – calm,-3..3,1.0,Overall I remained fairly calm despite the sudden braking.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,unsafe – safe,-3..3,-1.0,There was a brief unsafe moment when the van cut into our lane.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,timid – confident,-3..3,1.0,I felt slightly confident about the situation.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,I trust the highly automated vehicle.,1-5,4.0,I trust the automated system to respond appropriately.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,I can rely on the highly automated vehicle.,1-5,4.0,I can rely on the vehicle to brake and avoid a collision.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,The system state was always clear to me.,1-5,3.0,The system state was reasonably clear most of the time.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,The system reacts unpredictably.,1-5,2.0,There was little unpredictability in the system's responses.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,I was able to understand why things happened.,1-5,4.0,I understood why the delay and braking occurred.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,It’s difficult to identify what the system will do next.,1-5,3.0,It's moderately difficult to anticipate the system's next move.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,useful – useless,1-7,6.0,The automation was very useful in preventing a collision.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,pleasant – unpleasant,1-7,3.0,The experience was somewhat unpleasant due to tension.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,bad – good,1-7,2.0,The incident felt bad due to risk and disruption.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,nice – annoying,1-7,3.0,The experience was moderately annoying.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,effective – superfluous,1-7,6.0,The system proved effective in preventing contact.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,irritating – likeable,1-7,5.0,The automation was reassuring and likeable.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,assisting – worthless,1-7,6.0,The automated assistant was clearly assisting.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,undesirable – desirable,1-7,6.0,Desirable to have automated assistance in a conflict.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,raising alertness – sleep-inducing,1-7,6.0,The event heightened alertness rather than sleepiness.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,How changeable is the situation?,1-7,5.0,The situation was highly changeable.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,How complicated is the situation?,1-7,5.0,It was fairly complicated with multiple variables.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,How many variables are changing?,1-7,5.0,Several variables were changing simultaneously.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,How aroused are you?,1-7,5.0,I was quite aroused by the sudden event.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,How much are you concentrating?,1-7,6.0,I was concentrating intensely on the road and system.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,How much is your attention divided?,1-7,3.0,My attention was somewhat divided between the road and monitoring the car.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,How much mental capacity do you have to spare?,1-7,4.0,I had some mental capacity to spare for processing the situation.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,How much information have you gained?,1-7,4.0,I gained a moderate amount of information from cues.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,How good is the information you have gained?,1-7,5.0,The information I had was good and actionable.
+13,51,male,processed_1_clip8_pid_13_age_51_male.csv,How familiar are you with the situation?,1-7,2.0,I am not very familiar with this exact scenario.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,How mentally demanding was the task?,1-20,12.0,Moderate mental workload due to multiple hazards.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,anxious – relaxed,-3..3,2.0,Some worry from the near-miss.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,agitated – calm,-3..3,1.0,Mostly calm despite the abrupt stop.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,unsafe – safe,-3..3,-2.0,There was a near-collision risk from the van cutting in.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,timid – confident,-3..3,1.0,I feel cautiously confident in the car's braking.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,I trust the highly automated vehicle.,1-5,4.0,Fairly high trust due to effective braking.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,I can rely on the highly automated vehicle.,1-5,4.0,Vehicle responded appropriately in a threat.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,The system state was always clear to me.,1-5,3.0,"Mostly clear, but the sudden stop briefly reduced clarity."
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,The system reacts unpredictably.,1-5,2.0,Not unpredictable; the braking matched the hazard.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,I was able to understand why things happened.,1-5,4.0,"Clear cause: van merged into our lane, forcing hard brake."
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,It’s difficult to identify what the system will do next.,1-5,3.0,Somewhat hard to predict next move in a dynamic intersection.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,useful – useless,1-7,7.0,Very useful for safety.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,pleasant – unpleasant,1-7,3.0,Unpleasant due to abrupt stop.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,bad – good,1-7,2.0,Overall negative experience due to near-miss.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,nice – annoying,1-7,2.0,Annoying disruption during ride.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,effective – superfluous,1-7,6.0,Very effective at mitigating risk.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,irritating – likeable,1-7,3.0,"Slightly irritating due to abruptness, but tolerable."
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,assisting – worthless,1-7,6.0,Assistive braking helped keep us safe.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,undesirable – desirable,1-7,6.0,Desirable to have reliable safety features.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,raising alertness – sleep-inducing,1-7,6.0,"Significantly increases vigilance, not sleepy."
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,How changeable is the situation?,1-7,6.0,The situation changed quickly due to a sudden lane cut.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,How complicated is the situation?,1-7,5.0,Multiple factors and conflicting movements.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,How many variables are changing?,1-7,5.0,"Several changing elements: cyclist, van, guardrail, intersection."
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,How aroused are you?,1-7,5.0,Heightened arousal from near-miss.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,How much are you concentrating?,1-7,6.0,High concentration to monitor threats.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,How much is your attention divided?,1-7,4.0,"Attention shared between road, potential hazards; moderate split."
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,How much mental capacity do you have to spare?,1-7,5.0,Some spare mental capacity due to automation.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,How much information have you gained?,1-7,4.0,Gained awareness of vehicle response and hazard dynamics.
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,How good is the information you have gained?,1-7,5.0,"The information gained was good, but not exhaustive."
+14,28,male,processed_1_clip8_pid_14_age_28_male.csv,How familiar are you with the situation?,1-7,3.0,Not very familiar with autonomous car behavior in such near-miss.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,How mentally demanding was the task?,1-20,16.0,High mental workload monitoring multiple hazards.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,anxious – relaxed,-3..3,-1.0,Slight anxiety from the near-miss.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,agitated – calm,-3..3,-1.0,Moderately agitated by sudden braking.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,unsafe – safe,-3..3,-1.0,Perceived risk remained despite the stop.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,timid – confident,-3..3,-1.0,Apprehension about how automation would handle surprises.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,I trust the highly automated vehicle.,1-5,3.0,Moderate trust in automation after the controlled stop.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,I can rely on the highly automated vehicle.,1-5,3.0,Reliance is moderate; system performed but isn't flawless.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,The system state was always clear to me.,1-5,2.0,System state was not always clearly communicated.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,The system reacts unpredictably.,1-5,2.0,Reactions were mostly predictable; no major surprises.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,I was able to understand why things happened.,1-5,4.0,Could understand why braking occurred.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,It’s difficult to identify what the system will do next.,1-5,3.0,Next moves were somewhat hard to predict.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,useful – useless,1-7,6.0,Automated braking a highly useful safety aid.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,pleasant – unpleasant,1-7,2.0,Overall experience was unpleasant.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,bad – good,1-7,2.0,Experience was not great; safer but still concerning.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,nice – annoying,1-7,2.0,Jolt and traffic disruption were annoying.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,effective – superfluous,1-7,6.0,System actions were effective at preventing collision.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,irritating – likeable,1-7,4.0,Stressful but tolerable; not overtly irritating.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,assisting – worthless,1-7,6.0,Assisting feature helped manage the hazard.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,undesirable – desirable,1-7,6.0,Desirable safety feature; risk was reduced.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,raising alertness – sleep-inducing,1-7,6.0,Raising alertness due to sudden event.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,How changeable is the situation?,1-7,6.0,Situation highly changeable with moving vehicles.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,How complicated is the situation?,1-7,6.0,Quite complicated with many factors.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,How many variables are changing?,1-7,5.0,"Several changing variables (pedestrian, cyclist, van, etc.)."
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,How aroused are you?,1-7,5.0,Arousal elevated by abrupt event.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,How much are you concentrating?,1-7,6.0,High concentration required.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,How much is your attention divided?,1-7,3.0,Attention not completely divided; some monitoring.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,How much mental capacity do you have to spare?,1-7,3.0,Limited spare mental capacity due to focus.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,How much information have you gained?,1-7,5.0,Gained substantial information about behavior.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,How good is the information you have gained?,1-7,5.0,Information quality was adequate.
+15,53,male,processed_1_clip8_pid_15_age_53_male.csv,How familiar are you with the situation?,1-7,3.0,Situation was somewhat unfamiliar.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,How mentally demanding was the task?,1-20,16.0,Sustained attention and quick decisions needed due to slowing traffic and the hazard.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,anxious – relaxed,-3..3,-2.0,I feel anxious and tense as the approaching hazard develops.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,agitated – calm,-3..3,-1.0,I was slightly agitated but tried to stay composed.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,unsafe – safe,-3..3,-3.0,"The van encroached into our lane, making the situation unsafe."
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,timid – confident,-3..3,-2.0,I felt timid about what would happen next and doubted the car's handling.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,I trust the highly automated vehicle.,1-5,3.0,I somewhat trust the automated system to manage hazards.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,I can rely on the highly automated vehicle.,1-5,3.0,I can rely on the system to brake if needed.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,The system state was always clear to me.,1-5,2.0,The system state was fairly clear most of the time.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,The system reacts unpredictably.,1-5,2.0,The system reactions were somewhat unpredictable given the other car's move.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,I was able to understand why things happened.,1-5,4.0,I understood that another vehicle caused the conflict.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,It’s difficult to identify what the system will do next.,1-5,4.0,It's hard to predict what the system will do next in this complex scene.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,useful – useless,1-7,6.0,The automation is useful in supporting braking and hazard avoidance.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,pleasant – unpleasant,1-7,2.0,"Overall, the experience was unpleasant."
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,bad – good,1-7,2.0,Not ideal but tolerable.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,nice – annoying,1-7,3.0,The process was annoying but manageable.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,effective – superfluous,1-7,6.0,The system seemed effective in preventing a collision.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,irritating – likeable,1-7,4.0,I found the automation reassuring rather than irritating.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,assisting – worthless,1-7,6.0,The automation is assisting and clearly not worthless.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,undesirable – desirable,1-7,6.0,Desirability of automation is high due to reduced manual workload.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,raising alertness – sleep-inducing,1-7,6.0,The event raised my alertness and focus.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,How changeable is the situation?,1-7,6.0,The situation is highly changeable with other drivers' actions.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,How complicated is the situation?,1-7,6.0,The scenario is very complicated with several moving parts.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,How many variables are changing?,1-7,6.0,Many variables are changing simultaneously.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,How aroused are you?,1-7,5.0,I feel a moderate level of arousal due to the risk.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,How much are you concentrating?,1-7,6.0,I am concentrating intensely on the road and the surrounding traffic.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,How much is your attention divided?,1-7,3.0,My attention was somewhat divided by multiple cues.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,How much mental capacity do you have to spare?,1-7,2.0,I have little spare mental capacity left to monitor additional details.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,How much information have you gained?,1-7,4.0,I gained useful information about the car's responses.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,How good is the information you have gained?,1-7,5.0,The information I gained was good and helpful.
+16,40,female,processed_1_clip8_pid_16_age_40_female.csv,How familiar are you with the situation?,1-7,3.0,I am not fully familiar with this exact scenario.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,How mentally demanding was the task?,1-20,14.0,Need to monitor multiple hazards and predict others' actions.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,anxious – relaxed,-3..3,2.0,I felt some anxiety but remained mostly steady.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,agitated – calm,-3..3,1.0,"A calm, controlled response despite the scare."
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,unsafe – safe,-3..3,-1.0,Past near-miss left me feeling slightly unsafe.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,timid – confident,-3..3,1.0,Still somewhat confident in the vehicle's handling.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,I trust the highly automated vehicle.,1-5,4.0,I trust the automation to manage risks.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,I can rely on the highly automated vehicle.,1-5,4.0,I can rely on the system to brake and avoid.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,The system state was always clear to me.,1-5,3.0,The system status was not always obvious.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,The system reacts unpredictably.,1-5,2.0,System reactions seemed predictable after the initial events.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,I was able to understand why things happened.,1-5,4.0,I followed the cause: van turning caused the hazard.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,It’s difficult to identify what the system will do next.,1-5,3.0,It's not always obvious what the system will do next.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,useful – useless,1-7,6.0,Autonomy was useful during the near-miss.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,pleasant – unpleasant,1-7,3.0,The experience was mildly unpleasant.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,bad – good,1-7,4.0,The experience was mixed: not great but safer.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,nice – annoying,1-7,3.0,The event was annoying but tolerable.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,effective – superfluous,1-7,6.0,System was effective in preventing contact.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,irritating – likeable,1-7,4.0,The situation was irritating but the car helped.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,assisting – worthless,1-7,6.0,The assistant function prevented a potential crash.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,undesirable – desirable,1-7,5.0,Overall undesirable situation but desirable safety outcome.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,raising alertness – sleep-inducing,1-7,6.0,The incident raised my alertness rather than making me sleepy.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,How changeable is the situation?,1-7,5.0,The situation changed as cars acted and risk evolved.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,How complicated is the situation?,1-7,6.0,There were multiple moving parts and decisions.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,How many variables are changing?,1-7,5.0,Several variables were changing simultaneously.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,How aroused are you?,1-7,5.0,Arousal was high due to the near-miss.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,How much are you concentrating?,1-7,4.0,I had to concentrate to monitor the road scene.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,How much is your attention divided?,1-7,3.0,Attention was focused with some divided attention.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,How much mental capacity do you have to spare?,1-7,3.0,I had limited mental capacity to spare.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,How much information have you gained?,1-7,5.0,I gained a fair amount of situational information.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,How good is the information you have gained?,1-7,5.0,The information felt relevant and usable.
+17,18,female,processed_1_clip8_pid_17_age_18_female.csv,How familiar are you with the situation?,1-7,2.0,I am not very familiar with this route.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,How mentally demanding was the task?,1-20,18.0,High mental demand from rapid cues and planning.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,anxious – relaxed,-3..3,-2.0,Feeling somewhat anxious during a sudden crossing risk.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,agitated – calm,-3..3,-2.0,Slightly agitated by the abrupt braking and jolting camera.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,unsafe – safe,-3..3,2.0,Car safely slowed and potential collision avoided.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,timid – confident,-3..3,-1.0,Cautious but not completely overwhelmed; still unsure.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,I trust the highly automated vehicle.,1-5,4.0,High trust in automation given controlled handling.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,I can rely on the highly automated vehicle.,1-5,4.0,Reasonable reliance on the system to brake appropriately.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,The system state was always clear to me.,1-5,2.0,System state not always explicit during all events.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,The system reacts unpredictably.,1-5,2.0,System reactions were plausible but not perfectly predictable.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,I was able to understand why things happened.,1-5,4.0,Could understand the safety rationale behind braking.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,It’s difficult to identify what the system will do next.,1-5,3.0,Next actions were not always obvious due to changing events.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,useful – useless,1-7,6.0,The system is clearly useful in avoiding a crash.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,pleasant – unpleasant,1-7,2.0,The experience was unpleasant due to risk and abruptness.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,bad – good,1-7,2.0,Rated as slightly bad rather than good.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,nice – annoying,1-7,2.0,Annoying moment caused by sudden maneuvers.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,effective – superfluous,1-7,6.0,System was effective at preventing collision and stopping promptly.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,irritating – likeable,1-7,4.0,Mild irritation from jolt but not extreme.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,assisting – worthless,1-7,6.0,"Assisted by vehicle in hazard, minimizing effort."
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,undesirable – desirable,1-7,2.0,"Desirable to avoid the incident, but still undesirable."
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,raising alertness – sleep-inducing,1-7,6.0,Increased alertness due to sudden threat.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,How changeable is the situation?,1-7,6.0,Situation highly changeable with multiple evolving factors.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,How complicated is the situation?,1-7,6.0,"Complicated due to crossing vehicles, cyclist, and road geometry."
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,How many variables are changing?,1-7,5.0,Several variables changing simultaneously.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,How aroused are you?,1-7,6.0,High arousal from the unfolding hazard.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,How much are you concentrating?,1-7,6.0,Need to concentrate intensely to monitor the system.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,How much is your attention divided?,1-7,4.0,Attention partly divided by monitoring surroundings.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,How much mental capacity do you have to spare?,1-7,2.0,Limited mental capacity available to spare during crisis.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,How much information have you gained?,1-7,5.0,Gained useful information about the vehicle's behavior.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,How good is the information you have gained?,1-7,5.0,Good quality information about how the system acted.
+18,23,male,processed_1_clip8_pid_18_age_23_male.csv,How familiar are you with the situation?,1-7,2.0,Not very familiar with this exact scenario.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,How mentally demanding was the task?,1-20,16.0,High demand due to sudden hazard and multiple actors.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,anxious – relaxed,-3..3,2.0,I felt somewhat anxious rather than relaxed.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,agitated – calm,-3..3,2.0,My agitation rose due to the abrupt stop.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,unsafe – safe,-3..3,-1.0,There was near collision risk making the situation feel unsafe.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,timid – confident,-3..3,1.0,I remained cautiously confident in the automated system.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,I trust the highly automated vehicle.,1-5,3.0,I rate trust in the system as moderate.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,I can rely on the highly automated vehicle.,1-5,3.0,I think I can rely on the system most of the time.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,The system state was always clear to me.,1-5,2.0,System state was not always obvious to me.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,The system reacts unpredictably.,1-5,2.0,System reactions seemed mostly predictable.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,I was able to understand why things happened.,1-5,4.0,I understood the sequence of events after they happened.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,It’s difficult to identify what the system will do next.,1-5,3.0,It was somewhat difficult to anticipate the system's next move.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,useful – useless,1-7,6.0,The system was very useful in avoiding a collision.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,pleasant – unpleasant,1-7,3.0,The ride felt unpleasant due to the abrupt maneuver.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,bad – good,1-7,4.0,The overall outcome was somewhat good given the circumstances.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,nice – annoying,1-7,3.0,The experience was annoying but not intolerable.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,effective – superfluous,1-7,6.0,The system performed effectively in braking.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,irritating – likeable,1-7,4.0,The abrupt jolting was somewhat irritating.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,assisting – worthless,1-7,6.0,The automation assisted by preventing a collision.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,undesirable – desirable,1-7,6.0,Desirable as it reduced risk during the incident.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,raising alertness – sleep-inducing,1-7,6.0,The situation raised my alertness rather than making me sleepy.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,How changeable is the situation?,1-7,6.0,The situation was highly changeable with unexpected events.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,How complicated is the situation?,1-7,5.0,The situation was moderately complex.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,How many variables are changing?,1-7,5.0,"Several variables were changing, increasing complexity."
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,How aroused are you?,1-7,4.0,I was moderately aroused by the risk and attention demands.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,How much are you concentrating?,1-7,5.0,I was concentrating a lot on the road and events.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,How much is your attention divided?,1-7,2.0,Attention remained mostly focused with little division.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,How much mental capacity do you have to spare?,1-7,3.0,I had some spare capacity but it was limited.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,How much information have you gained?,1-7,4.0,I gained a reasonable amount of information from the situation.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,How good is the information you have gained?,1-7,5.0,The information I gathered seemed good and useful.
+19,38,male,processed_1_clip8_pid_19_age_38_male.csv,How familiar are you with the situation?,1-7,2.0,I am somewhat unfamiliar with this specific scenario.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,How mentally demanding was the task?,1-20,17.0,"Rapid, overlapping events demanded high mental effort."
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,anxious – relaxed,-3..3,2.0,I felt a surge of anxiety from the near miss.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,agitated – calm,-3..3,2.0,I was mildly agitated by the sudden braking.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,unsafe – safe,-3..3,-1.0,There was a sense of risk due to the van's intrusion.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,timid – confident,-3..3,2.0,I remained cautiously confident despite the scare.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,I trust the highly automated vehicle.,1-5,3.0,I trust the automated system to brake in time.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,I can rely on the highly automated vehicle.,1-5,3.0,I can rely on the system to respond appropriately.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,The system state was always clear to me.,1-5,2.0,The system state did not feel always clear.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,The system reacts unpredictably.,1-5,2.0,The system did not seem unpredictable; it behaved as expected.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,I was able to understand why things happened.,1-5,4.0,I could understand the sequence of events after the braking.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,It’s difficult to identify what the system will do next.,1-5,3.0,Predicting what the system would do next was challenging.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,useful – useless,1-7,6.0,The automation was useful in detecting and braking.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,pleasant – unpleasant,1-7,4.0,The experience was unpleasant rather than pleasant.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,bad – good,1-7,4.0,The outcome felt fairly good given the near miss.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,nice – annoying,1-7,4.0,The incident was annoying more than pleasant.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,effective – superfluous,1-7,6.0,The system was effective at preventing a collision.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,irritating – likeable,1-7,3.0,The abrupt jolts were irritating rather than comforting.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,assisting – worthless,1-7,6.0,The automation felt assistive during the emergency.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,undesirable – desirable,1-7,6.0,Desirable safety improvement outweighed drawbacks.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,raising alertness – sleep-inducing,1-7,6.0,The event raised alertness rather than sleepiness.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,How changeable is the situation?,1-7,5.0,The situation was highly changeable.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,How complicated is the situation?,1-7,5.0,The situation was quite complicated with several actors.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,How many variables are changing?,1-7,5.0,Several variables were changing simultaneously.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,How aroused are you?,1-7,5.0,I was highly aroused by the suddenness of events.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,How much are you concentrating?,1-7,6.0,I had to concentrate intensely to follow what was happening.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,How much is your attention divided?,1-7,3.0,"My attention was divided between braking, monitoring, and surroundings."
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,How much mental capacity do you have to spare?,1-7,2.0,I had little spare mental capacity due to the incident.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,How much information have you gained?,1-7,5.0,I gained substantial situational information from the unfolding events.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,How good is the information you have gained?,1-7,5.0,The information I gained was good and actionable.
+1,67,male,processed_1_clip8_pid_1_age_67_male.csv,How familiar are you with the situation?,1-7,2.0,I am not very familiar with this exact scenario.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,How mentally demanding was the task?,1-20,15.0,The task required rapid processing of unexpected vehicle behavior.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,anxious – relaxed,-3..3,2.0,I felt somewhat anxious about a possible crash.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,agitated – calm,-3..3,2.0,I was slightly tense due to the hard brake.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,unsafe – safe,-3..3,0.0,"There was no clear threat after the save, but risk was present."
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,timid – confident,-3..3,1.0,I felt slightly more confident than hesitant.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,I trust the highly automated vehicle.,1-5,4.0,I trust the automated vehicle quite a bit.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,I can rely on the highly automated vehicle.,1-5,4.0,I can rely on the system in this moment.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,The system state was always clear to me.,1-5,3.0,The system state was fairly clear to me.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,The system reacts unpredictably.,1-5,2.0,The system's reactions were mostly predictable.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,I was able to understand why things happened.,1-5,4.0,I understood why things happened.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,It’s difficult to identify what the system will do next.,1-5,2.0,It was not always obvious what the system would do next.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,useful – useless,1-7,5.0,The information from the system was useful.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,pleasant – unpleasant,1-7,2.0,The ride was unpleasant due to the abrupt stop.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,bad – good,1-7,5.0,The system performed well and helped avoid harm.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,nice – annoying,1-7,2.0,Not particularly nice; a bit stressful.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,effective – superfluous,1-7,6.0,The safety action was effective at preventing harm.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,irritating – likeable,1-7,5.0,The quick braking felt reassuring and likeable.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,assisting – worthless,1-7,6.0,It clearly assisted in avoiding a crash.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,undesirable – desirable,1-7,6.0,It is desirable to have reliable automation in such situations.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,raising alertness – sleep-inducing,1-7,6.0,It raised my alertness.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,How changeable is the situation?,1-7,6.0,The situation was highly changeable.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,How complicated is the situation?,1-7,6.0,The situation was quite complicated.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,How many variables are changing?,1-7,5.0,Many variables were changing at once.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,How aroused are you?,1-7,5.0,I was fairly aroused by the risk.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,How much are you concentrating?,1-7,6.0,I was concentrating quite hard on what was happening.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,How much is your attention divided?,1-7,2.0,Only a small amount of my attention was diverted.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,How much mental capacity do you have to spare?,1-7,3.0,I had some mental capacity to spare for monitoring.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,How much information have you gained?,1-7,5.0,I gained useful information about system behavior.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,How good is the information you have gained?,1-7,5.0,The information I gained was good.
+20,74,male,processed_1_clip8_pid_20_age_74_male.csv,How familiar are you with the situation?,1-7,3.0,I am somewhat familiar with autonomous driving situations.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,How mentally demanding was the task?,1-20,15.0,The task required sustained vigilance and quick hazard assessment.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,anxious – relaxed,-3..3,-2.0,I felt somewhat anxious after the near-miss and braking.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,agitated – calm,-3..3,-2.0,I was tense but trying to stay calm.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,unsafe – safe,-3..3,-2.0,There was real potential for a collision with the van.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,timid – confident,-3..3,1.0,"I felt some confidence in the vehicle's braking, but not fully."
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,I trust the highly automated vehicle.,1-5,3.0,I moderately trust the automation to handle hazards.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,I can rely on the highly automated vehicle.,1-5,3.0,I can rely on the system to brake when needed.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,The system state was always clear to me.,1-5,2.0,The system state indicators were displayed but not always clear.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,The system reacts unpredictably.,1-5,2.0,There were no unexpected actions; braking was as expected.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,I was able to understand why things happened.,1-5,4.0,I could understand why the car slowed and yielded to the van.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,It’s difficult to identify what the system will do next.,1-5,3.0,It's not always obvious what the car will do next.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,useful – useless,1-7,6.0,The system was useful in avoiding a collision.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,pleasant – unpleasant,1-7,2.0,The experience was unpleasant but not intolerable.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,bad – good,1-7,3.0,"Overall it felt bad in terms of emotion, though safety was maintained."
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,nice – annoying,1-7,4.0,"Some aspects were annoying, like the abrupt stop."
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,effective – superfluous,1-7,6.0,The intervention was effective at preventing contact.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,irritating – likeable,1-7,4.0,The jolt was irritating but the car was decisive.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,assisting – worthless,1-7,6.0,The system clearly assisted in hazard mitigation.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,undesirable – desirable,1-7,6.0,Desirable for safety despite some discomfort.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,raising alertness – sleep-inducing,1-7,6.0,The event raised my alertness.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,How changeable is the situation?,1-7,6.0,The situation changed quickly as others acted.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,How complicated is the situation?,1-7,6.0,The scene was quite complicated with several cues.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,How many variables are changing?,1-7,5.0,"Several factors were changing (positions, speeds)."
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,How aroused are you?,1-7,5.0,Physiological arousal increased due to the near-accident.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,How much are you concentrating?,1-7,6.0,I was highly focused on the road and system behavior.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,How much is your attention divided?,1-7,3.0,Attention was divided between monitoring the car and surroundings.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,How much mental capacity do you have to spare?,1-7,4.0,I had some mental capacity to spare but it was taxed.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,How much information have you gained?,1-7,4.0,I gained new information about the vehicle's responses.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,How good is the information you have gained?,1-7,5.0,The information gained was fairly clear and useful.
+21,46,female,processed_1_clip8_pid_21_age_46_female.csv,How familiar are you with the situation?,1-7,3.0,This kind of scenario felt somewhat familiar.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,How mentally demanding was the task?,1-20,16.0,High mental demand due to sudden lane event and camera jolt.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,anxious – relaxed,-3..3,-2.0,I felt anxious from the near-miss.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,agitated – calm,-3..3,-2.0,I felt unsettled and agitated by the braking jolt.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,unsafe – safe,-3..3,-3.0,The situation felt unsafe when the van cut into our lane.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,timid – confident,-3..3,-2.0,I felt not very confident in the system's handling.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,I trust the highly automated vehicle.,1-5,3.0,I have moderate trust in the automation's handling.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,I can rely on the highly automated vehicle.,1-5,3.0,I can rely on the system to brake appropriately in such events.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,The system state was always clear to me.,1-5,2.0,The state of the system wasn't always clear during the response.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,The system reacts unpredictably.,1-5,2.0,Most responses followed expected safety logic.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,I was able to understand why things happened.,1-5,3.0,I could understand the braking was due to the van entering our lane.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,It’s difficult to identify what the system will do next.,1-5,3.0,It's hard to know what the system will do next in a near-miss.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,useful – useless,1-7,5.0,The automation was useful in maintaining distance.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,pleasant – unpleasant,1-7,3.0,The experience was somewhat unpleasant but tolerable.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,bad – good,1-7,3.0,It was bad for comfort but not catastrophic.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,nice – annoying,1-7,3.0,Annoying but not intolerable.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,effective – superfluous,1-7,6.0,The system acted effectively to avoid a collision.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,irritating – likeable,1-7,3.0,The interface remained calm and not irritating.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,assisting – worthless,1-7,6.0,The automation felt helpful rather than worthless.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,undesirable – desirable,1-7,6.0,Desirable assistance under threat of collision.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,raising alertness – sleep-inducing,1-7,6.0,The event raised my alertness significantly.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,How changeable is the situation?,1-7,6.0,The situation was highly changeable with new hazards.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,How complicated is the situation?,1-7,5.0,The scenario was moderately complex with lane dynamics.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,How many variables are changing?,1-7,6.0,"Several variables changed at once (others, vehicle, road layout)."
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,How aroused are you?,1-7,5.0,I felt heightened arousal and focus due to risk.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,How much are you concentrating?,1-7,6.0,I concentrated intensely on the road and system status.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,How much is your attention divided?,1-7,4.0,"My attention was divided between road, system cues, and potential hazards."
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,How much mental capacity do you have to spare?,1-7,3.0,I had little spare mental capacity to analyze extra details.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,How much information have you gained?,1-7,5.0,I gained information about how the system would react in this tension.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,How good is the information you have gained?,1-7,5.0,The information I gained felt reliable.
+22,67,female,processed_1_clip8_pid_22_age_67_female.csv,How familiar are you with the situation?,1-7,2.0,I am not very familiar with this vehicle's behavior in such events.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,How mentally demanding was the task?,1-20,14.0,Moderate-high mental demand from monitoring sudden events.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,anxious – relaxed,-3..3,-1.0,Slight anxiety due to sudden events and potential collision.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,agitated – calm,-3..3,-2.0,There was significant agitation from the abrupt stop.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,unsafe – safe,-3..3,-1.0,Perceived risk from the van's maneuver and hard braking.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,timid – confident,-3..3,-1.0,Slightly timid and cautious about the car's decisions.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,I trust the highly automated vehicle.,1-5,4.0,Generally trust the automation to handle emergencies.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,I can rely on the highly automated vehicle.,1-5,4.0,You can rely on the system for safe braking and maneuvering.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,The system state was always clear to me.,1-5,3.0,Somewhat clear but not every action was obvious.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,The system reacts unpredictably.,1-5,1.0,No unpredictable reactions from the system.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,I was able to understand why things happened.,1-5,4.0,Could understand that the van cut in and caused braking.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,It’s difficult to identify what the system will do next.,1-5,2.0,Difficult to predict what the system would do next.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,useful – useless,1-7,6.0,Very useful for safety.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,pleasant – unpleasant,1-7,5.0,Overall the experience was tense but manageable.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,bad – good,1-7,4.0,Overall safety improvements were perceived.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,nice – annoying,1-7,3.0,No strong feelings of niceness or annoyance.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,effective – superfluous,1-7,6.0,Braking effectiveness prevented a collision.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,irritating – likeable,1-7,5.0,Vehicle behavior was reassuring rather than irritating.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,assisting – worthless,1-7,6.0,Automation assisted by braking to avoid a crash.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,undesirable – desirable,1-7,6.0,Desirable safety response from automation.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,raising alertness – sleep-inducing,1-7,6.0,Raised alertness and kept attention high.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,How changeable is the situation?,1-7,5.0,The situation was changeable.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,How complicated is the situation?,1-7,6.0,The situation was quite complicated with multiple actors.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,How many variables are changing?,1-7,5.0,Several changing variables were involved.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,How aroused are you?,1-7,6.0,Arousal level was high due to the risk.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,How much are you concentrating?,1-7,5.0,Concentration remained strong.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,How much is your attention divided?,1-7,3.0,Attention was somewhat divided by road context and vehicle cues.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,How much mental capacity do you have to spare?,1-7,4.0,Moderate mental capacity to spare.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,How much information have you gained?,1-7,4.0,Gained information about system behavior and surrounding traffic.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,How good is the information you have gained?,1-7,5.0,The information gained was fairly good.
+23,80,male,processed_1_clip8_pid_23_age_80_male.csv,How familiar are you with the situation?,1-7,2.0,Not very familiar with the specific route and system.
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,How mentally demanding was the task?,1-20,15.0,The task required sustained attention due to a sudden hazard
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,anxious – relaxed,-3..3,-1.0,I felt a minor anxiety from the unexpected stop
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,agitated – calm,-3..3,-1.0,The sudden braking caused mild agitation
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,unsafe – safe,-3..3,-2.0,The near miss with the van felt unsafe
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,timid – confident,-3..3,1.0,The system response increased my confidence somewhat
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,I trust the highly automated vehicle.,1-5,3.0,I somewhat trust the vehicle to handle hazards
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,I can rely on the highly automated vehicle.,1-5,3.0,I can rely on the vehicle in stressful moments
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,The system state was always clear to me.,1-5,2.0,The system state was not always clear to me
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,The system reacts unpredictably.,1-5,2.0,The system reactions felt somewhat unpredictable
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,I was able to understand why things happened.,1-5,4.0,I understood why the events occurred
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,It’s difficult to identify what the system will do next.,1-5,3.0,It was moderately hard to predict what the system would do next
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,useful – useless,1-7,6.0,The system proved useful in a hazardous moment
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,pleasant – unpleasant,1-7,5.0,The experience was unpleasant
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,bad – good,1-7,2.0,The incident felt bad
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,nice – annoying,1-7,4.0,It was somewhat annoying due to the jolt
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,effective – superfluous,1-7,6.0,The system was effective at preventing a collision
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,irritating – likeable,1-7,3.0,The braking was somewhat irritating but tolerable
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,assisting – worthless,1-7,6.0,The automation felt assisting rather than worthless
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,undesirable – desirable,1-7,2.0,The situation was undesirable
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,raising alertness – sleep-inducing,1-7,6.0,The situation raised alertness
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,How changeable is the situation?,1-7,5.0,The situation was quite changeable
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,How complicated is the situation?,1-7,5.0,The situation was fairly complicated
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,How many variables are changing?,1-7,6.0,Many variables were changing at once
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,How aroused are you?,1-7,5.0,I felt quite alert and energized
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,How much are you concentrating?,1-7,6.0,I was concentrating intensely
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,How much is your attention divided?,1-7,3.0,My attention was not heavily divided
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,How much mental capacity do you have to spare?,1-7,3.0,I had some mental capacity to spare
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,How much information have you gained?,1-7,5.0,I gained useful information from the scenario
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,How good is the information you have gained?,1-7,5.0,The information I gained was good
+24,37,female,processed_1_clip8_pid_24_age_37_female.csv,How familiar are you with the situation?,1-7,2.0,I am not very familiar with this situation
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,How mentally demanding was the task?,1-20,16.0,Need to monitor evolving hazards and brake abruptly.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,anxious – relaxed,-3..3,-1.0,The unexpected left-turning van created anxiety.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,agitated – calm,-3..3,-1.0,I felt some agitation due to the abrupt stop.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,unsafe – safe,-3..3,-2.0,Perceived risk rose due to immediate conflict with the van.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,timid – confident,-3..3,-1.0,Apprehension about the system handling the sudden hazard.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,I trust the highly automated vehicle.,1-5,4.0,Moderate trust; I expect reasonable automatic braking.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,I can rely on the highly automated vehicle.,1-5,4.0,Reasonable reliance on the system to respond to other road users.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,The system state was always clear to me.,1-5,3.0,The system state was moderately clear during events.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,The system reacts unpredictably.,1-5,2.0,The response seemed somewhat unpredictable during the sudden hazard.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,I was able to understand why things happened.,1-5,4.0,I understood the cause-effect of the van's move.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,It’s difficult to identify what the system will do next.,1-5,3.0,Hard to anticipate what the automation would do next.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,useful – useless,1-7,6.0,The automation proved useful in managing the stop.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,pleasant – unpleasant,1-7,3.0,Experience was somewhat unpleasant due to the jolt.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,bad – good,1-7,2.0,Relatively bad due to near collision.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,nice – annoying,1-7,5.0,Unpleasant and annoying due to the abrupt stop.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,effective – superfluous,1-7,6.0,High effectiveness in braking to avoid harm.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,irritating – likeable,1-7,5.0,"Assisting and trustworthy, not irritating."
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,assisting – worthless,1-7,2.0,Assistive function; not worthless.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,undesirable – desirable,1-7,2.0,Desirable feature to reduce driver workload.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,raising alertness – sleep-inducing,1-7,6.0,Maintains vigilance; not sleepy.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,How changeable is the situation?,1-7,6.0,"Highly changeable due to cyclist, van, etc."
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,How complicated is the situation?,1-7,6.0,Complex with multiple interacting factors.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,How many variables are changing?,1-7,5.0,Five variables are changing; manageable but not trivial.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,How aroused are you?,1-7,5.0,Physiological arousal reflects risk.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,How much are you concentrating?,1-7,6.0,High concentration required.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,How much is your attention divided?,1-7,4.0,Attention split between road and potential hazards.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,How much mental capacity do you have to spare?,1-7,3.0,Some spare capacity remains.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,How much information have you gained?,1-7,5.0,Learned a lot from the event.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,How good is the information you have gained?,1-7,5.0,Good quality information gained about surroundings.
+2,26,male,processed_1_clip8_pid_2_age_26_male.csv,How familiar are you with the situation?,1-7,3.0,Not very familiar with such incidents.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,How mentally demanding was the task?,1-20,18.0,The task required sustained vigilance due to multiple hazards.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,anxious – relaxed,-3..3,2.0,Anxiety rose as the van cut in and the stop followed.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,agitated – calm,-3..3,2.0,Heart rate rose during the abrupt braking.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,unsafe – safe,-3..3,-2.0,The van cutting into our lane created risk.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,timid – confident,-3..3,-1.0,Uncertainty about the car's responses lowered confidence.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,I trust the highly automated vehicle.,1-5,4.0,System braking felt dependable in the moment.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,I can rely on the highly automated vehicle.,1-5,4.0,I could rely on the vehicle to respond to hazards.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,The system state was always clear to me.,1-5,3.0,System state was somewhat clear but not always obvious.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,The system reacts unpredictably.,1-5,2.0,The system's reactions felt somewhat unpredictable.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,I was able to understand why things happened.,1-5,4.0,I understood why the braking occurred after the hazard became clear.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,It’s difficult to identify what the system will do next.,1-5,2.0,It's not always easy to predict what the system will do next.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,useful – useless,1-7,6.0,Autonomous braking helped avoid a collision.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,pleasant – unpleasant,1-7,3.0,The experience was unpleasant but not extremely so.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,bad – good,1-7,5.0,The system prevented a potential crash and felt effective.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,nice – annoying,1-7,3.0,Jolt and surprise were mildly annoying.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,effective – superfluous,1-7,6.0,Braking was effective in stabilizing the situation.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,irritating – likeable,1-7,5.0,"Decisive, timely actions felt reassuring."
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,assisting – worthless,1-7,6.0,The automation clearly assisted to keep us safe.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,undesirable – desirable,1-7,6.0,The automated response was desirable for safety.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,raising alertness – sleep-inducing,1-7,2.0,The event kept me alert rather than sleepy.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,How changeable is the situation?,1-7,5.0,The situation quickly changed with new hazards.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,How complicated is the situation?,1-7,5.0,The scenario was moderately complex with multiple actors.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,How many variables are changing?,1-7,5.0,Several variables were changing simultaneously.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,How aroused are you?,1-7,5.0,I was highly aroused by the sudden events.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,How much are you concentrating?,1-7,6.0,I focused intensely to monitor the unfolding events.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,How much is your attention divided?,1-7,4.0,Attention was drawn to multiple cues and changes.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,How much mental capacity do you have to spare?,1-7,2.0,There was limited mental capacity left to spare.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,How much information have you gained?,1-7,5.0,I gained substantial information about vehicle behavior.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,How good is the information you have gained?,1-7,5.0,The information I gained was reasonably reliable.
+3,44,male,processed_1_clip8_pid_3_age_44_male.csv,How familiar are you with the situation?,1-7,3.0,I am not very familiar with this exact system.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,How mentally demanding was the task?,1-20,15.0,The rapid sequence of events required sustained attention.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,anxious – relaxed,-3..3,2.0,I felt a surge of worry during the sudden cut-in and hard brake.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,agitated – calm,-3..3,2.0,The sudden jerk and the potential crash increased agitation.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,unsafe – safe,-3..3,-3.0,A van cut into our lane creating an imminent collision risk.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,timid – confident,-3..3,1.0,I maintained some confidence in the automated braking.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,I trust the highly automated vehicle.,1-5,4.0,I generally trust the system to handle sudden hazards.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,I can rely on the highly automated vehicle.,1-5,4.0,The system demonstrated capable braking in the moment.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,The system state was always clear to me.,1-5,3.0,The camera jolted and the view became less clear.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,The system reacts unpredictably.,1-5,2.0,"Unpredictable behavior came from other drivers, not the system."
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,I was able to understand why things happened.,1-5,4.0,Cause-and-effect was understandable after the braking event.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,It’s difficult to identify what the system will do next.,1-5,4.0,Predicting the system's next move was difficult.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,useful – useless,1-7,6.0,The automated braking prevented a collision.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,pleasant – unpleasant,1-7,3.0,The ride was tense and not very pleasant.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,bad – good,1-7,5.0,The intervention was effective and we avoided a crash.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,nice – annoying,1-7,3.0,The jolts were somewhat annoying.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,effective – superfluous,1-7,6.0,The brake response was effective in preventing harm.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,irritating – likeable,1-7,4.0,The abrupt stop was startling but not overly irritating.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,assisting – worthless,1-7,6.0,The automation assisted by avoiding a crash.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,undesirable – desirable,1-7,6.0,The automation's intervention was desirable for safety.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,raising alertness – sleep-inducing,1-7,6.0,The incident increased my alertness rather than fatigue.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,How changeable is the situation?,1-7,6.0,Multiple changing elements created variability.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,How complicated is the situation?,1-7,6.0,Traffic dynamics and occlusions made the situation quite complex.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,How many variables are changing?,1-7,6.0,Many variables were changing rapidly in the scene.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,How aroused are you?,1-7,5.0,There was heightened physiological arousal during the event.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,How much are you concentrating?,1-7,6.0,I focused attention on the road and potential hazards.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,How much is your attention divided?,1-7,3.0,"Attention was mostly on the road, not heavily divided."
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,How much mental capacity do you have to spare?,1-7,2.0,Cognitive resources were partially depleted by the load.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,How much information have you gained?,1-7,5.0,I gained new cues about vehicle behavior and surroundings.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,How good is the information you have gained?,1-7,5.0,The information gathered was of good quality.
+4,74,female,processed_1_clip8_pid_4_age_74_female.csv,How familiar are you with the situation?,1-7,3.0,The exact scenario was unfamiliar.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,How mentally demanding was the task?,1-20,16.0,High mental load from rapid changes and need to monitor the vehicle.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,anxious – relaxed,-3..3,-2.0,Proximity of potential crash and sudden events heightened anxiety.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,agitated – calm,-3..3,-2.0,"Tension rose due to near-miss dynamics, though seat was steady."
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,unsafe – safe,-3..3,-1.0,A possible conflict with the left-turning van made me feel unsafe.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,timid – confident,-3..3,1.0,I felt somewhat confident because the system handled the risk.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,I trust the highly automated vehicle.,1-5,4.0,Braking and avoidance without fault increased trust.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,I can rely on the highly automated vehicle.,1-5,4.0,Reliance on automated responses in difficult merge scenario.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,The system state was always clear to me.,1-5,3.0,Occasional occlusion and jolting made the state feel uncertain.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,The system reacts unpredictably.,1-5,3.0,The car's responses seemed plausible but not perfectly predictable.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,I was able to understand why things happened.,1-5,3.0,I could follow the cause of the stop only partly.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,It’s difficult to identify what the system will do next.,1-5,3.0,Unclear prediction when another vehicle behaved unpredictably.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,useful – useless,1-7,6.0,The safety interventions were useful.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,pleasant – unpleasant,1-7,6.0,The overall experience was unpleasant and tense.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,bad – good,1-7,3.0,Near-miss stress while the van turned left.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,nice – annoying,1-7,5.0,The experience felt irritating rather than pleasant.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,effective – superfluous,1-7,2.0,The automated system acted effectively in a crisis.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,irritating – likeable,1-7,6.0,Actions were not irritating; they were competent.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,assisting – worthless,1-7,2.0,Automation felt like helpful assistance.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,undesirable – desirable,1-7,6.0,Desirable for safety given the successful avoidance.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,raising alertness – sleep-inducing,1-7,3.0,The situation kept me alert rather than sleepy.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,How changeable is the situation?,1-7,6.0,The situation changed a lot and required quick adaptation.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,How complicated is the situation?,1-7,5.0,The situation was moderately to highly complicated.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,How many variables are changing?,1-7,5.0,Multiple changing variables were involved.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,How aroused are you?,1-7,5.0,My arousal was elevated due to tension.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,How much are you concentrating?,1-7,6.0,I was highly focused on the driving scene.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,How much is your attention divided?,1-7,4.0,Attention was somewhat divided between the road and potential hazards.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,How much mental capacity do you have to spare?,1-7,3.0,I had limited mental capacity to spare.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,How much information have you gained?,1-7,5.0,I gained substantial information about the scenario.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,How good is the information you have gained?,1-7,5.0,The information I gained was fairly reliable.
+5,36,male,processed_1_clip8_pid_5_age_36_male.csv,How familiar are you with the situation?,1-7,3.0,I am moderately familiar with autonomous systems but not with this route.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,How mentally demanding was the task?,1-20,14.0,Hazards required continuous attention and quick interpretation due to cyclist and bend.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,anxious – relaxed,-3..3,2.0,The sudden near-miss and braking raised mild anxiety.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,agitated – calm,-3..3,1.0,Somewhat calm despite the abrupt event.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,unsafe – safe,-3..3,2.0,The left-lane incursion created an unsafe moment requiring urgent braking.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,timid – confident,-3..3,1.0,I felt somewhat confident in the vehicle's ability to handle the situation.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,I trust the highly automated vehicle.,1-5,4.0,I trust the automation to handle hazards.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,I can rely on the highly automated vehicle.,1-5,4.0,I can rely on the automated system to brake and respond.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,The system state was always clear to me.,1-5,3.0,The system state was not always obviously clear during the rapid events.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,The system reacts unpredictably.,1-5,2.0,The system's behavior did not seem unpredictable; it followed expected safety responses.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,I was able to understand why things happened.,1-5,4.0,I could understand why braking and actions occurred.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,It’s difficult to identify what the system will do next.,1-5,3.0,It's difficult to predict exactly what the system will do next.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,useful – useless,1-7,6.0,The experience was useful for evaluating the system's safety.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,pleasant – unpleasant,1-7,3.0,The drive was unpleasant due to tension.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,bad – good,1-7,3.0,Overall impression was that the drive was not ideal due to risk.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,nice – annoying,1-7,3.0,The experience was annoying despite proper functioning.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,effective – superfluous,1-7,6.0,The action was effective in avoiding a collision.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,irritating – likeable,1-7,4.0,The sudden braking and jolting was irritating.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,assisting – worthless,1-7,6.0,The system's assistance helped avoid collision.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,undesirable – desirable,1-7,6.0,Desirable safety outcome from automated intervention.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,raising alertness – sleep-inducing,1-7,6.0,Alertness raised by the rapid sequence.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,How changeable is the situation?,1-7,6.0,Situation changed quickly with multiple moving parts.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,How complicated is the situation?,1-7,5.0,Situation is quite complicated with several factors.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,How many variables are changing?,1-7,6.0,Many variables were changing simultaneously.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,How aroused are you?,1-7,5.0,Arousal level increased due to hazard.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,How much are you concentrating?,1-7,6.0,I was concentrating heavily on the road and system actions.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,How much is your attention divided?,1-7,3.0,Attention was mostly on driving; not heavily divided.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,How much mental capacity do you have to spare?,1-7,3.0,Some mental capacity remained for monitoring.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,How much information have you gained?,1-7,4.0,I gained useful information about how the system responds.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,How good is the information you have gained?,1-7,5.0,The information gained was good for understanding the system.
+6,64,female,processed_1_clip8_pid_6_age_64_female.csv,How familiar are you with the situation?,1-7,3.0,I am somewhat unfamiliar with this intersection and scenario.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,How mentally demanding was the task?,1-20,16.0,Sudden hazard required high mental effort.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,anxious – relaxed,-3..3,-2.0,Felt anxious about a potential collision.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,agitated – calm,-3..3,-1.0,Somewhat agitated by the abrupt stop.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,unsafe – safe,-3..3,-2.0,Perceived risk during the van's left turn.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,timid – confident,-3..3,1.0,Still confident in the vehicle's handling.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,I trust the highly automated vehicle.,1-5,4.0,Moderate trust due to timely braking.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,I can rely on the highly automated vehicle.,1-5,4.0,Relied on autopilot to brake promptly.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,The system state was always clear to me.,1-5,2.0,Not all system cues were obvious mid-incident.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,The system reacts unpredictably.,1-5,2.0,No surprising maneuvers; reactions were expected.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,I was able to understand why things happened.,1-5,4.0,Cause and sequence were explainable.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,It’s difficult to identify what the system will do next.,1-5,3.0,Next moves were partly predictable but still uncertain.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,useful – useless,1-7,3.0,Experience was somewhat useful for evaluating the system.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,pleasant – unpleasant,1-7,6.0,Unpleasant due to near-crash experience.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,bad – good,1-7,4.0,"Not great, but manageable with proper response."
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,nice – annoying,1-7,5.0,The sudden jolt was annoying.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,effective – superfluous,1-7,5.0,Moderately effective at mitigating risk.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,irritating – likeable,1-7,3.0,Mild irritation due to abrupt stop.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,assisting – worthless,1-7,2.0,Assisting but not overwhelming.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,undesirable – desirable,1-7,4.0,"Somewhat desirable for safety, though anxiety lingers."
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,raising alertness – sleep-inducing,1-7,2.0,Kept me alert without overload.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,How changeable is the situation?,1-7,5.0,High changeability with van actions.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,How complicated is the situation?,1-7,4.0,Increased complexity due to multiple actors and decisions.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,How many variables are changing?,1-7,5.0,"Several changing factors (pedestrian, van, braking)."
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,How aroused are you?,1-7,6.0,Arousal rose due to sudden hazard.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,How much are you concentrating?,1-7,6.0,Concentration at peak to monitor the scene.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,How much is your attention divided?,1-7,3.0,"Attention focused, not easily divided."
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,How much mental capacity do you have to spare?,1-7,3.0,Some spare mental capacity available after braking.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,How much information have you gained?,1-7,4.0,Gained new situational cues from the environment.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,How good is the information you have gained?,1-7,4.0,The information was reasonably reliable.
+7,26,female,processed_1_clip8_pid_7_age_26_female.csv,How familiar are you with the situation?,1-7,3.0,Not familiar with this specific autonomous driving edge-case.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,How mentally demanding was the task?,1-20,1.0,High mental demand due to multiple hazards.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,anxious – relaxed,-3..3,2.0,I felt mildly anxious during the event.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,agitated – calm,-3..3,3.0,I felt mild agitation during the braking.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,unsafe – safe,-3..3,4.0,I perceived potential danger from the van.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,timid – confident,-3..3,5.0,I felt a bit timid but hopeful.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,I trust the highly automated vehicle.,1-5,6.0,I trust the system to help.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,I can rely on the highly automated vehicle.,1-5,7.0,I can rely on the system in this situation.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,The system state was always clear to me.,1-5,8.0,The system state was somewhat clear.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,The system reacts unpredictably.,1-5,9.0,The system did not seem unpredictable.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,I was able to understand why things happened.,1-5,10.0,I understood the reasons for the actions.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,It’s difficult to identify what the system will do next.,1-5,11.0,It was not hard to anticipate what the system would do next.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,useful – useless,1-7,12.0,The system was useful in this scenario.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,pleasant – unpleasant,1-7,13.0,The experience was somewhat unpleasant.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,bad – good,1-7,14.0,The outcome felt somewhat good.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,nice – annoying,1-7,15.0,The experience was reasonably nice.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,effective – superfluous,1-7,16.0,The system was effective and not superfluous.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,irritating – likeable,1-7,17.0,The experience was not irritating and somewhat likeable.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,assisting – worthless,1-7,18.0,The system was assisting rather than worthless.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,undesirable – desirable,1-7,19.0,The system felt desirable.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,raising alertness – sleep-inducing,1-7,20.0,The event raised alertness more than sleepiness.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,How changeable is the situation?,1-7,21.0,The situation changed a lot.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,How complicated is the situation?,1-7,22.0,The situation was quite complicated.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,How many variables are changing?,1-7,23.0,Many variables were changing.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,How aroused are you?,1-7,24.0,I was fairly aroused by the incident.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,How much are you concentrating?,1-7,25.0,I was concentrating strongly.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,How much is your attention divided?,1-7,26.0,Attention was not greatly divided.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,How much mental capacity do you have to spare?,1-7,27.0,I had some mental capacity to spare.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,How much information have you gained?,1-7,28.0,I gained some new information.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,How good is the information you have gained?,1-7,29.0,The information was reasonably good.
+8,58,female,processed_1_clip8_pid_8_age_58_female.csv,How familiar are you with the situation?,1-7,30.0,I am somewhat familiar with such traffic events.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,How mentally demanding was the task?,1-20,14.0,I had to mentally monitor sudden changes and potential conflicts.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,anxious – relaxed,-3..3,-1.0,I felt a twinge of anxiety when the van cut in.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,agitated – calm,-3..3,1.0,The jolting braking made me feel unsettled.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,unsafe – safe,-3..3,-2.0,The near collision felt unsafe.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,timid – confident,-3..3,-1.0,I remained cautious but tried to trust automation.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,I trust the highly automated vehicle.,1-5,4.0,I trust the system to prioritize safety.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,I can rely on the highly automated vehicle.,1-5,4.0,I can rely on the car to act to avoid danger.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,The system state was always clear to me.,1-5,3.0,The system state was legible through the car's actions.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,The system reacts unpredictably.,1-5,2.0,The response was rapid but not surprising.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,I was able to understand why things happened.,1-5,4.0,I could understand the braking due to the left turning van.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,It’s difficult to identify what the system will do next.,1-5,2.0,The next action was not entirely obvious.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,useful – useless,1-7,6.0,The system was useful in preventing a crash.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,pleasant – unpleasant,1-7,2.0,The ride was unpleasant due to the brake and jolt.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,bad – good,1-7,5.0,Overall the car performed well by avoiding a crash.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,nice – annoying,1-7,3.0,The experience was slightly annoying due to the jolt.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,effective – superfluous,1-7,6.0,The system was effective at controlling the hazard.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,irritating – likeable,1-7,5.0,"The jolts were a bit irritating, though the outcome was good."
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,assisting – worthless,1-7,6.0,The assistive features helped manage the hazard.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,undesirable – desirable,1-7,6.0,Automated control was desirable for safety.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,raising alertness – sleep-inducing,1-7,7.0,The sudden event raised my alertness.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,How changeable is the situation?,1-7,5.0,The situation changed quickly with new hazards.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,How complicated is the situation?,1-7,5.0,The situation was fairly complicated with multiple factors.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,How many variables are changing?,1-7,6.0,Several variables were changing at once.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,How aroused are you?,1-7,5.0,My arousal level increased due to the sudden event.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,How much are you concentrating?,1-7,5.0,I was concentrating on the car and the surroundings.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,How much is your attention divided?,1-7,4.0,Attention was partly divided between the car's actions and the road.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,How much mental capacity do you have to spare?,1-7,3.0,I had limited mental capacity to spare while focusing on safety.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,How much information have you gained?,1-7,5.0,I gained information about how the system responds.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,How good is the information you have gained?,1-7,5.0,The information I gained was reasonably good.
+9,61,female,processed_1_clip8_pid_9_age_61_female.csv,How familiar are you with the situation?,1-7,4.0,I am somewhat familiar with typical autonomous car behavior.

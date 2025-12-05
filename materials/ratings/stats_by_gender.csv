@@ -1,0 +1,61 @@
+Question,Gender,n,mean,median,std
+How aroused are you?,female,12,6.666666666666667,5.0,5.466149273372241
+How aroused are you?,male,12,5.083333333333333,5.0,0.5149286505444373
+How changeable is the situation?,female,12,6.75,5.5,4.5151260930746595
+How changeable is the situation?,male,12,5.583333333333333,6.0,0.5149286505444373
+How complicated is the situation?,female,12,6.75,5.5,4.845335151181261
+How complicated is the situation?,male,12,5.5,5.5,0.5222329678670935
+How familiar are you with the situation?,female,12,5.0,3.0,7.897065047448727
+How familiar are you with the situation?,male,12,2.5833333333333335,3.0,0.5149286505444373
+How good is the information you have gained?,female,12,6.916666666666667,5.0,6.960385743403141
+How good is the information you have gained?,male,12,4.916666666666667,5.0,0.28867513459481287
+How many variables are changing?,female,12,7.083333333333333,6.0,5.035480176314926
+How many variables are changing?,male,12,5.0,5.0,0.0
+How mentally demanding was the task?,female,12,13.5,14.5,4.100997661323622
+How mentally demanding was the task?,male,12,15.416666666666666,16.0,1.8809249819912515
+How much are you concentrating?,female,12,7.333333333333333,6.0,5.597618541248889
+How much are you concentrating?,male,12,5.833333333333333,6.0,0.38924947208076144
+How much information have you gained?,female,12,6.583333333333333,5.0,6.761634193720995
+How much information have you gained?,male,12,4.583333333333333,5.0,0.5149286505444371
+How much is your attention divided?,female,12,5.166666666666667,3.0,6.575897219575762
+How much is your attention divided?,male,12,3.1666666666666665,3.0,0.8348471099367218
+How much mental capacity do you have to spare?,female,12,5.0,3.0,6.954396908692829
+How much mental capacity do you have to spare?,male,12,3.0833333333333335,3.0,0.90033663737852
+I can rely on the highly automated vehicle.,female,12,3.9166666666666665,4.0,1.0836246694508318
+I can rely on the highly automated vehicle.,male,12,3.6666666666666665,4.0,0.49236596391733095
+I trust the highly automated vehicle.,female,12,3.8333333333333335,4.0,0.834847109936722
+I trust the highly automated vehicle.,male,12,3.6666666666666665,4.0,0.49236596391733095
+I was able to understand why things happened.,female,12,4.416666666666667,4.0,1.7816403745544227
+I was able to understand why things happened.,male,12,3.9166666666666665,4.0,0.28867513459481287
+It’s difficult to identify what the system will do next.,female,12,3.8333333333333335,3.0,2.3290003057626296
+It’s difficult to identify what the system will do next.,male,12,2.8333333333333335,3.0,0.577350269189626
+The system reacts unpredictably.,female,12,2.5833333333333335,2.0,2.0207259421636903
+The system reacts unpredictably.,male,12,2.0,2.0,0.4264014327112209
+The system state was always clear to me.,female,12,3.0,3.0,1.651445647689541
+The system state was always clear to me.,male,12,2.6666666666666665,3.0,0.49236596391733095
+agitated – calm,female,12,0.25,1.0,1.602554778527654
+agitated – calm,male,12,0.08333333333333333,0.0,1.7298624923456323
+anxious – relaxed,female,12,0.16666666666666666,0.5,1.9462473604038073
+anxious – relaxed,male,12,0.16666666666666666,0.0,1.80067327475704
+assisting – worthless,female,12,6.666666666666667,6.0,3.749747466244368
+assisting – worthless,male,12,5.333333333333333,6.0,1.5569978883230458
+bad – good,female,12,4.25,3.0,3.2227881773960316
+bad – good,male,12,3.3333333333333335,3.5,1.3026778945578592
+effective – superfluous,female,12,6.75,6.0,2.927145677649443
+effective – superfluous,male,12,5.666666666666667,6.0,1.1547005383792517
+irritating – likeable,female,12,4.916666666666667,4.0,3.8720051965905524
+irritating – likeable,male,12,4.5,5.0,0.9045340337332909
+nice – annoying,female,12,4.5,3.5,3.3709993123162105
+nice – annoying,male,12,3.1666666666666665,3.0,1.1146408580454255
+pleasant – unpleasant,female,12,4.083333333333333,3.0,3.117642854737689
+pleasant – unpleasant,male,12,3.25,3.0,1.2154310870109943
+raising alertness – sleep-inducing,female,12,6.916666666666667,6.0,4.294993561924127
+raising alertness – sleep-inducing,male,12,5.333333333333333,6.0,1.3706888336846839
+timid – confident,female,12,0.6666666666666666,1.0,1.8257418583505536
+timid – confident,male,12,0.08333333333333333,0.0,1.164500152881315
+undesirable – desirable,female,12,6.5,6.0,4.123105625617661
+undesirable – desirable,male,12,5.333333333333333,6.0,1.556997888323046
+unsafe – safe,female,12,-1.3333333333333333,-2.0,2.1461734799546393
+unsafe – safe,male,12,-1.0,-1.0,1.1281521496355322
+useful – useless,female,12,6.166666666666667,6.0,2.037526724122938
+useful – useless,male,12,6.0,6.0,0.426401432711221
