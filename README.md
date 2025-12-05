@@ -115,7 +115,10 @@ The ratings themselves further highlighted these limitations. Several responses 
 
 Overall, the findings emphasize the need for systematic post-processing, quality validation, and more robust prompting structures when attempting to use LLMs as proxies for human UX ratings in dynamic, real-world environments. While the model shows promise in basic scene description, it currently lacks the temporal precision and psychological grounding required to generate trustworthy UX assessments for automated driving research.
 
-In the future, this pipeline could be tested with other models better suited for vision and scene description.
+In the future, this pipeline could be tested with other models better suited for vision and scene description. For example, a Llava model could be used and [this](part_rat#L11) script will need to be adapted by changing the API key and the model. Such models may offer stronger temporal coherence, improved detection of events, and more reliable interpretation of subtle scene cues. It would be possible to determine whether these variations result in more reliable summaries and more significant UX scores by evaluating them inside the same pipeline.  
+
+Once alternative vision models are integrated, if the summaries are deemed accurate, it becomes essential to validate the resulting rating by comparing the synthetic ratings to real human responses, to ensure that improvements in scene understanding translate into meaningful UX assessments. Benchmarking the model's assessments against real human data is the next step to determine where the model differs the most. These contrasts may show whether the LLM tends to misinterpret events. By systematically comparing synthetic ratings across demographic groups or driving experiences and assessing whether these patterns correspond with known findings, potential biases can be identified.
+
 
 ## 3. Pipeline 
 ### 1. Features 
