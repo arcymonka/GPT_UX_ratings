@@ -84,26 +84,7 @@ These changes were made to solve the following issues:
 
 **Full Project Timeline**
 
-- **Research** identified potential issues: sent videos are analyzed based on few frames, number of images that can be sent is limited
-- **Implementation** built the pipeline with intermittent tests: first the frame extraction, then the summary generation, then the rating generation (initially for only one simulated participant)
-- **Planning** start with 10 participants (balanced gender, ages relative to US population distribution) and scale up if the pipeline works.
-- **Implementation** included participant generation according to the criteria
-- **Testing** summaries failed to detect key events (crash, fire).
-- **Testing** confirmed that frames were sent correctly; manual test in ChatGPT UI produced better results.
-- **Change** model switched from GPT-5-nano → GPT-5, initial impression that summary quality improved
-- **Issue** crash still detected inconsistently despite identical prompts.
-- **Discussion** suggestion to add a step to re-check the description and video frames after generation to detect overarching events, rejected due to the same issue of only being able to consider a small number of frames at a time. However, we experimentally gave some of the later generated summaries to ChatGPT (without frames) with the prompt "What do you think happened here?". The results reflected the quality of the summaries themselves, if an event was not mentioned or hinted at in the summary, ChatGPT did not deduce that it might have occurred.
-- **Change** instruct the model to correct earlier statements when new frames contradict or refine them.
-- **Result** crash description improved (“camera jolts… likely contact”), but still inconsistent across runs.
-- **Change** frame extraction increased to 8 FPS; added requirement for explanations in rating generation.
-- **Observation** even with more frames, the test still failed to mention the crash.
-- **Implementation** synthetic rating generation produced 24 participants (equal age groups and number of participants per age bracket instead of the distrubution for analysis purposes).
-- **Result** one participant returned invalid rating values; several justifications did not match events: The summary: " The white van continues its left turn into our lane; we brake hard and the camera jolts and tilts, indicating an abrupt stop and likely contact with the van.", many justifications show that it was presumed that a crash was avoided. Example: "The system was effective in slowing and avoiding collision"
-- **Conclusion** Future implementations will need a post-processing validation step to catch out-of-range values and regenerate faulty entries. Considering that the ratings won't be of use as long as the summaries are not accurate, this is out of scope for the current project.
-- **Observation** LLM often produced unrealistically low standard deviations; literature showed alternative methods perform worse or are unsupported (e.g., temp scaling).
-- **Discussion** Are the videos we tested so far uniquely difficult?
-- **Investigation** We generated summaries for all videos of our dataset and watched the videos ourselves in order to judge the accuracy of the summaries. In the process, we decided to remove 8 of the clips for being too long or quality issues, leaving us with 81 video clips. [File] includes the obtained summaries, as well as a color coded rating (red = crucial/defining information missed, yellow = important information missed, green = accurate description) and a short explanation. 36 of the summaries received a red rating, 17 a yellow rating, and 24 a green rating. However, most of the green rated summaries were of videos did not include notable events beyond adverse weather conditions.
-- **Conclusion** Due to this insight, it was concluded that it is not currently feasible to reliably obtain acceptable summaries, and thus ratings, of videos depicting a varied set of traffic situations.
+![Project Timeline](materials/assets/timeline.svg)
 
 
 ### 3. Conclusion & Outlook
