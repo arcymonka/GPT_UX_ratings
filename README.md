@@ -114,15 +114,26 @@ It automates the following:
 4. Prompts the model to generate a participant rating of the situations based on the summaries 
 5. Saves all responses as **CSV files**.
 
-  
+
 ### 2. Project Structure
 
 ```plaintext
-.
-├── ratings_pipeline.py     # Main processing script
-├── .env                    # Environment variables
-├── requirements.txt         # Python dependencies (recommended)
-└── output_extract/          # Folder where extracted frames and CSVs are saved
+
+GPT_UX_ratings/
+│
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── frames
+├── summaries_ratings
+│
+├── materials/                       
+|   ├── ratings/
+│   ├── summaries/
+│   ├── videos/
+│   ├── In-Car Video Spread Sheet - Sheets…
+│   └── timeline.svg
+
 ```
 
 ### 4. Setup Instructions
