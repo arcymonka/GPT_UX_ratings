@@ -102,14 +102,16 @@ These changes were made to solve the following issues:
 -Summaries were collected in a shared sheet for quality review.
 -Additional credits added to continue video processing.
 
-### 3. Conclusion & Outline
-The project shows that, in its current form, GPT-5.1 is not yet reliable enough to generate meaningful synthetic UX ratings for complex driving scenarios. While the model was able to recognize many scene elements and maintain a degree of narrative continuity, it frequently overlooked or misinterpreted safety-critical details. This resulted in summaries that were sometimes coherent at the micro-level but incomplete at the event-level, especially in situations involving multi-frame dynamics such as near-misses, abrupt maneuvers, or collisions.
+### 3. Conclusion & Outlook
+The project shows that, in its current form, GPT-5.1 is not yet reliable enough to generate meaningful synthetic UX ratings for complex driving scenarios. While the model was able to recognize many scene elements and maintain a degree of narrative continuity, it frequently overlooked or misinterpreted safety-critical details. This resulted in summaries that were sometimes coherent at the micro-level but incomplete at the event-level, especially in situations involving multi-frame dynamics such as near-misses, abrupt maneuvers, or collisions. Another frequently occurring issue was that lane boundaries were interpreted incorrectly. Small details that were irrelevant to the evolving situation were often described in detail, showing that although the model is capable of identifying components of the scene relatively reliably, their relevance and interaction are not captured.
 
 Even with careful prompt engineering, higher frame rates, and explicit instructions to correct earlier statements, the model struggled with temporal reasoning. When relevant cues unfolded across several frames, early omissions propagated throughout the summary, preventing the model from reconstructing the full situation. This directly affected the subsequent rating generation: the synthetic participants often failed to map the scenario to appropriate UX constructs (e.g., perceived safety, predictability, mental workload), occasionally assuming that no crash or dangerous event occurred despite clear visual evidence.
 
 The ratings themselves further highlighted these limitations. Several responses contained out-of-range values, mismatches between justifications and events, or unrealistically low standard deviations—a well-known issue in LLM-based social simulations. At times, the outputs did not conform to the intended questionnaire scales at all. These issues demonstrate that, without additional constraints, LLMs tend to produce overly consistent, insufficiently varied, and sometimes semantically misaligned synthetic data.
 
 Overall, the findings emphasize the need for systematic post-processing, quality validation, and more robust prompting structures when attempting to use LLMs as proxies for human UX ratings in dynamic, real-world environments. While the model shows promise in basic scene description, it currently lacks the temporal precision and psychological grounding required to generate trustworthy UX assessments for automated driving research.
+
+In the future, this pipeline could be tested with other models better suited for vision and scene description.
 
 ## 3. Pipeline 
 ### 1. Features 
