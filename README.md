@@ -88,6 +88,22 @@ These changes were made to solve the following issues:
 
 ![Project Timeline](materials/timeline.svg)
 
+Links to mentioned files:
+
+Videos:
+[[V1]](materials/videos/1_clip8.mp4)
+[[V2]](materials/videos/3_clip1.mp4)
+[[V3]](materials/videos/1_clip5.mp4)
+
+Summaries:
+[[S1]](materials/summaries/sept17_1_clip8.md), [[S1.2]](materials/summaries/oct8_1_clip8.md), [[S1.3]](materials/summaries/oct28_1_clip8.md)
+[[S2]](materials/summaries/sept17_3_clip1.md)
+[[S3]](materials/summaries/oct8_1_clip5.md)
+
+Overview of all videos and summaries:
+[[F1]](materials/In-Car Video Spread Sheet - Sheet1.pdf)
+
+
 
 ### 3. Conclusion & Outlook
 The project shows that, in its current form, **GPT-5.1** is not yet reliable enough to generate meaningful **synthetic UX ratings** for **complex driving scenarios.** While the model was able to recognize many scene elements and maintain a degree of narrative continuity, it frequently **overlooked or misinterpreted safety-critical details.** This resulted in summaries that were sometimes coherent at the micro-level but incomplete at the event-level, especially in situations involving **multi-frame dynamics** such as near-misses, abrupt maneuvers, or collisions. Another frequently occurring issue was that **lane boundaries were interpreted incorrectly.** Small details that were irrelevant to the evolving situation were often described in detail, showing that although the model is capable of identifying components of the scene relatively reliably, their relevance and interaction are not captured.
