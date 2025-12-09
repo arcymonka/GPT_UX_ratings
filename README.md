@@ -2,7 +2,7 @@
 
 <p align="center"> A pipeline for generating synthetic UX ratings for autonomous-vehicle traffic scenarios using GPT-5.1 </p> <p align="center"> <img src="https://img.shields.io/badge/openai-0.27.0-blue" /> <img src="https://img.shields.io/badge/pillow-10.1.0-yellow" /> <img src="https://img.shields.io/badge/opencv--python-4.5.5.64-red" /> <img src="https://img.shields.io/badge/python--dotenv-0.21.1-green" /> </p>
 
-1
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Report](#report)
