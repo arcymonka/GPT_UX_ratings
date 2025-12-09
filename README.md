@@ -87,7 +87,6 @@ These changes were made to solve the following issues:
 #### Project Timeline (after video collection)
 
 ![Project Timeline](materials/timeline.svg)
-
 Links to mentioned files:
 
 Videos:
