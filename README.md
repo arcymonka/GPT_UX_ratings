@@ -86,21 +86,29 @@ These changes were made to solve the following issues:
 
 #### Project Timeline (after video collection)
 
-![Project Timeline](materials/timeline.svg)
-Links to mentioned files:
+- Research : Identified potential issues: sent videos are analyzed based on few frames, number of images that can be sent is limited
+- Implementation : Built the pipeline with intermittent tests: first the frame extraction, then the summary generation, then the rating generation (initially for only one simulated participant)
+- Planning : Start with 10 participants (balanced gender, ages relative to US population distribution) and scale up if the pipeline works
+- Implementation : Included participant generation according to the criteria
+- Testing : Summaries [[Link to summary 1]](materials/summaries/sept17_1_clip8.md), [[Summary 2]](materials/summaries/sept17_3_clip1.md) failed to detect key events of videos [[Video 1]](materials/videos/1_clip8.mp4), [[Video 2]](materials/videos/3_clip1.mp4) (crash, fire)
+- Testing : Confirmed that frames were sent correctly; manual test in ChatGPT UI produced better results
+- Change : Model switched from GPT-5-nano to GPT-5, initial impression that summary quality improved - videos [[Video 1]](materials/videos/1_clip8.mp4), [[Video 3]](materials/videos/1_clip5.mp4), summaries [[Summary 1.2 (corresponding to video 1)]](materials/summaries/oct8_1_clip8.md), [[Summary 3]](materials/summaries/oct8_1_clip5.md)
+- Issue : Crash still detected inconsistently despite identical prompts
+- Discussion : Suggestion to add a step to re-check the description and video frames after generation to detect overarching events, rejected due to the same issue of only being able to consider a small number of frames at a time. However, we experimentally gave some o the later generated summaries to ChatGPT (without frames) with the prompt "What do you think happemed here?". The results reflected the quality of the summaries themselves - if an event was not mentioned or hinted at in the summary, ChatGPT did not deduce that it might have occurred.
+- Change : Instruct the model to correct earlier statements when new frames contradict or refine them
+- Result : Crash description improved ("camera jolts… likely contact") [[Summary 1.3]](materials/summaries/oct28_1_clip8.md), but still inconsistent across runs
+- Change : Frame extraction increased to 8 FPS; added requirement for explanations in rating generation
+- Observation : Even with more frames, the test still failed to mention the crash
+- Implementation : Synthetic rating generation produced 24 participants (equal age groups and number of participants per age bracket instead of the distribution for analysis purposes)
+- Result : One participant returned invalid rating values; several justifications did not match events: The summary "The white van continues its left turn into our lane; we brake hard and the camera jolts and tilts, indicating an abrupt stop and likely contact with the van" lead to many justifications showing the assumption that a crash was avoided, for example: "The system was effective in slowing and avoiding collision"
+- Conclusion : Future implementations will need a post-processing validation step to catch out-of-range values and then regenerate faulty entries. Considering that the ratings won't be of use as long as the summaries are not accurate, this is out of scope for the present project.
+- Observation : LLM often produced unrealistically low standard deviations, literature (e.g., Anthis et al., 2025) showed that alternative methods perform worse (prompting the generation of a distribution across a group rather than values for individual participants) or are unsupported (temperature scaling)
+- Discussion : Are the three videos we chose for testing uniquely difficult?
+- Change: Model switched from GPT-5 to GPT-5.1, which had just come out, to test whether the newer model would yield consistent and accurate summaries.
+- Investigation : We generated summaries for all videos of our dataset and watched the videos ourselves in order to judge the accuracy of the summaries. In the process, we decided to remove 8 of the clips for being too long (and thus generating very long summaries) or due to quality issues, leaving us with 81 video clips. [[File 1]](materials/videos_spreadsheet.pdf) includes the obtained summaries, as well as a color coded rating (red = crucial/defining information missing, yellow = important information missed, green = accurate description) and a short explanation of our choice. 36 of the summaries received a red rating, 17 a yellow rating, and 24 a green rating. However, most of the green rated summaries were of videos that did not include any notable events beyond adverse weather conditions.
+- Conclusion : Due to this insight, we concluded that it is not currently feasible to reliably obtain acceptable summaries, and thus ratings, of videos depicting a varied set of traffic situations, in particular ones showing unusual or dangerous events.
 
-Videos:
-[[V1]](materials/videos/1_clip8.mp4)
-[[V2]](materials/videos/3_clip1.mp4)
-[[V3]](materials/videos/1_clip5.mp4)
 
-Summaries:
-[[S1]](materials/summaries/sept17_1_clip8.md), [[S1.2]](materials/summaries/oct8_1_clip8.md), [[S1.3]](materials/summaries/oct28_1_clip8.md)
-[[S2]](materials/summaries/sept17_3_clip1.md)
-[[S3]](materials/summaries/oct8_1_clip5.md)
-
-Overview of all videos and summaries:
-[[F1]](materials/videos_spreadsheet.pdf)
 
 
 
