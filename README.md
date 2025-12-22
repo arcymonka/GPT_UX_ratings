@@ -159,7 +159,10 @@ GPT_UX_ratings/
 
 ```
 
-### 4. Setup Instructions
+
+## 4. Usage
+
+### 1. Setup Instructions
 
 #### 1. Clone the Repository
 Clone the repository and install dependencies:
@@ -169,9 +172,9 @@ git clone https://github.com/arcymonka/GPT_UX_ratings.git
 cd GPT_UX_ratings
 pip install -r requirements.txt
 ```
-#### 2. Configuration
+#### 2. Set up .env file
 
-Create a `.env` file in the root directory to configure environment variables:
+Create a `.env` file in the root directory to configure the following environment variables:
 
 ```ini
 OPENAI_API_KEY="your_openai_key"
@@ -185,9 +188,7 @@ RANDOM_SEED=42
 
 Ensure all referenced directories exist and contain valid data files (e.g., `.txt` summaries in `SUMMARY_PATH`).
 
-
-## 4. Usage
-
+### 2. Running the scripts
 Run the scripts in the following order: 
 ```bash 
 python frames.py
@@ -195,11 +196,15 @@ python part_rat.py
 ```
 
 
-By default, the scripts will:
+`frames.py` will:
+- Load videos from the configured `VIDEO_PATH`
+- Save the frames in per-video subfolders in `OUTPUT_PATH`
+- Load image frames from `OUTPUT_PATH`  
+- Process the frames using the OpenAI API.
+- Save one summary per video in the `SUMMARY_PATH` directory.
 
-- Load image frames from the `frames/` directory.  
-- Process each frame using the OpenAI API.  
-- Read each summary file from the configured `SUMMARY_PATH`
+`part_rat.py` will:
+- Read each summary file from `SUMMARY_PATH`
 - Generate a prompt for each age/gender combination
 - Call OpenAI's API to simulate ratings
 - Save each response to a CSV in `RATINGS_OUTPUT_PATH`
