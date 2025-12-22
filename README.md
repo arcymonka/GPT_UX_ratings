@@ -192,7 +192,7 @@ Ensure all referenced directories exist and contain valid data files (e.g., `.tx
 Run the scripts in the following order: 
 ```bash 
 python frames.py
-python part_rat.py
+python summaries_ratings.py
 ```
 
 
@@ -203,7 +203,7 @@ python part_rat.py
 - Process the frames using the OpenAI API.
 - Save one summary per video in the `SUMMARY_PATH` directory.
 
-`part_rat.py` will:
+`summaries_ratings.py` will:
 - Read each summary file from `SUMMARY_PATH`
 - Generate a prompt for each age/gender combination
 - Call OpenAI's API to simulate ratings
