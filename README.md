@@ -121,7 +121,7 @@ The ratings themselves further highlighted these limitations. Several responses 
 
 Overall, the findings emphasize the need for **systematic post-processing, quality validation,** and more **robust prompting structures** when attempting to use LLMs as proxies for human UX ratings in dynamic, real-world environments. While the model shows promise in basic scene description, it currently lacks the **temporal precision** and **psychological grounding** required to generate trustworthy UX assessments for automated driving research.
 
-In the future, this pipeline could be tested with other models better suited for vision and scene description. For example, a **Llava model** could be used and the **API key** will need to be changed in the .env file and the [**API function call**](summaries_ratings#L193) in the ratings script will need to be updated. Such models may offer stronger temporal coherence, improved detection of events, and more reliable interpretation of subtle scene cues. It would be possible to determine whether these variations result in more reliable summaries and more significant UX scores by evaluating them inside the same pipeline.  
+In the future, this pipeline could be tested with other models better suited for vision and scene description. For example, a **Llava model** could be used and the **API key** will need to be changed in the .env file and the [**API function call**](ratings#L193) in the ratings script will need to be updated. Such models may offer stronger temporal coherence, improved detection of events, and more reliable interpretation of subtle scene cues. It would be possible to determine whether these variations result in more reliable summaries and more significant UX scores by evaluating them inside the same pipeline.  
 
 Once alternative vision models are integrated, if the summaries are deemed accurate, it becomes essential to validate the resulting rating by comparing the **synthetic ratings** to **real human responses**, to ensure that improvements in scene understanding translate into meaningful UX assessments. **Benchmarking** the model's assessments against real human data is the next step to determine where the model differs the most. These contrasts may show whether the LLM tends to misinterpret events. By systematically comparing synthetic ratings across demographic groups or driving experiences and assessing whether these patterns correspond with known findings, potential **biases** can be identified.
 
@@ -147,15 +147,15 @@ GPT_UX_ratings/
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
-├── frames
-├── summaries_ratings
+├── frames_summaries.py
+├── ratings.py
 │
 ├── materials/                       
-|   ├── ratings/
-│   ├── summaries/
-│   ├── videos/
-│   ├── In-Car Video Spread Sheet - Sheets…
-│   └── timeline.svg
+|   ├── example_ratings/
+│   ├── example_summaries/
+│   ├── example_videos/
+│   ├── timeline.svg
+│   └── videos_spreadsheet.pdf
 
 ```
 
@@ -191,19 +191,19 @@ Ensure all referenced directories exist and contain valid data files (e.g., `.tx
 ### 2. Running the scripts
 Run the scripts in the following order: 
 ```bash 
-python frames.py
-python summaries_ratings.py
+python frames_summaries.py
+python ratings.py
 ```
 
 
-`frames.py` will:
+`frames_summaries.py` will:
 - Load videos from the configured `VIDEO_PATH`
 - Save the frames in per-video subfolders in `OUTPUT_PATH`
 - Load image frames from `OUTPUT_PATH`  
 - Process the frames using the OpenAI API.
 - Save one summary per video in the `SUMMARY_PATH` directory.
 
-`summaries_ratings.py` will:
+`ratings.py` will:
 - Read each summary file from `SUMMARY_PATH`
 - Generate a prompt for each age/gender combination
 - Call OpenAI's API to simulate ratings
