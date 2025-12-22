@@ -131,7 +131,7 @@ Once alternative vision models are integrated, if the summaries are deemed accur
 This project uses **OpenAI’s GPT-5** model to analyze frames extracted from driving videos and simulate human emotional reactions (as CSV ratings) for different age groups and gender.
 
 It automates the following:
-1. Extracts frames every **¼ second** from each video.
+1. Extracts frames every **⅛ second** from each video.
 2. Sends the frames in batches of 10 in  **GPT-5** API.
 3. Prompts the model to generate a summary of the videos events  
 4. Prompts the model to generate a participant rating of the situations based on the summaries 
