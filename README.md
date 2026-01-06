@@ -217,7 +217,7 @@ python ratings.py
 - Load videos from the configured `VIDEO_PATH`
 - Save the frames in per-video subfolders in `OUTPUT_PATH`
 - Load image frames from `OUTPUT_PATH`  
-- Process the frames using the OpenAI API.
+- Process the frames using the OpenAI API saved in `OPENAI_PATH`.
 - Save one summary per video in the `SUMMARY_PATH` directory.
 
 `ratings.py` will:
