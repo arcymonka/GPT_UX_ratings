@@ -251,7 +251,7 @@ This function:
 
 Current OpenAI call:
 
-```python
+```
 resp = client.chat.completions.create(
     model="gpt-5.1",
     messages=[
