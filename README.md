@@ -227,7 +227,7 @@ python ratings.py
 - Save each response to a CSV in `RATINGS_OUTPUT_PATH`
 
 ## 6. Using another LLM
-The pipeline can be adapted to use **alternative language or vision–language models**, but this requires **explicit code changes** in two places. Right now, model usage is **hard-coded** in the scripts (not configurable via `.env` beyond the OpenAI API key).
+The pipeline is model-agnostic by design and can be adapted to use other large language or vision–language models for both scene summarization and rating generation. This is particularly relevant given the limitations observed with GPT-5.1 in handling multi-frame, safety-critical events. The change requires explicit code changes in two places. Right now, model usage is hard-coded in the scripts (not configurable via `.env` beyond the OpenAI API key).
 
 There are **two independent integration points**:
 
