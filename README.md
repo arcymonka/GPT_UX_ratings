@@ -86,7 +86,75 @@ These changes were made to solve the following issues:
 - some summaries raised suspicions that the **frames within a batch were not procressed in the correct order**
 - some video clips included the **car's speed** or **subtitles of passengers' speech** which were mentioned in the summaries
 - we hoped that by putting emphasis on the **framerate** the summaries would more accurately reflect the **speed of things happening in the scene**
-- we wanted the summaries to be **more coherent** and for the model to able to **integrate new information with the previously seen frames**  
+- we wanted the summaries to be **more coherent** and for the model to able to **integrate new information with the previously seen frames**
+
+Sentence-by-sentence rationale
+
+**“Generate a summary for the following frames extracted from a driving video at the rate of eight frames per second.”**  
+This establishes that the input consists of **discrete frames rather than continuous video** and explicitly communicates the **temporal sampling rate**. Without this, the model often assumes a slower or irregular frame cadence, leading to incorrect inferences about speed, urgency, or event duration.
+
+---
+
+**“You are seeing the view through a windshield of an automated vehicle.”**  
+This sentence serves two purposes:
+
+1. **Perspective grounding:**  
+   It constrains the viewpoint to a forward-facing, driver-like perspective, discouraging interpretations as CCTV footage, dashcam commentary, or third-person observation.
+
+2. **Removal of human-driver assumptions:**  
+   Explicitly stating that the vehicle is *automated* prevents the model from attributing intent, attention, hesitation, or corrective actions to a human driver (e.g., “the driver decides to slow down”).  
+   This is essential because later stages interpret the scene **from a passenger’s perspective**, where control is delegated to the system rather than a human.
+
+---
+
+**“Build on the provided summary of previous frames without repeating what was already established unless it is necessary for continuity.”**  
+This instruction enforces **incremental summarization**. Since frames are processed in batches, repetition would:
+- inflate summaries unnecessarily,
+- obscure temporal structure,
+- and increase the chance of contradictions.
+
+Allowing repetition *only when needed* preserves coherence across batches without restating static context (e.g., weather, road type).
+
+---
+
+**“Focus on new, unexpected, or changing details — moving objects, traffic signals, pedestrians, and notable events.”**  
+This narrows attention to **dynamic and safety-relevant elements**. Without this constraint, the model frequently over-describes static background details (buildings, trees) at the expense of evolving interactions.
+
+The explicit examples anchor the model to **traffic-relevant semantics** rather than generic visual description.
+
+---
+
+**“Ignore any subtitles or encoded time or speed information but consider that every frame you see is 1/8 of a second apart.”**  
+Many videos contain overlays (speed readouts, timestamps, passenger speech subtitles). This instruction:
+- prevents leakage of **non-visual metadata** into the summary,
+- ensures that inferred speed or urgency is based on **visual change over time**, not on textual overlays.
+
+Reiterating the frame interval reinforces temporal reasoning without introducing absolute time cues.
+
+---
+
+**“Keep the style factual and objective, avoid poetic or overly descriptive language.”**  
+This constrains the output to an **analytic register**. Subjective or narrative phrasing (e.g., “a terrifying moment unfolds”) would bias downstream UX ratings and introduce emotional framing that is not grounded in the visual input.
+
+---
+
+**“Use 1–2 clear sentences per update, enough to capture what is happening without overexplaining.”**  
+This enforces **brevity and consistency** across batches. Longer outputs tended to:
+- speculate beyond the available evidence,
+- reintroduce previously stated context,
+- or drift into interpretation rather than description.
+
+---
+
+**“If what you see adds information to or contradicts something previously stated in the summary, point it out.”**  
+This sentence was added after observing that early misinterpretations (e.g., assuming a vehicle had stopped safely) were **never corrected**, even when later frames contradicted them.  
+The instruction explicitly allows the model to **revise earlier statements**, which is essential for any form of temporal integration.
+
+---
+
+**“Respond only with the update.”**  
+This prevents meta-commentary, explanations, or formatting artifacts. Clean, minimal output is required because summaries are **directly concatenated** and later reused as model input for rating generation.
+
 
 #### Project Timeline (after video collection)
 
