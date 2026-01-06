@@ -236,8 +236,6 @@ There are **two independent integration points**:
 
 These stages can use **different models**.
 
----
-
 ### 6.1 Replace the scene summarization model (vision-capable)
 Scene summaries are generated in `frames_summaries.py` inside:
 
