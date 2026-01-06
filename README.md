@@ -11,7 +11,8 @@
 2. [Report](#report)
    1. [Motivation](#motivation)
    2. [Process](#process)
-   3. [Conclusion & Outline](#conclusion-&-outline)
+   3. [Results](#process)
+   4. [Conclusion & Outline](#conclusion-&-outline)
 3. [Pipeline](#pipeline)
    1. [Features](#features)
    2. [Project Structure](#project-structure)
@@ -47,7 +48,7 @@ The idea behind the pipeline is to explore whether a scene based, non intrusive 
 #### First steps and general idea
 
 - **Video collection:**  
-  Driving-scene videos were sourced from YouTube, focusing on a wide range of real-world events, including near-accidents, collisions, varying weather conditions, and diverse road environments.
+  Driving-scene videos were collected from YouTube due to its accessibility and the availability of a wide range of real-world driving footage. A systematic search strategy was employed using keywords related to driving incidents and conditions (e.g., near-miss, traffic accident, dashcam, rain driving, fog, urban roads, highways). The search focused on capturing diverse real-world scenarios, including near-accidents, varying weather conditions, and different road environments. Approximately 100 videos were initially selected to allow for exclusions during preprocessing, such as poor video quality, irrelevant content, or technical incompatibilities. This approach ensured sufficient variability in the dataset while maintaining flexibility for data filtering and quality control.
 
 - **Field-of-view cropping:**  
   Each video was cropped to display only the **forward windshield view**, removing irrelevant elements outside the driver’s visual field.
@@ -111,11 +112,24 @@ These changes were made to solve the following issues:
 - Full investigation of summary generation for the collected video clips : We generated summaries for all videos of our dataset and watched the videos ourselves in order to judge the accuracy of the summaries. In the process, we decided to remove 8 of the clips for being too long (and thus generating very long summaries) or due to quality issues, leaving us with 81 video clips. [[File 1]](materials/videos_spreadsheet.pdf) includes the obtained summaries, as well as a color coded rating (red = crucial/defining information missing, yellow = important information missed, green = accurate description) and a short explanation of our choice. 36 of the summaries received a red rating, 17 a yellow rating, and 24 a green rating. However, most of the green rated summaries were of videos that did not include any notable events beyond adverse weather conditions.
 - Final conclusion : Due to this insight, we concluded that it is not currently feasible to reliably obtain acceptable summaries, and thus ratings, of videos depicting a varied set of traffic situations, in particular ones showing unusual or dangerous events.
 
+### 3. Results
+> **Summary of empirical observations from the generated scene summaries and synthetic UX ratings**
+- **Locally accurate, globally fragile scene understanding**  
+  The model reliably identifies visible objects, lanes, weather conditions, and short-term maneuvers, but often fails to reconstruct **multi-frame, safety-critical events** such as crashes, near-misses, or complex interactions unfolding over time.
+- **Temporal omissions propagate downstream**  
+  When an early or defining event is missed in the summary, it is rarely recovered later. These omissions directly shape subsequent interpretations and cannot be corrected during rating generation.
+- **High failure rate for complex or unusual scenarios**  
+  In a manual review of 81 video clips, fewer than one-third of summaries were rated as fully accurate. Most accurate summaries corresponded to **low-complexity scenes** without abrupt hazards or rare events.
+- **Lane structure and spatial relations are frequent error sources**  
+  Lane boundaries, merge directions, and vehicle positions relative to lanes are commonly misinterpreted, even when other scene elements are correctly identified.
+- **Justifications expose implicit assumptions**  
+  Textual explanations sometimes contradict video reality (e.g., “collision avoided”) when the summary does not explicitly state otherwise, indicating that the model fills gaps using default expectations or misses the event completely.
+- **Post-processing and validation are necessary**  
+  Out-of-range values, semantic mismatches, and overconfident interpretations occur sporadically, highlighting the need for automated checks before synthetic ratings can be used for analysis.
 
 
 
-
-### 3. Conclusion & Outlook
+### 4. Conclusion & Outlook
 The project shows that, in its current form, **GPT-5.1** is not yet reliable enough to generate meaningful **synthetic UX ratings** for **complex driving scenarios.** While the model was able to recognize many scene elements and maintain a degree of narrative continuity, it frequently **overlooked or misinterpreted safety-critical details.** This resulted in summaries that were sometimes coherent at the micro-level but incomplete at the event-level, especially in situations involving **multi-frame dynamics** such as near-misses, abrupt maneuvers, or collisions. Another frequently occurring issue was that **lane boundaries were interpreted incorrectly.** Small details that were irrelevant to the evolving situation were often described in detail, showing that although the model is capable of identifying components of the scene relatively reliably, their relevance and interaction are not captured.
 
 Even with careful prompt engineering, higher frame rates, and explicit instructions to correct earlier statements, the model struggled with **temporal reasoning.** When relevant cues unfolded across several frames, **early omissions propagated** throughout the summary, preventing the model from reconstructing the full situation. This directly affected the subsequent rating generation: the synthetic participants often failed to map the scenario to appropriate **UX constructs** (e.g., **perceived safety, predictability, mental workload**), occasionally assuming that no crash or dangerous event occurred despite clear visual evidence.
