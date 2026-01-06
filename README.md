@@ -226,6 +226,120 @@ python ratings.py
 - Call OpenAI's API to simulate ratings
 - Save each response to a CSV in `RATINGS_OUTPUT_PATH`
 
+## 6. Using another LLM
+The pipeline can be adapted to use **alternative language or vision–language models**, but this requires **explicit code changes** in two places. Right now, model usage is **hard-coded** in the scripts (not configurable via `.env` beyond the OpenAI API key).
+
+There are **two independent integration points**:
+
+1. **Frame → scene summary generation** (`frames_summaries.py`, vision-capable model)
+2. **Scene summary → UX rating generation** (`ratings.py`, text-only model)
+
+These stages can use **different models**.
+
+---
+
+### 6.1 Replace the scene summarization model (vision-capable)
+Scene summaries are generated in `frames_summaries.py` inside:
+
+- `process_frames_with_openai(frames, summary_so_far)`
+
+This function:
+- sends **batches of 10 frames** (`chunk = frame_paths[i:i+10]`)
+- encodes each frame as a `data:image/jpeg;base64,...` payload
+- prepends the prompt from `build_prompt(summary_so_far)`
+- expects a **plain-text** update to append to the running `summary`
+
+Current OpenAI call:
+
+```python
+resp = client.chat.completions.create(
+    model="gpt-5.1",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": build_prompt(summary_so_far)},
+                *images_payload,
+            ],
+        }
+    ],
+)
+```
+**To use another vision–language model
+
+Replace the OpenAI client call inside `process_frames_with_openai(...)` with your provider’s API call. The replacement must:
+
+- accept multiple images per request (10 images per chunk)
+
+- preserve image order (frames are time-ordered by filename)
+
+- support interleaved text + images (prompt + image payload)
+
+- return only raw text (no markdown, no extra commentary)
+
+Important: The summarization prompt is tightly coupled to the pipeline. For benchmarking, keep `build_prompt(...)` unchanged when swapping models.
+
+### 6.2 Replace the rating-generation model (text-only)
+
+Synthetic UX ratings are generated in `ratings.py` inside `process_summary_with_openai(summary_text, age, gender)`
+
+This stage:
+
+- receives only the summary text
+
+- requests numeric-only output in a CSV row (30 values)
+
+- post-processes responses via sanitize_csv_row() to enforce column count
+
+Current OpenAI call:
+
+```
+resp = client.chat.completions.create(
+    model="gpt-5-nano",
+    messages=[{"role": "user", "content": prompt}],
+)
+raw = resp.choices[0].message.content.strip()
+return sanitize_csv_row(raw, expected_cols=30)
+```
+
+**To use another text LLM
+
+Replace the model call inside `process_summary_with_openai(...)` with your provider’s API call. The replacement should:
+
+- follow strict formatting instructions (numbers only)
+
+- avoid adding explanations or headers
+
+- produce stable numeric outputs under identical prompts
+
+If the model sometimes returns extra text, `sanitize_csv_row()` will attempt to recover numbers, but frequent recovery usually indicates the model is not suitable for this stage.
+
+### 6.3 Environment variables and keys
+Currently, `.env` configures only the OpenAI API key for both scripts:
+```
+OPENAI_API_KEY="your_openai_key"
+```
+If you switch to another provider, you must:
+
+- replace the OpenAI client initialization in both scripts
+
+- handle authentication for the new provider (API key, base URL, etc.)
+
+No provider abstraction layer is implemented yet.
+
+### 6.4 Constraints imposed by the current design
+
+Any alternative model must work within these constraints:
+
+- Summaries are generated from 10-frame batches (chunked inference)
+
+- Frames are extracted at 8 FPS (125 ms step), and the prompt assumes this timing
+
+- Summaries are incremental: each chunk builds on `summary_so_far`
+
+- The model never sees the full clip at once (no global second pass)
+
+Some failure modes (e.g., missed crashes) can stem from these structural constraints, not just model quality.
 
 ## 5. Questionnaire Sources
 
