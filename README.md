@@ -37,9 +37,11 @@ This method helps generate synthetic datasets for traffic safety, automation res
 ## 2.  Report
 
 ### 1. Motivation 
-Automated vehicles will increasingly need to understand how their drivers experience different traffic situations in order to support them appropriately. Today, assessing **mental workload, trust, or perceived safety** still relies on intrusive sensors, controlled lab environments, or frequent self reports. These methods produce valuable data, but they do not scale to everyday driving and cannot provide continuous feedback without interrupting the user.
+Automated vehicles will increasingly need to understand how their drivers experience different traffic situations in order to support them appropriately. Today, assessing **mental workload, trust, or perceived safety** still relies on intrusive sensors, controlled lab environments, or frequent self reports (Diarra et al., 2025). These methods produce valuable data, but they do not scale to everyday driving or cannot provide continuous feedback without interrupting the user.
 
-This project explores a different approach: instead of measuring the driver directly, it focuses on what can be **inferred from the scene itself.** The pipeline takes driving videos, uses OpenAI models to generate structured descriptions of what is happening, and then uses these descriptions to simulate how people might respond on established questionnaires that capture workload, trust, and situational awareness. An important aspect of this work is to examine whether large language models have enough scene understanding and contextual reasoning to approximate such subjective ratings at all.
+This project explores a different approach: instead of measuring the driver directly, it focuses on what can be **inferred from the scene itself.** The pipeline takes driving videos, uses OpenAI models to generate structured descriptions of what is happening, and then uses these descriptions to simulate how people might respond on established questionnaires that capture workload, trust, and situational awareness. This concept builds on the recently developed idea of having LLMs simulate individual users and act as them in order to generate plausible ratings (Yu et al., 2025).
+
+An important aspect of this work is to examine whether large language models have enough scene understanding and contextual reasoning to approximate such subjective ratings at all.
 
 The idea behind the pipeline is to explore whether a scene based, non intrusive method could contribute to estimating driver state in the future and to test how far current LLM capabilities can already take us.
 
@@ -434,6 +436,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 Anthis, J. R., Liu, R., Richardson, S. M., Kozlowski, A. C., Koch, B., Brynjolfsson, E., Evans, J., & Bernstein, M. S. (2025). LLM social simulations are a promising research method (arXiv preprint arXiv:2504.02234 v2). arXiv. https://doi.org/10.48550/arXiv.2504.02234
 
+Diarra, M., Theurel, J., & Paty, B. (2025). Systematic review of neurophysiological assessment techniques and metrics for mental workload evaluation in real‑world contexts. Frontiers in Neuroergonomics.
+
 Faas, S. M., Mattes, S., Kao, A. C., & Baumann, M. (2020). Efficient paradigm to measure street-crossing onset time of pedestrians in video-based interactions with vehicles. Information, 11(7), 360. https://doi.org/10.3390/info11070360
 
 Körber, M. (2019). Theoretical considerations and development of a questionnaire to measure trust in automation. In S. Bagnara, R. Tartaglia, S. Albolino, T. Alexander, & Y. Fujita (Eds.), Proceedings of the 20th Congress of the International Ergonomics Association (IEA 2018) (Advances in Intelligent Systems and Computing, Vol. 823, pp. 13-30). Springer. https://doi.org/10.1007/978-3-319-96074-6_2
@@ -441,3 +445,5 @@ Körber, M. (2019). Theoretical considerations and development of a questionnair
 Taylor, R. M. (2017). Situational Awareness Rating Technique (SART): The Development of a Tool for Aircrew Systems Design. In Situational Awareness (pp. 111–128). Routledge. https://doi.org/10.4324/9781315087924-8
 
 Van Der Laan, J. D., Heino, A., & De Waard, D. (1997). A simple procedure for the assessment of acceptance of advanced transport telematics. Transportation Research Part C: Emerging Technologies, 5(1), 1–10. https://doi.org/10.1016/S0968-090X(96)00025-3
+
+Yu, Z., Zhou, Y., Zhao, C., & Wen, H. (2025). An Analysis of Large Language Models for Simulating User Responses in Surveys
