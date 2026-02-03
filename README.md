@@ -446,7 +446,7 @@ Gao, H., Xu, T., Xu, Y., Wang, Z., & Zhang, J. (2025). Foundation models in auto
 
 Körber, M. (2019). Theoretical considerations and development of a questionnaire to measure trust in automation. In S. Bagnara, R. Tartaglia, S. Albolino, T. Alexander, & Y. Fujita (Eds.), Proceedings of the 20th Congress of the International Ergonomics Association (IEA 2018) (Advances in Intelligent Systems and Computing, Vol. 823, pp. 13-30). Springer. https://doi.org/10.1007/978-3-319-96074-6_2
 
-S. Park et al., "VLAAD: Vision and Language Assistant for Autonomous Driving," 2024 IEEE/CVF Winter Conference on Applications of Computer Vision Workshops (WACVW), Waikoloa, HI, USA, 2024, pp. 980-987, doi: 10.1109/WACVW60836.2024.00107. keywords: {Visualization;Refining;Natural languages;Decision making;Oral communication;Data models;Task analysis},
+S. Park et al., "VLAAD: Vision and Language Assistant for Autonomous Driving," 2024 IEEE/CVF Winter Conference on Applications of Computer Vision Workshops (WACVW), Waikoloa, HI, USA, 2024, pp. 980-987, doi: 10.1109/WACVW60836.2024.00107.
 
 Shihab, I. F., Akter, S., & Sharma, A. (2024). Enhancing traffic incident response through sub-second temporal localization with HybridMamba. arXiv preprint arXiv:2504.03235v3.
 
