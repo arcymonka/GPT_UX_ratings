@@ -5,8 +5,9 @@
 <p align="center">
   <img src="materials/add.png" width="75%" />
 </p>
-CS8200.041 - Project User-Centered Design for Interactive Systems (Summer Semester 2024) 
-Authors: Jessica Thiessen, Helena Kaczmarek, Alina Gerl
+
+CS8200.041 - Project User-Centered Design for Interactive Systems (Summer Semester 2024)  
+Authors: Jessica Thiessen, Helena Kaczmarek, Alina Gerl  
 Supervisor: Pascal Jansen
 
 ## Table of Contents
