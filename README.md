@@ -246,19 +246,21 @@ This prevents meta-commentary, explanations, or formatting artifacts. Clean, min
 
 
 ## Results
-> **Summary of empirical observations from the generated scene summaries and synthetic UX ratings**
+> **Summary of empirical observations from the final generated scene summaries and synthetic UX ratings**
+Added for reference as examples of some claims, the numbers in brackets refer to the video clips with their summaries contained in [videos_spreadsheet.pdf](materials/videos_spreadsheet.pdf). They correspond to the numbers in the second column ("Real Clip").
+
 - **Locally accurate, globally fragile scene understanding**  
-  The model reliably identifies visible objects, lanes, weather conditions, and short-term maneuvers, but often fails to reconstruct **multi-frame, safety-critical events** such as crashes, near-misses, or complex interactions unfolding over time.
-- **Temporal omissions propagate downstream**  
-  When an early or defining event is missed in the summary, it is rarely recovered later. These omissions directly shape subsequent interpretations and cannot be corrected during rating generation.
+  The model reliably identifies visible objects, lanes, weather conditions (17, 18, 85), and short-term maneuvers, but often fails to reconstruct **multi-frame, safety-critical events** such as crashes (3, 26), near-misses (14, 30), or complex interactions unfolding      over time.
+- **Temporal issues**  
+  Some errors point to issues integrating the frames over time. For example, all elements of the scene are technically accurate, but they are described as static despite moving in the video (65, 89) or as moving despite being static (60, 69), or cars are described as     passing the ego vehicle although in the video it is the ego vehicle passing the other cars.
 - **High failure rate for complex or unusual scenarios**  
-  In a manual review of 81 video clips, only 24 summaries were rated as fully accurate. Most accurate summaries corresponded to **low-complexity scenes** without abrupt hazards or rare events.
+  In a manual review of 81 video clips, only 24 summaries were rated as fully accurate. Many accurate summaries corresponded to **low-complexity scenes** without abrupt hazards or rare events. (2, 74, 79)
 - **Lane structure and spatial relations are frequent error sources**  
-  Lane boundaries, merge directions, and vehicle positions relative to lanes are commonly misinterpreted, even when other scene elements are correctly identified.
+  Lane boundaries, merge directions, and vehicle positions relative to lanes and to the ego vehicle are commonly misinterpreted, even when other scene elements are correctly identified. (20, 64, 72, 75, 77)
 - **Justifications expose implicit assumptions**  
-  Textual explanations sometimes contradict video reality (e.g., “collision avoided”) when the summary does not explicitly state otherwise, indicating that the model fills gaps using default expectations or misses the event completely.
+  Textual explanations sometimes contradict video reality (e.g., “collision avoided” in [reasons.tidy.csv](materials/ratings/reasons_tidy.csv) lines 13, 43, 98, 245) when the summary does not explicitly state otherwise, indicating that the model fills gaps using          default expectations or misses the event completely.
 - **Post-processing and validation are necessary**  
-  Out-of-range values, semantic mismatches, and overconfident interpretations occur sporadically, highlighting the need for automated checks before synthetic ratings can be used for analysis.
+  Out-of-range values [see here](materials/ratings/individual/processed_1_clip8_pid_8_age_58_female.csv) and overconfident interpretations (see above) occur sporadically, highlighting the need for automated checks before synthetic ratings can be used for analysis.
 
 
 
