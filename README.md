@@ -66,10 +66,19 @@ Against this backdrop, the present project explores a deliberately simpler quest
 ### First steps and general idea
 
 - **Video collection:**  
-  Driving-scene videos were collected from YouTube due to its accessibility and the availability of a wide range of real-world driving footage. A systematic search strategy was employed using keywords related to driving incidents and conditions (e.g., near-miss, traffic accident, dashcam, rain driving, fog, urban roads, highways). The search focused on capturing diverse real-world scenarios, including near-accidents, varying weather conditions, and different road environments. Approximately 100 videos were initially selected to allow for exclusions during preprocessing, such as poor video quality, irrelevant content, or technical incompatibilities. This approach ensured sufficient variability in the dataset while maintaining flexibility for data filtering and quality control.
+  Driving-scene videos were collected from YouTube due to its accessibility and the availability of a wide range of real-world driving footage, an example image can be seen below. A systematic search strategy was employed using keywords related to driving incidents and conditions (e.g., near-miss, traffic accident, dashcam, rain driving, fog, urban roads, highways). The search focused on capturing diverse real-world scenarios, including near-accidents, varying weather conditions, and different road environments. Approximately 100 videos were initially selected to allow for exclusions during preprocessing, such as poor video quality, irrelevant content, or technical incompatibilities. This approach ensured sufficient variability in the dataset while maintaining flexibility for data filtering and quality control.
+
+
+<p align="center">
+  <img src="materials/no_crop_video.jpeg" width="75%" />
+</p>
+
 
 - **Field-of-view cropping:**  
-  Each video was cropped to display only the **forward windshield view**, removing irrelevant elements outside the driver’s visual field.
+  Each video was cropped to display only the **forward windshield view**, removing irrelevant elements outside the driver’s visual field as seen below.
+<p align="center">
+  <img src="materials/cropped_video.jpeg" width="75%" />
+</p>
 
 - **Duration trimming:**  
   Videos were clipped to a standardized length between **7 and 30 seconds** to ensure consistency across the dataset.
@@ -79,6 +88,11 @@ Against this backdrop, the present project explores a deliberately simpler quest
 
 - **Pipeline construction:**  
 At first the idea was to send the **full video clip** to get ratings for simulated participants, but we looked into how **video processing** is done through chatgpt and since it only considers a **certain number of frames**, in order to have more control over the what frames were taken into account we decided to **extract frames as a separate process** and then send them to the model. However, the model has an **upper limit for images** that can be sent in one prompt, that is not compatible with the **amount of detail** that is needed to analyze **multi-second video**. We started with **4 frames per second** but increased this to **8 frames per second** in order to try and enhance the **qualities of the summaries.** This is why we decided to first use the model to **generate summaries for subsequent batches** and **combine them to keep a coherent story** of whats going on in the driving scene and to send that to the model to obtain the ratings.
+
+- An example text output is shown below: 
+<p align="center">
+  <img src="materials/example_text.png" width="75%" />
+</p>
 
 This design choice aligns with findings from both qualitative and quantitative studies showing that general-purpose VLMs struggle with fine-grained temporal reasoning and brief critical events, especially crashes, unless specialized architectures or sampling strategies are employed (Shihab,2025). Rather than attempting to solve this problem architecturally, the present work aimed to probe how far prompt design and summarization alone could go.
 
@@ -508,6 +522,10 @@ Faas, S. M., Mattes, S., Kao, A. C., & Baumann, M. (2020). Efficient paradigm to
 Gao, H., Xu, T., Xu, Y., Wang, Z., & Zhang, J. (2025). Foundation models in autonomous driving: A survey on scenario generation and analysis. arXiv. https://arxiv.org/abs/2506.11526
 
 Körber, M. (2019). Theoretical considerations and development of a questionnaire to measure trust in automation. In S. Bagnara, R. Tartaglia, S. Albolino, T. Alexander, & Y. Fujita (Eds.), Proceedings of the 20th Congress of the International Ergonomics Association (IEA 2018) (Advances in Intelligent Systems and Computing, Vol. 823, pp. 13-30). Springer. https://doi.org/10.1007/978-3-319-96074-6_2
+
+License does the impossible [Video]. (2024, December 28). YouTube. https://www.youtube.com/watch?v=7GClmFSoeuo
+
+OpenAI. (2025). ChatGPT [Image generator]. https://chatgpt.com
 
 Park, S., Lee, M., Kang, J., Choi, H., Park, Y., Cho, J., Lee, A., & Kim, D. (2024). VLAAD: Vision and language assistant for autonomous driving. In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) Workshops.
 
