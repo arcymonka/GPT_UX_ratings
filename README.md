@@ -9,50 +9,51 @@
 CS8200.041 - Project User-Centered Design for Interactive Systems (Summer Semester 2024)  
 Authors: Jessica Thiessen, Helena Kaczmarek, Alina Gerl  
 Supervisor: Pascal Jansen
+Ulm University
 
 ## Table of Contents
 
-- **1.** [Introduction](#introduction)
-- **2.** [Report](#report)
-   - **2.1** [Motivation](#motivation)
-   - **2.2** [Process](#process)
-     - **2.2.1** [First steps and general idea](#first-steps-and-general-idea)
-     - **2.2.2** [Prompt Development](#prompt-development)
-     - **2.2.3** [Project Timeline (after video collection)](#project-timeline-after-video-collection)
-   - **2.3** [Results](#results)
-   - **2.4** [Conclusion & Outlook](#conclusion--outlook)
-- **3.** [Pipeline](#pipeline)
-   - **3.1** [Features](#features)
-   - **3.2** [Project Structure](#project-structure)
-- **4.** [Usage](#usage)
-   - **4.1** [Setup Instructions](#setup-instructions)
-     - **4.1.1** [Clone the Repository](#clone-the-repository)
-     - **4.1.2** [Set up .env file](#set-up-env-file)
-   - **4.2** [Running the scripts](#running-the-scripts)
-- **5.** [Using another LLM](#using-another-llm)
-   - **5.1** [Replace the scene summarization model](#replace-the-scene-summarization-model-vision-capable)
-   - **5.2** [Replace the rating-generation model (text-only)](#replace-the-rating-generation-model-text-only)
-   - **5.3** [Environment variables and keys](#environment-variables-and-keys)
-   - **5.4** [Constraints imposed by the current design](#constraints-imposed-by-the-current-design)
-- **6.** [Questionnaire Sources](#questionnaire-sources)
-- **7.** [Troubleshooting](#troubleshooting)
-- **8.** [License](#license)
-- **9.** [References](#references)
+- **1.** [Introduction](#1-introduction)
+- **2.** [Report](#2-report)
+   - **2.1** [Motivation](#21-motivation)
+   - **2.2** [Process](#22-process)
+     - **2.2.1** [First steps and general idea](#221-first-steps-and-general-idea)
+     - **2.2.2** [Prompt Development](#222-prompt-development)
+     - **2.2.3** [Project Timeline (after video collection)](#223-project-timeline-after-video-collection)
+   - **2.3** [Results](#23-results)
+   - **2.4** [Conclusion & Outlook](#24-conclusion--outlook)
+- **3.** [Pipeline](#3-pipeline)
+   - **3.1** [Features](#31-features)
+   - **3.2** [Project Structure](#32-project-structure)
+- **4.** [Usage](#4-usage)
+   - **4.1** [Setup Instructions](#41-setup-instructions)
+     - **4.1.1** [Clone the Repository](#411-clone-the-repository)
+     - **4.1.2** [Set up .env file](#412-set-up-env-file)
+   - **4.2** [Running the scripts](#42-running-the-scripts)
+- **5.** [Using another LLM](#5-using-another-llm)
+   - **5.1** [Replace the scene summarization model](#51-replace-the-scene-summarization-model-vision-capable)
+   - **5.2** [Replace the rating-generation model (text-only)](#52-replace-the-rating-generation-model-text-only)
+   - **5.3** [Environment variables and keys](#53-environment-variables-and-keys)
+   - **5.4** [Constraints imposed by the current design](#54-constraints-imposed-by-the-current-design)
+- **6.** [Questionnaire Sources](#6-questionnaire-sources)
+- **7.** [Troubleshooting](#7-troubleshooting)
+- **8.** [License](#8-license)
+- **9.** [References](#9-references)
 
 
 
 
 
 
-# Introduction
+# 1. Introduction
 
 **GPT UX Ratings** is designed to evaluate how different traffic situations may be perceived by passengers in autonomous vehicles. The system uses OpenAI's GPT model to simulate answers to established UX rating questions.
 
 This method helps generate synthetic datasets for traffic safety, automation research, and behavioral studies involving passenger perceptions.
 
-# Report
+# 2. Report
 
-## Motivation 
+## 2.1 Motivation 
 As automated vehicles become more prevalent, they will increasingly need to account not only for objective safety but also for how traffic situations are subjectively experienced by their occupants. Constructs such as mental workload, trust in automation, and perceived safety are central to acceptance and effective human–vehicle interaction. Today, these variables are typically assessed using intrusive physiological sensors, controlled laboratory studies, or repeated self-reports (Diarra, Theurel, 2025). While informative, such approaches are difficult to scale to everyday driving and are poorly suited for continuous, non-disruptive assessment.
 
 Recent advances in vision–language models (VLMs) have raised the possibility that subjective aspects of driving could be inferred indirectly from the scene itself. A growing body of work shows that large multimodal models can generate semantically rich descriptions of traffic scenes, explain driving decisions, and reason about hazards from visual input alone. Systems such as VLAAD demonstrate that instruction-tuned vision–language assistants can produce detailed and interpretable natural-language descriptions of driving scenarios, although they rely on large, domain-specific datasets and fine-tuning pipelines tailored to autonomous driving (Park et al., 2024). Similarly, AccidentGPT proposes a multi-modal foundation model for traffic accident analysis that integrates video, dynamics, and task-specific prompts to reconstruct accidents and assess safety, highlighting the potential of language-based reasoning in this domain, but also its complexity and engineering overhead (Wu, Li, Xiao, 2024).
@@ -61,9 +62,9 @@ In parallel, several studies have explored the capabilities and limitations of g
 
 Against this backdrop, the present project explores a deliberately simpler question. Instead of building a dedicated autonomous driving model or performing end-to-end accident detection, it asks whether commercial, general-purpose large language models have sufficient scene understanding and contextual reasoning to approximate subjective human ratings from real-world driving videos. The approach is inspired by recent work using LLMs as simulators of human judgment, where models are prompted to act as individual users and generate plausible questionnaire responses. You et al. (2025) developed an LLM-powered framework that generates assessments on safety, intelligence, and comfort in order to evaluate driving performance. In another relevant development, surveys highlight how foundation models can produce semantically rich scene descriptions, perform risk assessment, and generate scenario evaluations from driving videos and sensors alone (Gao, et al., 2025). Surveys of LLM-based data annotation and synthesis show that such methods can produce coherent, human-like ratings and rationales across domains, while also exhibiting systematic biases and limitations (Tan, Zhang, Liu, Zhao, et al., 2024).
 
-## Process 
+## 2.2 Process 
 
-### First steps and general idea
+### 2.2.1 First steps and general idea
 
 - **Video collection:**  
   Driving-scene videos were collected from YouTube due to its accessibility and the availability of a wide range of real-world driving footage, an example image can be seen below. A systematic search strategy was employed using keywords related to driving incidents and conditions (e.g., near-miss, traffic accident, dashcam, rain driving, fog, urban roads, highways). The search focused on capturing diverse real-world scenarios, including near-accidents, varying weather conditions, and different road environments. Approximately 100 videos were initially selected to allow for exclusions during preprocessing, such as poor video quality, irrelevant content, or technical incompatibilities. This approach ensured sufficient variability in the dataset while maintaining flexibility for data filtering and quality control.
@@ -97,7 +98,7 @@ At first the idea was to send the **full video clip** to get ratings for simulat
 This design choice aligns with findings from both qualitative and quantitative studies showing that general-purpose VLMs struggle with fine-grained temporal reasoning and brief critical events, especially crashes, unless specialized architectures or sampling strategies are employed (Shihab,2025). Rather than attempting to solve this problem architecturally, the present work aimed to probe how far prompt design and summarization alone could go.
 
 
-### Prompt Development
+### 2.2.2 Prompt Development
 
 The initial prompt was designed with only the **basic information** thought necessary to generate scene summaries. However, through **trial and error**, we iteratively refined the prompt to improve the **accuracy, clarity, and relevance** of the summaries. This process ensured that the GPT-based model produced outputs better aligned with the events depicted in the driving videos.
 
@@ -194,7 +195,7 @@ The instruction explicitly allows the model to **revise earlier statements**, wh
 This prevents meta-commentary, explanations, or formatting artifacts. Clean, minimal output is required because summaries are **directly concatenated** and later reused as model input for rating generation.
 
 
-### Project Timeline (after video collection)
+### 2.2.3 Project Timeline (after video collection)
 
 ---
 
@@ -254,12 +255,12 @@ This prevents meta-commentary, explanations, or formatting artifacts. Clean, min
 
 ---
 
-## Final Conclusion
+#### Final Conclusion
 
 - **Final conclusion** : Due to this insight, we concluded that it is not currently feasible to reliably obtain acceptable summaries, and thus ratings, of videos depicting a varied set of traffic situations, in particular ones showing unusual or dangerous events.
 
 
-## Results
+## 2.3 Results
 > **Summary of empirical observations from the final generated scene summaries and synthetic UX ratings**
 Added for reference as examples of some claims, the numbers in brackets refer to the video clips with their summaries contained in [videos_spreadsheet.pdf](materials/videos_spreadsheet.pdf). They correspond to the numbers in the second column ("Real Clip").
 
@@ -278,7 +279,7 @@ Added for reference as examples of some claims, the numbers in brackets refer to
 
 
 
-# Conclusion & Outlook
+# 2.4 Conclusion & Outlook
 The project shows that, in its current form, **GPT-5.1** is not yet reliable enough to generate meaningful **synthetic UX ratings** for **complex driving scenarios.** While the model was able to recognize many scene elements and maintain a degree of narrative continuity, it frequently **overlooked or misinterpreted safety-critical details.** This resulted in summaries that were sometimes coherent at the micro-level but incomplete at the event-level, especially in situations involving **multi-frame dynamics** such as near-misses, abrupt maneuvers, or collisions. Another frequently occurring issue was that **lane boundaries were interpreted incorrectly.** Small details that were irrelevant to the evolving situation were often described in detail, showing that although the model is capable of identifying components of the scene relatively reliably, their relevance and interaction are not captured.
 
 Even with careful prompt engineering, higher frame rates, and explicit instructions to correct earlier statements, the model struggled with **temporal reasoning.** When relevant cues unfolded across several frames, **early omissions propagated** throughout the summary, preventing the model from reconstructing the full situation. This directly affected the subsequent rating generation: the synthetic participants often failed to map the scenario to appropriate **UX constructs** (e.g., **perceived safety, predictability, mental workload**), occasionally assuming that no crash or dangerous event occurred despite clear visual evidence.
@@ -292,8 +293,8 @@ In the future, this pipeline could be tested with other models better suited for
 Once alternative vision models are integrated, if the summaries are deemed accurate, it becomes essential to validate the resulting rating by comparing the **synthetic ratings** to **real human responses**, to ensure that improvements in scene understanding translate into meaningful UX assessments. **Benchmarking** the model's assessments against real human data is the next step to determine where the model differs the most. These contrasts may show whether the LLM tends to misinterpret events. By systematically comparing synthetic ratings across demographic groups or driving experiences and assessing whether these patterns correspond with known findings, potential **biases** can be identified.
 
 
-# Pipeline 
-## Features 
+# 3. Pipeline 
+## 3.1 Features 
 This project uses **OpenAI’s GPT-5** model to analyze frames extracted from driving videos and simulate human emotional reactions (as CSV ratings) for different age groups and gender.
 
 It automates the following:
@@ -304,7 +305,7 @@ It automates the following:
 5. Saves all responses as **CSV files**.
 
 
-## Project Structure
+## 3.2 Project Structure
 
 ```plaintext
 
@@ -326,11 +327,11 @@ GPT_UX_ratings/
 ```
 
 
-# Usage
+# 4. Usage
 
-## Setup Instructions
+## 4.1 Setup Instructions
 
-### Clone the Repository
+### 4.1.1 Clone the Repository
 Clone the repository and install dependencies:
 
 ```bash
@@ -338,7 +339,7 @@ git clone https://github.com/arcymonka/GPT_UX_ratings.git
 cd GPT_UX_ratings
 pip install -r requirements.txt
 ```
-### Set up .env file
+### 4.1.2 Set up .env file
 
 Create a `.env` file in the root directory to configure the following environment variables:
 
@@ -354,7 +355,7 @@ RANDOM_SEED=42
 
 Ensure all referenced directories exist and contain valid data files (e.g., `.txt` summaries in `SUMMARY_PATH`).
 
-## Running the scripts
+## 4.2 Running the scripts
 Run the scripts in the following order: 
 ```bash 
 python frames_summaries.py
@@ -375,7 +376,7 @@ python ratings.py
 - Call OpenAI's API to simulate ratings
 - Save each response to a CSV in `RATINGS_OUTPUT_PATH`
 
-## Using another LLM
+## 5. Using another LLM
 The pipeline is model-agnostic by design and can be adapted to use other large language or vision–language models for both scene summarization and rating generation. This is particularly relevant given the limitations observed with GPT-5.1 in handling multi-frame, safety-critical events. The change requires explicit code changes in two places. Right now, model usage is hard-coded in the scripts (not configurable via `.env` beyond the OpenAI API key).
 
 There are **two independent integration points**:
@@ -385,7 +386,7 @@ There are **two independent integration points**:
 
 These stages can use **different models**.
 
-## Replace the scene summarization model (vision-capable)
+## 5.1 Replace the scene summarization model (vision-capable)
 Scene summaries are generated in `frames_summaries.py` inside:
 
 - `process_frames_with_openai(frames, summary_so_far)`
@@ -426,7 +427,7 @@ Replace the OpenAI client call inside `process_frames_with_openai(...)` with you
 
 Important: The summarization prompt is tightly coupled to the pipeline. For benchmarking, keep `build_prompt(...)` unchanged when swapping models.
 
-## Replace the rating-generation model (text-only)
+## 5.2 Replace the rating-generation model (text-only)
 
 Synthetic UX ratings are generated in `ratings.py` inside `process_summary_with_openai(summary_text, age, gender)`
 
@@ -461,7 +462,7 @@ Replace the model call inside `process_summary_with_openai(...)` with your provi
 
 If the model sometimes returns extra text, `sanitize_csv_row()` will attempt to recover numbers, but frequent recovery usually indicates the model is not suitable for this stage.
 
-## Environment variables and keys
+## 5.3 Environment variables and keys
 Currently, `.env` configures only the OpenAI API key for both scripts:
 ```
 OPENAI_API_KEY="your_openai_key"
@@ -474,7 +475,7 @@ If you switch to another provider, you must:
 
 No provider abstraction layer is implemented yet.
 
-## Constraints imposed by the current design
+## 5.4 Constraints imposed by the current design
 
 Any alternative model must work within these constraints:
 
@@ -488,7 +489,7 @@ Any alternative model must work within these constraints:
 
 Some failure modes (e.g., missed crashes) can stem from these structural constraints, not just model quality.
 
-# Questionnaire Sources
+# 6. Questionnaire Sources
 
 The 30-item rating scale is built upon validated measures from several academic sources:
 
@@ -498,7 +499,7 @@ The 30-item rating scale is built upon validated measures from several academic 
 - **Acceptance** – Van der Laan et al. (1997)
 - **SART (Situation Awareness Rating Technique)** – Taylor (2017)
 
-# Troubleshooting
+# 7. Troubleshooting
 
 | Issue                             | Possible Cause                                | Solution                                   |
 |----------------------------------|-----------------------------------------------|--------------------------------------------|
@@ -507,11 +508,11 @@ The 30-item rating scale is built upon validated measures from several academic 
 | API error or rate limit exceeded | Too many requests or invalid model version    | Try again later or adjust request volume or add money to API account |
 | Output folder not created        | Missing permissions or invalid path           | Ensure script can create/write to paths    |
 
-# License
+# 8. License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-# References 
+# 9. References 
 
 Anthis, J. R., Liu, R., Richardson, S. M., Kozlowski, A. C., Koch, B., Brynjolfsson, E., Evans, J., & Bernstein, M. S. (2025). LLM social simulations are a promising research method (arXiv preprint arXiv:2504.02234 v2). arXiv. https://doi.org/10.48550/arXiv.2504.02234
 
